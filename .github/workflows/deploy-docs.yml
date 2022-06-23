@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [14.x, 16.x]
+        node_version: [14.x]
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,7 @@ jobs:
 
       - run: npm i -g pnpm
       - run: pnpm -v
+      - run: pnpm i
       - run: pnpm doc:build
         env:
           CI: true
