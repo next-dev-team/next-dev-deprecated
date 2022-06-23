@@ -24,7 +24,6 @@ jobs:
 
       - run: npm i -g pnpm
       - run: pnpm -v
-      - run: pnpm --ignore-engines
       - run: pnpm doc:build
         env:
           CI: true
