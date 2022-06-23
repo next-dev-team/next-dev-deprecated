@@ -26,7 +26,3 @@ jobs:
       - run: pnpm -v
       - run: pnpm i
       - run: pnpm doc:build
-        env:
-          CI: true
-          PROGRESS: none
-          NODE_OPTIONS: --max_old_space_size=4096
