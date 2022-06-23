@@ -16,6 +16,7 @@ export default defineConfig({
   ],
   scripts: [!isProd ? 'https://cdn.tailwindcss.com' : ''],
   exportStatic: {},
+  dynamicImport: {},
   base: '/next-dev',
   publicPath: '/next-dev/',
 } as IConfig);
