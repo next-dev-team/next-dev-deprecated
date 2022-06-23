@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "dumi dev",
     "build": "dumi build && pnpm build-tailwind",
-    "deploy:gh": "pnpm build && gh-pages -d ./dist",
+    "doc-deploy": "pnpm build && gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify"
   },
