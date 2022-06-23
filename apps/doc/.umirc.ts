@@ -3,7 +3,7 @@ import { IConfig, defineConfig } from 'dumi';
 const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig({
-  title: 'Site Name',
+  title: 'Next Dev',
   mode: 'site',
   chainWebpack(config, {}) {
     config.module.rule('ts-in-node_modules').include.clear();
@@ -12,6 +12,9 @@ export default defineConfig({
   scripts: [
     !isProd
       ? 'https://cdn.tailwindcss.com'
-      : 'https://raw.githubusercontent.com/next-dev-team/next-libray/master/tailwind-prod.css',
+      : 'https://raw.githubusercontent.com/next-dev-team/next-dev/main/apps/doc/tailwind-prod.css',
   ],
+  exportStatic: {},
+  base: '/next-dev',
+  publicPath: '/next-dev/',
 } as IConfig);
