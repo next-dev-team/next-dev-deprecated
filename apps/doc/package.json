@@ -6,7 +6,7 @@
     "build": "dumi build && pnpm build-tailwind",
     "doc-deploy": "pnpm build && gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o ../../public/tailwind-doc.css --minify"
+    "build-tailwind": "npx tailwindcss -o dist/global.css --minify"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -31,6 +31,7 @@
     "postcss": "^8.4.14",
     "autoprefixer": "^10.4.7",
     "deploy:gh": "gh-pages -d ./dist",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "ahooks": "^3.5.0"
   }
 }
