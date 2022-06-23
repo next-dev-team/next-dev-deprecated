@@ -6,7 +6,7 @@
     "build": "dumi build && pnpm build-tailwind",
     "doc-deploy": "pnpm build && gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify"
+    "build-tailwind": "npx tailwindcss -o ../../public/tailwind-doc.css --minify"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

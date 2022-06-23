@@ -10,13 +10,10 @@ export default defineConfig({
     return config;
   },
   styles: [
-    isProd
-      ? `https://raw.githubusercontent.com/next-dev-team/next-dev/main/apps/doc/tailwind-prod.css`
-      : '',
+    isProd ? `https://next-dev-team.github.io/next-dev/tailwind-doc.css` : '',
   ],
   scripts: [!isProd ? 'https://cdn.tailwindcss.com' : ''],
   exportStatic: {},
-  dynamicImport: {},
   base: '/next-dev',
   publicPath: '/next-dev/',
 } as IConfig);
