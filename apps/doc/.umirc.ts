@@ -9,7 +9,11 @@ export default defineConfig({
     config.module.rule('ts-in-node_modules').include.clear();
     return config;
   },
-  styles: [`./tailwind-prod.css`],
+  styles: [
+    isProd
+      ? `https://raw.githubusercontent.com/next-dev-team/next-dev/main/apps/doc/tailwind-prod.css`
+      : '',
+  ],
   scripts: [!isProd ? 'https://cdn.tailwindcss.com' : ''],
   exportStatic: {},
   base: '/next-dev',
