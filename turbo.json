@@ -9,7 +9,7 @@
         ".next/**"
       ]
     },
-    "doc-deploy": {},
+    "publish": {},
     "lint": {
       "outputs": []
     },

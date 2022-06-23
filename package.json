@@ -11,7 +11,8 @@
     "dev": "turbo run dev --parallel",
     "doc:dev": "turbo run dev",
     "doc:build": "turbo run build --filter ./apps/doc...",
-    "doc:deploy": "turbo run doc-deploy --filter ./apps/doc...",
+    "doc:predeploy": "turbo run publish --filter ./apps/doc...",
+    "doc:deploy": "pnpm doc:build && pnpm doc:predeploy",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "npx only-allow pnpm"

@@ -4,9 +4,9 @@
   "scripts": {
     "dev": "dumi dev",
     "build": "dumi build && pnpm build-tailwind",
-    "doc-deploy": "pnpm build && gh-pages -d ./dist",
+    "publish": "gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o dist/global.css --minify"
+    "build-tailwind": "npx tailwindcss -o global.css --minify"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
