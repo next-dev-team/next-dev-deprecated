@@ -25,4 +25,4 @@ jobs:
       - run: npm i -g pnpm
       - run: pnpm -v
       - run: pnpm i
-      - run: pnpm doc:build
+      - run: pnpm deploy:gh
