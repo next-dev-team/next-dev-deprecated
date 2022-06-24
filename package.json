@@ -9,7 +9,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "doc:dev": "turbo run dev",
+    "doc:dev": "turbo run dev --filter ./apps/doc...",
     "doc:build": "turbo run build --filter ./apps/doc...",
     "doc:predeploy": "turbo run publish --filter ./apps/doc...",
     "doc:deploy": "pnpm doc:build && pnpm doc:predeploy",
@@ -20,7 +20,8 @@
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
     "prettier": "latest",
-    "turbo": "latest"
+    "turbo": "latest",
+    "tailwind-merge": "^1.3.0"
   },
   "engines": {
     "npm": ">=7.0.0",
