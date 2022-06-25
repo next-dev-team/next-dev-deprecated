@@ -5,6 +5,7 @@
         "^build"
       ],
       "outputs": [
+        "lib/**",
         "dist/**",
         ".next/**"
       ]
@@ -15,6 +16,6 @@
     },
     "dev": {
       "cache": false
-    },
+    }
   }
 }

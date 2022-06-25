@@ -1,4 +1,3 @@
-//@ts-ignore
 import React from 'react';
 const RootApp = (props: any) => {
   const { children, routes } = props;

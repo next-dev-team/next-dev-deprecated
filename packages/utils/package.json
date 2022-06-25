@@ -1,0 +1,35 @@
+{
+  "name": "utils",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "lint": "eslint *.ts*",
+    "build": "tsup src --format cjs --dts --external react"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "react": "^17.0.2",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.2",
+    "@types/lodash": "^4.14.182",
+    "@types/store": "^2.0.2",
+    "@types/crypto-js": "^4.1.1",
+    "tsup": "^5.10.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "lorem-ipsum": "^2.0.8",
+    "store": "^2.0.12",
+    "crypto-js": "^4.1.1",
+    "jsencrypt": "^3.2.1",
+    "@umijs/fabric": "^2.12.0"
+  }
+}

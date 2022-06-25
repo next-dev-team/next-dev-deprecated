@@ -1,6 +1,9 @@
 {
   "private": true,
-  "name": "dumi-app",
+  "name": "@next-dev/docs",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "dumi dev",
     "build": "dumi build && pnpm build-tailwind",
@@ -8,9 +11,6 @@
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "build-tailwind": "npx tailwindcss -o global.css --minify"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "typings": "dist/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -26,12 +26,20 @@
     "dumi": "^1.1.42",
     "lint-staged": "^10.0.7",
     "yorkie": "^2.0.0",
-    "ui": "workspace:*",
     "tailwindcss": "^3.1.4",
     "postcss": "^8.4.14",
     "autoprefixer": "^10.4.7",
     "deploy:gh": "gh-pages -d ./dist",
     "gh-pages": "^4.0.0",
-    "ahooks": "^3.5.0"
+    "ahooks": "^3.5.0",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.3",
+    "@umijs/preset-react": "^2.1.4",
+    "@types/node": "^17.0.12",
+    "@types/react": "17.0.37"
+  },
+  "dependencies": {
+    "ui": "workspace:*",
+    "utils": "workspace:*"
   }
 }
