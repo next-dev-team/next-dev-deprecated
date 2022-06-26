@@ -6,6 +6,7 @@ const DemoButton = () => {
         <h5>primary</h5>
         <Button title="Primary" />
         <Button variant="outline" title="Outline" />
+        <Button variant="outline" title="Outline Rounded" shape="rounded" />
         <Button variant="primary" title="rounded" shape="rounded" />
       </div>
       {/* outline */}

@@ -77,7 +77,7 @@ export const Button = (props: IButton) => {
       type="button"
       {..._omit(rest, 'variant', 'color', isDisabled ? 'onClick' : '')}
       className={tw(
-        'text-white inline-block px-6 py-2.5 font-medium text-xs leading-tight rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out',
+        'text-white capitalize inline-block px-6 py-2.5 font-medium text-xs leading-tight rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out',
         renderVariant(),
         renderRound,
         renderDisabled,

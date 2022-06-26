@@ -5,5 +5,3 @@ nav:
 ---
 
 # Getting Started
-
-<code src="./demo.tsx"></code>
