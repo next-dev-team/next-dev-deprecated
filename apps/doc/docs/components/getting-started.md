@@ -1,3 +1,7 @@
+---
+title: Getting Started
+---
+
 # Getting Started
 
 ProComponents is a template component developed based on Ant Design, which provides higher-level abstraction support out of the box. It can significantly improve the efficiency of making CRUD pages and focus more on pages.

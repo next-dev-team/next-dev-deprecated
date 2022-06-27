@@ -8,12 +8,12 @@ export const componentNav: Nav = [
 export const componentMenu: Menu = {
   '/components': [
     {
-      title: 'Getting Started',
+      title: 'Introduction',
       children: ['components/getting-started.md'],
     },
     {
       title: 'Display',
-      children: ['components/button.md'],
+      children: ['components/display/button/button.md'],
     },
   ],
 };

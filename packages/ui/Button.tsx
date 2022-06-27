@@ -2,7 +2,7 @@
 
 import { ButtonHTMLAttributes } from 'react';
 import { twMerge as tw } from 'tailwind-merge';
-import { _omit } from 'utils/dist/lodash/omit';
+import { _omit } from 'utils/src';
 
 type IVariant = 'outline' | 'ghost' | 'disabled' | 'primary';
 type IType = 'primary' | 'warning' | 'success' | 'error' | 'dark' | 'light';
