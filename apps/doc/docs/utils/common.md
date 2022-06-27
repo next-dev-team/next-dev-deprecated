@@ -9,7 +9,7 @@ Provides a set of predefined commonly used helper methods
 ## How to use
 
 ```tsx | pure
-import { utils } from '@wetrial/core';
+import { utils } from '@next-dev';
 
 const {isPromise}=utils;
 

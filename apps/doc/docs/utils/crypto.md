@@ -13,7 +13,7 @@ The encryption during the ajax transmission process can be controlled by adding 
 ## How to use
 
 ```tsx | pure
-import { crypto } from '@wetrial/core';
+import { crypto } from '@next-dev';
 
 const { base64 } = crypto;
 

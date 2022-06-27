@@ -5,7 +5,7 @@ Provides related methods for obtaining tokens, permissions, etc.
 ## How to use
 
 ```tsx |pure
-import { tokener } from '@wetrial/core';
+import { tokener } from '@next-dev';
 
 const { getToken, setToken, clearToken } = tokener;
 

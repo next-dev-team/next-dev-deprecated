@@ -9,7 +9,7 @@ Provide local storage related methods
 ## How to use
 
 ```tsx |pure
-import { store } from '@wetrial/core';
+import { store } from '@next-dev';
 
 store.set('', '');
 ```

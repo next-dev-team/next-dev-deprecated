@@ -17,5 +17,9 @@ export const utilMenu: Menu = {
         'utils/common.md',
       ],
     },
+    {
+      title: 'Validation',
+      children: ['utils/validation/regex.md'],
+    },
   ],
 };

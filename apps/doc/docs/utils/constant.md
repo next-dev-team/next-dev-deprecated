@@ -9,7 +9,7 @@ Provides a set of predefined constants that are frequently used
 ## How to use
 
 ```tsx | pure
-import { constants } from '@wetrial/core';
+import { constants } from '@next-dev';
 
 const { LAYOUT_FORM_SINGLE } = constants;
 ```

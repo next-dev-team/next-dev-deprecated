@@ -1,4 +1,5 @@
 import React from 'react';
+import '@ant-design/pro-components/dist/components.css';
 const RootApp = (props: any) => {
   const { children, routes } = props;
 

@@ -41,7 +41,8 @@
     "antd": "^4.21.3",
     "dumi-theme-default": "^1.1.21",
     "react-lazyload": "^3.2.0",
-    "@ant-design/pro-skeleton": "^1.0.9"
+    "@ant-design/pro-skeleton": "^1.0.9",
+    "@ant-design/pro-components": "^1.1.6"
   },
   "dependencies": {
     "ui": "workspace:*",

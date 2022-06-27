@@ -1,9 +1,12 @@
 ﻿import { ConfigProvider, Switch } from 'antd';
+import enUS from 'antd/lib/locale/en_US';
+
 import { IRouteComponentProps, isBrowser } from 'dumi';
 import Layout from 'dumi-theme-default/src/layout';
 import { useEffect, useMemo } from 'react';
 import './layout.less';
 import { useDarkreader } from './useDarkreader';
+import { IntlProvider, enUSIntl } from '@ant-design/pro-components';
 
 const DarkButton = () => {
   const colorScheme = useMemo(() => {
@@ -109,25 +112,40 @@ const LayoutPage = ({ children, ...props }: IRouteComponentProps) => {
   }, []);
 
   return (
-    <Layout {...props}>
-      <div>
-        <div key="children">{children}</div>
-        <div
-          style={{
-            position: 'fixed',
-            right: 8,
-            top: 0,
-            zIndex: 999,
-            display: 'flex',
-            alignItems: 'center',
+    <ConfigProvider
+      {...{
+        // form: { validateMessages },
+
+        locale: enUS,
+      }}
+    >
+      <Layout {...props}>
+        <IntlProvider
+          value={{
+            intl: enUSIntl,
+            valueTypeMap: {},
           }}
-          key="procomponents_dark_theme_view"
-          className="procomponents_dark_theme_view"
         >
-          {isBrowser() ? <DarkButton /> : null}
-        </div>
-      </div>
-    </Layout>
+          <div>
+            <div key="children">{children}</div>
+            <div
+              style={{
+                position: 'fixed',
+                right: 8,
+                top: 0,
+                zIndex: 999,
+                display: 'flex',
+                alignItems: 'center',
+              }}
+              key="procomponents_dark_theme_view"
+              className="procomponents_dark_theme_view"
+            >
+              {isBrowser() ? <DarkButton /> : null}
+            </div>
+          </div>
+        </IntlProvider>
+      </Layout>
+    </ConfigProvider>
   );
 };
 

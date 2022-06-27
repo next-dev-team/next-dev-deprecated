@@ -35,4 +35,7 @@ export default defineConfig({
   menus,
   webpack5: {},
   fastRefresh: {},
+  antd: {
+    // dark: true,
+  },
 } as IConfig);

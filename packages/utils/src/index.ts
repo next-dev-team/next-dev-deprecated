@@ -71,3 +71,7 @@ export * from './constant';
 export * from './constant/layout';
 export * from './constant/date';
 export { default as validateMsgEnglish } from './constant/validateMsgEnglish';
+/**
+ * _constant_
+ */
+export { default as regex } from './regex';
