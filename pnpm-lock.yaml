@@ -20,6 +20,7 @@ importers:
 
   apps/doc:
     specifiers:
+      '@ant-design/icons': ^4.7.0
       '@ant-design/pro-components': ^1.1.6
       '@ant-design/pro-skeleton': ^1.0.9
       '@types/node': ^17.0.12
@@ -46,11 +47,12 @@ importers:
       ui: link:../../packages/ui
       utils: link:../../packages/utils
     devDependencies:
+      '@ant-design/icons': 4.7.0
       '@ant-design/pro-components': 1.1.6
       '@ant-design/pro-skeleton': 1.0.9_antd@4.21.3
       '@types/node': 17.0.45
       '@types/react': 17.0.37
-      '@umijs/preset-react': 2.1.4
+      '@umijs/preset-react': 2.1.4_@ant-design+icons@4.7.0
       '@umijs/ssr-darkreader': 4.9.45
       ahooks: 3.5.0
       antd: 4.21.3
@@ -3313,7 +3315,7 @@ packages:
       umi: 3.x
     dev: true
 
-  /@umijs/plugin-layout/0.18.3_qdl5uuddiwjyj6v3u62dh7cy6m:
+  /@umijs/plugin-layout/0.18.3_pjhcezrsbv2vwyfren2k7h542q:
     resolution: {integrity: sha512-ht6BIr3U0z+ieJr6sW55fnwFGQys/EU90B02XSnFEWl0b65zG07woYtGwbzOY+KpkOrCslrGtAChiAUPQq4rww==}
     peerDependencies:
       '@ant-design/icons': ^4.0.0
@@ -3323,6 +3325,7 @@ packages:
       '@umijs/plugin-model': 2.x
       umi: 3.x
     dependencies:
+      '@ant-design/icons': 4.7.0
       '@umijs/plugin-initial-state': 2.4.0
       '@umijs/plugin-locale': 0.16.0
       '@umijs/plugin-model': 2.6.2
@@ -3481,7 +3484,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@umijs/preset-react/2.1.4:
+  /@umijs/preset-react/2.1.4_@ant-design+icons@4.7.0:
     resolution: {integrity: sha512-dq0QTKjgNCE5ggjhpEKPZYezsq9+yBssKCL9E4y8wQ9Kh9SnyFbkZwemXvU/NgeGPOnLsE7YZ3l0o2BIhtBpog==}
     peerDependencies:
       umi: 3.x
@@ -3494,7 +3497,7 @@ packages:
       '@umijs/plugin-dva': 0.13.2
       '@umijs/plugin-helmet': 1.1.4
       '@umijs/plugin-initial-state': 2.4.0
-      '@umijs/plugin-layout': 0.18.3_qdl5uuddiwjyj6v3u62dh7cy6m
+      '@umijs/plugin-layout': 0.18.3_pjhcezrsbv2vwyfren2k7h542q
       '@umijs/plugin-locale': 0.16.0
       '@umijs/plugin-model': 2.6.2
       '@umijs/plugin-request': 2.9.0

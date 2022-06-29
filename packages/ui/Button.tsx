@@ -1,22 +1,32 @@
 // https://tailwind-elements.com/docs/standard/components/buttons/
 
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, CSSProperties, ReactNode, useMemo } from 'react';
 import { twMerge as tw } from 'tailwind-merge';
 import { _omit } from 'utils/src';
 
-type IVariant = 'outline' | 'ghost' | 'disabled' | 'primary';
-type IType = 'primary' | 'warning' | 'success' | 'error' | 'dark' | 'light';
+type IVariant = 'outline' | 'primary' | 'link';
+type IType =
+  | 'primary'
+  | 'secondary'
+  | 'warning'
+  | 'success'
+  | 'error'
+  | 'dark'
+  | 'light';
+type IShape = 'rounded' | 'square' | 'block';
 
 export type IButton = {
   /**
    * container clx
    */
-  ngClass?: string;
   variant?: IVariant;
-  shape?: 'rounded' | 'square';
   title?: string;
   color?: IType;
+  shape?: IShape;
   isDisabled?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  textTransform?: CSSProperties['textTransform'];
 } & Omit<ButtonHTMLAttributes<any>, 'color'>;
 
 export const Button = (props: IButton) => {
@@ -28,13 +38,16 @@ export const Button = (props: IButton) => {
     shape = 'square',
     children,
     isDisabled,
+    leftIcon,
+    rightIcon,
+    textTransform,
     ...rest
   } = props;
 
   /**
    * renderBtnClx base on variant
    */
-  const renderVariant = () => {
+  const renderVariant = useMemo(() => {
     //------- primaryColor ----------
     const primaryColor = {
       primary: tw(
@@ -64,27 +77,53 @@ export const Button = (props: IButton) => {
     const variantType = {
       primary: primaryColor[color],
       outline: outlineColor[color],
-    } as any;
+      link: tw(
+        'font-medium text-xs leading-tight bg-transparent text-blue-600 focus:outline-none focus:ring-0 shadow-none focus:shadow-none  hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100  active:bg-gray-200',
+      ),
+    };
 
-    return variantType?.[variant];
-  };
+    const getColor = variantType?.[variant];
 
-  const renderRound = shape === 'rounded' && tw('rounded-full');
-  const renderDisabled = isDisabled && tw('opacity-50 cursor-not-allowed');
+    // console.log('getColor', getColor);
+
+    return getColor;
+  }, [color, variant]);
+
+  const renderShape = useMemo(() => {
+    const shapeType = {
+      rounded: tw('rounded-full'),
+      square: tw('rounded'),
+      block: tw('w-full'),
+    } as Record<IShape, any>;
+    return shapeType[shape];
+  }, [shape]);
+
+  const renderCommon = useMemo(() => {
+    const renderDisabled = isDisabled && tw('opacity-50 cursor-not-allowed');
+    const renderTextColor = tw(
+      color === 'light' ? 'text-gray-900' : 'text-white',
+    );
+
+    const combineCls = [renderTextColor, textTransform, renderDisabled];
+
+    return combineCls.filter((item) => item);
+  }, [isDisabled, color, textTransform]);
 
   return (
     <button
       type="button"
-      {..._omit(rest, 'variant', 'color', isDisabled ? 'onClick' : '')}
+      {..._omit(rest, isDisabled ? 'onClick' : '')}
       className={tw(
-        'text-white capitalize inline-block px-6 py-2.5 font-medium text-xs leading-tight rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out',
-        renderVariant(),
-        renderRound,
-        renderDisabled,
+        ...renderCommon,
+        'relative flex items-center capitalize  px-6 py-2.5 font-medium text-xs leading-tight shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out gap-1',
+        renderVariant,
+        renderShape,
         className,
       )}
     >
+      {leftIcon && leftIcon}
       {children || title}
+      {rightIcon && rightIcon}
     </button>
   );
 };

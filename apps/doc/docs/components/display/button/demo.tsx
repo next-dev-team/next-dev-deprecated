@@ -1,42 +1,91 @@
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Fragment } from 'react';
 import { Button } from 'ui';
 const DemoButton = () => {
-  return (
-    <div className="space-y-8 ">
-      <div className="flex items-center justify-center space-x-2">
-        <h5>primary</h5>
-        <Button title="Primary" />
-        <Button variant="outline" title="Outline" />
+  const renderComponent = [
+    {
+      title: 'Primary',
+      render: <Button title="Primary" />,
+    },
+    {
+      title: 'Primary Rounded',
+      render: <Button title="rounded" shape="rounded" />,
+    },
+    {
+      title: 'Primary Disabled',
+      render: <Button title="disabled" isDisabled />,
+    },
+    {
+      title: 'left Icon',
+      render: <Button title="left Icon" leftIcon={<LeftOutlined />} />,
+    },
+    {
+      title: 'right Icon',
+      render: <Button title="right Icon" rightIcon={<RightOutlined />} />,
+    },
+    {
+      title: 'Icon End',
+      render: (
+        <Button
+          title="Icon End"
+          rightIcon={<RightOutlined className="absolute right-1.5" />}
+        />
+      ),
+    },
+    {
+      title: 'Outline Rounded',
+      render: (
         <Button variant="outline" title="Outline Rounded" shape="rounded" />
-        <Button variant="primary" title="rounded" shape="rounded" />
-      </div>
-      {/* outline */}
-      <div className="flex items-center justify-center space-x-2">
-        <h5>outline</h5>
-        <Button title="Primary" color="success" />
-        <Button variant="outline" title="Outline" color="success" />
+      ),
+    },
+
+    {
+      title: 'Primary outline',
+      render: <Button variant="outline" title="Outline" />,
+    },
+
+    {
+      title: 'link',
+      render: <Button variant="link" title="link" />,
+    },
+    {
+      title: 'link',
+      render: (
         <Button
-          variant="primary"
-          title="rounded"
-          color="success"
-          shape="rounded"
+          variant="link"
+          textTransform="uppercase"
+          title="link with icon"
+          rightIcon={<RightOutlined className="absolute right-1.5" />}
         />
-      </div>
-      {/* disabled */}
-      <div className="flex items-center justify-center space-x-2">
-        <h5>outline</h5>
-        <Button title="Primary" color="success" isDisabled />
-        <Button variant="outline" title="Outline" color="success" isDisabled />
-        <Button
-          variant="primary"
-          title="rounded"
-          color="success"
-          shape="rounded"
-          isDisabled
-          onClick={() => {
-            alert('hello');
-          }}
-        />
-      </div>
+      ),
+    },
+    {
+      title: 'outline Block',
+      render: <Button variant="outline" title="Outline Block" shape="block" />,
+    },
+    {
+      title: 'success',
+      divider: true,
+      render: <Button title="success" color="success" />,
+    },
+    {
+      title: 'dark',
+      render: <Button title="dark" color="dark" />,
+    },
+    {
+      title: 'light',
+      render: <Button title="light" color="light" />,
+    },
+  ];
+
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      {renderComponent.map((item, key) => (
+        <Fragment key={key}>
+          {item.divider && <hr className="w-full border-b border-gray-200" />}
+          {item.render}
+        </Fragment>
+      ))}
     </div>
   );
 };
