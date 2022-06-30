@@ -6,10 +6,10 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "dumi dev",
-    "build": "dumi build && pnpm build-tailwind",
+    "build": "pnpm build-tailwind && dumi build",
     "publish": "gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o global.css --minify"
+    "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
