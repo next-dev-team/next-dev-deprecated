@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "antd-ui",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -8,7 +8,15 @@
   "scripts": {
     "lint": "eslint *.ts*"
   },
+  "peerDependencies": {
+    "antd": ">=4",
+    "@ant-design/icons": ">=4",
+    "@ant-design/pro-components": ">=1"
+  },
   "devDependencies": {
+    "antd": "4.21.4",
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-components": "^1.1.7",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "eslint": "^7.32.0",
@@ -16,11 +24,7 @@
     "react": "^17.0.2",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
-    "utils": "workspace:*",
-    "@ant-design/icons": "^4.7.0"
-  },
-  "peerDependencies": {
-    "@ant-design/icons": "=>4"
+    "utils": "workspace:*"
   },
   "dependencies": {
     "classnames": "^2.3.1"

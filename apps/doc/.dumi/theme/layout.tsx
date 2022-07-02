@@ -7,6 +7,7 @@ import { useEffect, useMemo } from 'react';
 import './layout.less';
 import { useDarkreader } from './useDarkreader';
 import { IntlProvider, enUSIntl } from '@ant-design/pro-components';
+import '@ant-design/pro-components/dist/components.css';
 
 const DarkButton = () => {
   const colorScheme = useMemo(() => {

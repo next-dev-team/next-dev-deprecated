@@ -1,6 +1,6 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Fragment } from 'react';
-import { Button } from 'ui';
+import { Button } from 'ui/src';
 const DemoButton = () => {
   const renderComponent = [
     {
@@ -61,7 +61,7 @@ const DemoButton = () => {
     },
     {
       title: 'outline Block',
-      render: <Button variant="outline" title="Outline Block" shape="block" />,
+      render: <Button variant="outline" title="Outline Block " isFull />,
     },
     {
       title: 'success',

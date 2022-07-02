@@ -13,7 +13,7 @@ type IType =
   | 'error'
   | 'dark'
   | 'light';
-type IShape = 'rounded' | 'square' | 'block';
+type IShape = 'rounded' | 'square';
 
 export type IButton = {
   /**
@@ -24,20 +24,22 @@ export type IButton = {
   color?: IType;
   shape?: IShape;
   isDisabled?: boolean;
+  isFull?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   textTransform?: CSSProperties['textTransform'];
 } & Omit<ButtonHTMLAttributes<any>, 'color'>;
 
-export const Button = (props: IButton) => {
+export default function Button(props: IButton) {
   const {
     className,
     variant = 'primary',
-    title = 'button',
+    title,
     color = 'primary',
     shape = 'square',
     children,
     isDisabled,
+    isFull,
     leftIcon,
     rightIcon,
     textTransform,
@@ -93,21 +95,26 @@ export const Button = (props: IButton) => {
     const shapeType = {
       rounded: tw('rounded-full'),
       square: tw('rounded'),
-      block: tw('w-full'),
     } as Record<IShape, any>;
     return shapeType[shape];
   }, [shape]);
 
   const renderCommon = useMemo(() => {
     const renderDisabled = isDisabled && tw('opacity-50 cursor-not-allowed');
+    const renderFull = isFull && tw('w-full');
     const renderTextColor = tw(
       color === 'light' ? 'text-gray-900' : 'text-white',
     );
 
-    const combineCls = [renderTextColor, textTransform, renderDisabled];
+    const combineCls = [
+      renderTextColor,
+      textTransform,
+      renderDisabled,
+      renderFull,
+    ];
 
     return combineCls.filter((item) => item);
-  }, [isDisabled, color, textTransform]);
+  }, [isDisabled, color, textTransform, isFull]);
 
   return (
     <button
@@ -126,6 +133,4 @@ export const Button = (props: IButton) => {
       {rightIcon && rightIcon}
     </button>
   );
-};
-
-Button.displayName = 'Button';
+}

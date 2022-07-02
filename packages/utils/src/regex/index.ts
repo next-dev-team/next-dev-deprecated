@@ -1,5 +1,9 @@
 const regex = {
   /**
+   * isExternalLink regexp
+   */
+  isExternalLink: /^(https?:|mailto:|tel:)/,
+  /**
    * url regexp
    */
   urlRegexp:

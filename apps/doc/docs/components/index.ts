@@ -15,5 +15,9 @@ export const componentMenu: Menu = {
       title: 'Display',
       children: ['components/display/button/button.md'],
     },
+    {
+      title: 'Card',
+      children: ['components/card/blog/blog.md'],
+    },
   ],
 };

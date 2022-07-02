@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "scripts": {
+    "setup": "pnpm install",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "doc:dev": "turbo run dev --filter ./apps/doc...",
