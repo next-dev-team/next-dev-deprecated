@@ -4,6 +4,8 @@ const color = require('tailwindcss/colors');
 
 module.exports = {
   content: [
+    './.dumi/**/*.tsx',
+    '.dumi/**/*.tsx',
     './docs/**/*.tsx',
     'docs/**/*.tsx',
     './node_modules/ui/**/*.{js,ts,jsx,tsx}',

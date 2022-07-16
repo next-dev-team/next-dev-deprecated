@@ -33,6 +33,7 @@ export default defineConfig({
   ],
   externals: { darkreader: 'window.DarkReader' },
   menus,
+  // mfsu: {},
   webpack5: {},
   fastRefresh: {},
   antd: {
