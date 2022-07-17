@@ -19,5 +19,9 @@ export const componentMenu: Menu = {
       title: 'Card',
       children: ['components/card/blog/blog.md'],
     },
+    {
+      title: 'Navigation',
+      children: ['components/navigation/top/index.md'],
+    },
   ],
 };
