@@ -7,7 +7,7 @@ export const useHyperuiBtn = () => {
         // <!-- Base -->
         <a
           className="inline-block px-12 py-3 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           hyperui button
         </a>
@@ -18,7 +18,7 @@ export const useHyperuiBtn = () => {
       render: (
         <a
           className="inline-block px-12 py-3 text-sm font-medium text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           hyperui button
         </a>
@@ -31,7 +31,7 @@ export const useHyperuiBtn = () => {
 
         <a
           className="inline-block p-[2px] rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:text-white active:text-opacity-75 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           <span className="block px-8 py-3 text-sm font-medium bg-white rounded-sm hover:bg-transparent">
             hyperui
@@ -44,7 +44,7 @@ export const useHyperuiBtn = () => {
       render: (
         <a
           className="inline-block p-[2px] rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:text-white active:text-opacity-75 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           <span className="block px-8 py-3 text-sm font-medium bg-white rounded-full hover:bg-transparent">
             hyperui
@@ -57,7 +57,7 @@ export const useHyperuiBtn = () => {
       render: (
         <a
           className="inline-block p-3 text-white bg-indigo-600 border border-indigo-600 rounded-full hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           <span className="sr-only"> hyperui icon </span>
 
@@ -85,7 +85,7 @@ export const useHyperuiBtn = () => {
 
         <a
           className="inline-block p-3 text-indigo-600 border border-indigo-600 rounded-full hover:text-white hover:bg-indigo-600 active:bg-indigo-500 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           <span className="sr-only"> Download </span>
 
@@ -113,7 +113,7 @@ export const useHyperuiBtn = () => {
 
         <a
           className="relative inline-block text-sm font-medium text-indigo-600 group active:text-indigo-500 focus:outline-none focus:ring"
-          href="#"
+          href="##"
         >
           <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-indigo-600 group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
@@ -130,7 +130,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Base - Right --> */}
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="#"
+            href="##"
           >
             <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
               <svg
@@ -156,7 +156,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Border - Right --> */}
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-indigo-600 border border-current rounded group active:text-indigo-500 focus:outline-none focus:ring"
-            href="#"
+            href="##"
           >
             <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
               <svg
@@ -182,7 +182,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Base - Left --> */}
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="#"
+            href="##"
           >
             <span className="absolute right-0 transition-transform translate-x-full group-hover:-translate-x-4">
               <svg
@@ -208,7 +208,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Border - Left --> */}
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-indigo-600 border border-current rounded group active:text-indigo-500 focus:outline-none focus:ring"
-            href="#"
+            href="##"
           >
             <span className="absolute right-0 transition-transform translate-x-full group-hover:-translate-x-4">
               <svg
@@ -234,14 +234,14 @@ export const useHyperuiBtn = () => {
           {/* <!-- Base --> */}
           <a
             className="inline-block px-8 py-3 text-sm font-medium text-white transition bg-indigo-600 rounded hover:scale-110 hover:shadow-xl active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             Download
           </a>
           {/* <!-- Border --> */}
           <a
             className="inline-block px-8 py-3 text-sm font-medium text-indigo-600 transition border border-current rounded hover:scale-110 hover:shadow-xl active:text-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             Download
           </a>
@@ -249,35 +249,35 @@ export const useHyperuiBtn = () => {
           {/* <!-- Base - Right --> */}
           <a
             className="inline-block px-8 py-3 text-sm font-medium text-white transition bg-indigo-600 rounded hover:scale-110 hover:rotate-2 active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             Download
           </a>
           {/* <!-- Border - Right --> */}
           <a
             className="inline-block px-8 py-3 text-sm font-medium text-indigo-600 transition border border-current rounded hover:scale-110 hover:rotate-2 active:text-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             Download
           </a>
           {/* <!-- Base - Left --> */}
           <a
             className="inline-block px-8 py-3 text-sm font-medium text-white transition bg-indigo-600 rounded hover:scale-110 hover:-rotate-2 active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             Download
           </a>
           {/* <!-- Border - Left --> */}
           <a
             className="inline-block px-8 py-3 text-sm font-medium text-indigo-600 transition border border-current rounded hover:scale-110 hover:-rotate-2 active:text-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             Download
           </a>
           {/* <!-- Base --> */}
           <a
             className="relative inline-block group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-yellow-300 group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
@@ -288,7 +288,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Hover --> */}
           <a
             className="relative inline-block group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="absolute inset-0 transition-transform translate-x-0 translate-y-0 bg-yellow-300 group-hover:translate-y-1.5 group-hover:translate-x-1.5"></span>
 
@@ -299,7 +299,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Left --> */}
           <a
             className="relative inline-block px-8 py-3 overflow-hidden border border-indigo-600 group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="absolute inset-y-0 left-0 w-[2px] transition-all bg-indigo-600 group-hover:w-full group-active:bg-indigo-500"></span>
 
@@ -310,7 +310,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Right --> */}
           <a
             className="relative inline-block px-8 py-3 overflow-hidden border border-indigo-600 group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="absolute inset-y-0 right-0 w-[2px] transition-all bg-indigo-600 group-hover:w-full group-active:bg-indigo-500"></span>
 
@@ -321,7 +321,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Bottom --> */}
           <a
             className="relative inline-block px-8 py-3 overflow-hidden border border-indigo-600 group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="absolute inset-x-0 bottom-0 h-[2px] transition-all bg-indigo-600 group-hover:h-full group-active:bg-indigo-500"></span>
 
@@ -332,7 +332,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Top --> */}
           <a
             className="relative inline-block px-8 py-3 overflow-hidden border border-indigo-600 group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="absolute inset-x-0 top-0 h-[2px] transition-all bg-indigo-600 group-hover:h-full group-active:bg-indigo-500"></span>
 
@@ -343,7 +343,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Base --> */}
           <a
             className="flex items-center justify-between px-5 py-3 transition-colors bg-indigo-600 border border-indigo-600 rounded-lg hover:bg-transparent group focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="font-medium text-white transition-colors group-active:text-indigo-500 group-hover:text-indigo-600">
               Find out more
@@ -369,7 +369,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Border --> */}
           <a
             className="flex items-center justify-between px-5 py-3 text-indigo-600 transition-colors border border-current rounded-lg hover:bg-indigo-600 group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/download"
+            href="#/download"
           >
             <span className="font-medium transition-colors group-hover:text-white">
               Find out more
@@ -402,7 +402,7 @@ export const useHyperuiBtn = () => {
               <li>
                 <a
                   className="block transition-opacity rounded-full hover:opacity-90 focus:outline-none focus:opacity-75"
-                  href="/twitter"
+                  href="#/twitter"
                 >
                   <span className="sr-only"> Twitter </span>
 
@@ -420,7 +420,7 @@ export const useHyperuiBtn = () => {
               <li>
                 <a
                   className="block transition-opacity rounded-full hover:opacity-90 focus:outline-none focus:opacity-75"
-                  href="/github"
+                  href="#/github"
                 >
                   <span className="sr-only"> GitHub </span>
 
@@ -442,7 +442,7 @@ export const useHyperuiBtn = () => {
               <li>
                 <a
                   className="block transition-opacity rounded-full hover:opacity-90 focus:outline-none focus:opacity-75"
-                  href="/dribbble"
+                  href="#/dribbble"
                 >
                   <span className="sr-only"> Dribbble </span>
 
@@ -472,7 +472,7 @@ export const useHyperuiBtn = () => {
               <li>
                 <a
                   className="block transition-opacity rounded-full hover:opacity-90 focus:outline-none focus:opacity-75"
-                  href="/twitter"
+                  href="#/twitter"
                 >
                   <span className="sr-only"> Twitter </span>
 
@@ -490,7 +490,7 @@ export const useHyperuiBtn = () => {
               <li>
                 <a
                   className="block transition-opacity rounded-full hover:opacity-90 focus:outline-none focus:opacity-75"
-                  href="/github"
+                  href="#/github"
                 >
                   <span className="sr-only"> GitHub </span>
 
@@ -512,7 +512,7 @@ export const useHyperuiBtn = () => {
               <li>
                 <a
                   className="block transition-opacity rounded-full hover:opacity-90 focus:outline-none focus:opacity-75"
-                  href="/dribbble"
+                  href="#/dribbble"
                 >
                   <span className="sr-only"> Dribbble </span>
 
@@ -535,7 +535,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- GitHub --> */}
           <a
             className="inline-flex items-center px-5 py-3 text-sm font-medium text-white transition-colors bg-[#171515] border-2 border-[#171515] rounded hover:bg-transparent hover:text-[#171515] focus:outline-none focus:ring active:opacity-75"
-            href="/github"
+            href="#/github"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -556,7 +556,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Twitter --> */}
           <a
             className="inline-flex items-center px-5 py-3 text-sm font-medium text-white transition-colors bg-[#55acee] border-2 border-[#55acee] rounded hover:bg-transparent hover:text-[#55acee] focus:outline-none focus:ring active:opacity-75"
-            href="/twitter"
+            href="#/twitter"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -573,7 +573,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Dribbble --> */}
           <a
             className="inline-flex items-center px-5 py-3 text-sm font-medium text-white transition-colors bg-[#ea4c89] border-2 border-[#ea4c89] rounded hover:bg-transparent hover:text-[#ea4c89] focus:outline-none focus:ring active:opacity-75"
-            href="/dribbble"
+            href="#/dribbble"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -594,7 +594,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- Facebook --> */}
           <a
             className="inline-flex items-center px-5 py-3 text-sm font-medium text-white transition-colors bg-[#3b5998] border-2 border-[#3b5998] rounded hover:bg-transparent hover:text-[#3b5998] focus:outline-none focus:ring active:opacity-75"
-            href="/facebook"
+            href="#/facebook"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -612,7 +612,7 @@ export const useHyperuiBtn = () => {
           {/* <!-- LinkedIn --> */}
           <a
             className="inline-flex items-center px-5 py-3 text-sm font-medium text-white transition-colors bg-[#0077b5] border-2 border-[#0077b5] rounded hover:bg-transparent hover:text-[#0077b5] focus:outline-none focus:ring active:opacity-75"
-            href="/linkedin"
+            href="#/linkedin"
             target="_blank"
             rel="noopener noreferrer"
           >

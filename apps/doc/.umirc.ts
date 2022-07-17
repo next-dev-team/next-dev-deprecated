@@ -4,6 +4,9 @@ const isProd = process.env.NODE_ENV === 'production';
 import { navs, menus } from './docs';
 
 export default defineConfig({
+  // alias: {
+  //   '@/': require.resolve('./'),
+  // },
   title: 'Next Dev',
   mode: 'site',
   chainWebpack(config, {}) {

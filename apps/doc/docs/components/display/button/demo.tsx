@@ -1,5 +1,6 @@
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
+import { CodeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Modal, notification, Space } from 'antd';
+import { showCodeMode } from '@/helper';
 import { Fragment } from 'react';
 import { Button } from 'ui/src';
 import { useHyperuiBtn } from './hyperui_btn';
@@ -83,6 +84,7 @@ const DemoButton = () => {
     ...useHyperuiBtn(),
     ...tailusButton(),
   ];
+  // const [se,]= useModal()
 
   return (
     <div className="flex flex-wrap items-center gap-4">
@@ -94,7 +96,20 @@ const DemoButton = () => {
               <hr className="w-full border-b border-gray-200" />
             </>
           )}
+
           {item.render}
+          <div
+            className="relative flex items-center gap-1 text-gray-500 cursor-pointer right-3 bottom-3 hover:text-pink-500"
+            onClick={() => {
+              showCodeMode({
+                render: item.render,
+                title: item.title,
+              });
+            }}
+          >
+            <CodeOutlined className="text-pink-600" />
+            code
+          </div>
         </Fragment>
       ))}
     </div>

@@ -10,8 +10,8 @@
     "baseUrl": "./",
     "strict": true,
     "paths": {
-      "@/*": ["docs/*"],
-      "@@/*": ["docs/.umi/*"]
+      "@/*": ["./*"],
+      "@@/*": ["./docs/.umi/*"]
     },
     "allowSyntheticDefaultImports": true
   },
