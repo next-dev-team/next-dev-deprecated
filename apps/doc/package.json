@@ -9,9 +9,10 @@
     "build": "pnpm build-tailwind && dumi build",
     "build:only": "dumi build",
     "local:prepare":  "rm -rf ./build &&  cp -a ./dist ./build",
+    "publish": "gh-pages -d ./dist",
+
     "====== local:preview =====": " =========== after run `local:prepare`  need to change base url in build/index.html from /next-dev to / ==========",
     "local:preview":  "npx serve ./build",
-    "publish": "gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify",
     "tailwind:dev": "npx tailwindcss -o tailwind-prod.css --watch"
