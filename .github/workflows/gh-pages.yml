@@ -9,8 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - run: npx pnpm install
+       - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.2.1
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
       - run: npm run doc:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
