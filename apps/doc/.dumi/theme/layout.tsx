@@ -1,4 +1,4 @@
-﻿import { ConfigProvider, Switch } from 'antd';
+﻿import { Button, ConfigProvider, Drawer, Space, Switch } from 'antd';
 import enUS from 'antd/lib/locale/en_US';
 
 import { IRouteComponentProps, isBrowser } from 'dumi';
@@ -6,7 +6,6 @@ import Layout from 'dumi-theme-default/src/layout';
 import React, { useEffect, useMemo } from 'react';
 
 import './layout.less';
-require('./tw.less');
 
 import { useDarkreader } from './useDarkreader';
 import { IntlProvider, enUSIntl } from '@ant-design/pro-components';
@@ -62,57 +61,23 @@ const DarkButton = () => {
   );
 };
 
-function loadJS(url, callback) {
-  const script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.onload = function () {
-    callback?.();
-  };
-  script.src = url;
+// function loadJS(url, callback) {
+//   const script = document.createElement('script');
+//   script.type = 'text/javascript';
+//   script.onload = function () {
+//     callback?.();
+//   };
+//   script.src = url;
 
-  document.getElementsByTagName('head')[0].appendChild(script);
-}
+//   document.getElementsByTagName('head')[0].appendChild(script);
+// }
 
 const LayoutPage = ({ children, ...props }: IRouteComponentProps) => {
   useEffect(() => {
     if (!isBrowser()) {
       return null;
     }
-
-    // loadJS(
-    //   'https://www.googletagmanager.com/gtag/js?id=G-RMBLDHGL1N',
-    //   function () {
-    //     // @ts-ignore
-    //     window.dataLayer = window.dataLayer || [];
-    //     function gtag() {
-    //       // @ts-ignore
-    //       dataLayer.push(arguments);
-    //     }
-    //     // @ts-ignore
-    //     gtag('js', new Date());
-    //     // @ts-ignore
-    //     gtag('config', 'G-RMBLDHGL1N');
-    //   },
-    // );
-
-    // (function (h, o, t, j, a, r) {
-    //   // @ts-ignore
-    //   h.hj =
-    //     // @ts-ignore
-    //     h.hj ||
-    //     function () {
-    //       // @ts-ignore
-    //       (h.hj.q = h.hj.q || []).push(arguments);
-    //     };
-    //   // @ts-ignore
-    //   h._hjSettings = { hjid: 2036108, hjsv: 6 };
-    //   a = o.getElementsByTagName('head')[0];
-    //   r = o.createElement('script');
-    //   r.async = 1;
-    //   // @ts-ignore
-    //   r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-    //   a.appendChild(r);
-    // })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    return;
   }, []);
 
   return (
@@ -130,6 +95,22 @@ const LayoutPage = ({ children, ...props }: IRouteComponentProps) => {
             valueTypeMap: {},
           }}
         >
+          <Drawer
+            // visible
+            title={` Drawer`}
+            placement="right"
+            size={'large'}
+            extra={
+              <Space>
+                <Button type="primary">OK</Button>
+              </Space>
+            }
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Drawer>
+
           <div>
             <div key="children">{children}</div>
             <div

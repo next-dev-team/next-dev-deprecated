@@ -1,9 +1,10 @@
 ﻿import ProSkeleton from '@ant-design/pro-skeleton';
-import { Spin } from 'antd';
+import { Button, Spin } from 'antd';
 import { isBrowser } from 'dumi';
 import PreView, {
   IPreviewerProps,
 } from 'dumi-theme-default/src/builtins/Previewer';
+import React from 'react';
 import LazyLoad from 'react-lazyload';
 
 export default ({
@@ -38,15 +39,18 @@ export default ({
       }
       once
     >
-      <PreView {...rest}>
-        <div
-          style={{
-            minHeight: rest.height,
-          }}
-        >
-          {children}
-        </div>
-      </PreView>
+      <div className="space-y-3">
+        <Button type="primary">Toolbox</Button>
+        <PreView {...rest}>
+          <div
+            style={{
+              minHeight: rest.height,
+            }}
+          >
+            {children}
+          </div>
+        </PreView>
+      </div>
     </LazyLoad>
   );
 };

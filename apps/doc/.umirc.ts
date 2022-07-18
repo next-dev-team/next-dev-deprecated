@@ -10,7 +10,7 @@ export default defineConfig({
     config.module.rule('ts-in-node_modules').include.clear();
     return config;
   },
-  // scripts: [!isProd ? 'https://cdn.tailwindcss.com' : ''],
+  scripts: [!isProd ? 'https://cdn.tailwindcss.com' : ''],
   //https://d.umijs.org/config#exportstatic
   exportStatic: {}, //
   // ssr: isProd ? {} : undefined // ssr need nodejs server if not just use exportStatic it will generate html fragments for SEO (search engine optimization) too
@@ -27,28 +27,28 @@ export default defineConfig({
     [
       'import',
       {
-        "libraryName": "antd",
-        "style": true,   // or 'css'
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: 'css',
       },
-      'antd'
     ],
   ],
   hash: true,
   navs,
   theme: {
-    '@s-site-menu-width': '258px',
+    '@s-site-menu-width': '238px',
     '@root-entry-name': 'variable',
   },
   ignoreMomentLocale: true,
-  headScripts: [
-    'https://gw.alipayobjects.com/os/antfincdn/fdj3WlJd5c/darkreader.js',
-  ],
   externals: { darkreader: 'window.DarkReader', },
   menus,
-  mfsu: {},
+  // mfsu: {
+  //   development: {},
+  //   production: {}
+  // },
   webpack5: {},
   fastRefresh: {},
-  // dynamicImport: {},
+  dynamicImport: {},
   antd: {
     // dark: true,
   },

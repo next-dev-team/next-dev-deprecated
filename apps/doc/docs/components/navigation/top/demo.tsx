@@ -3,6 +3,8 @@ import { CodeOutlined } from '@ant-design/icons';
 import { Button, Collapse, Space, Typography } from 'antd';
 import { Fragment } from 'react';
 import { hyperNavUi } from './hyperui';
+import { KometaNav } from './kometa';
+import { TailBlocksNav } from './tailblocks';
 
 const DemoButton = () => {
   const renderComponent: {
@@ -10,6 +12,17 @@ const DemoButton = () => {
     link: string;
     item: any[];
   }[] = [
+    {
+      title: 'Tail Blocks & flowrift',
+      link: '',
+      item: TailBlocksNav,
+    },
+    {
+      title: 'Kometa Navs',
+      link: '',
+      item: KometaNav,
+    },
+
     {
       title: 'Hyper Nav UI',
       link: '',
