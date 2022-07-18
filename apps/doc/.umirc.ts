@@ -1,5 +1,4 @@
 import { defineConfig, IConfig } from 'dumi';
-import { resolve } from 'path';
 // more config: https://d.umijs.org/config
 const isProd = process.env.NODE_ENV === 'production';
 import { navs, menus } from './docs';
@@ -46,7 +45,7 @@ export default defineConfig({
   ],
   externals: { darkreader: 'window.DarkReader', },
   menus,
-  mfsu: isProd ? undefined : {},
+  mfsu: {},
   webpack5: {},
   fastRefresh: {},
   // dynamicImport: {},

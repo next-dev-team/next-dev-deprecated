@@ -3,8 +3,10 @@ import enUS from 'antd/lib/locale/en_US';
 
 import { IRouteComponentProps, isBrowser } from 'dumi';
 import Layout from 'dumi-theme-default/src/layout';
-import { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+
 import './layout.less';
+require('./tw.less');
 
 import { useDarkreader } from './useDarkreader';
 import { IntlProvider, enUSIntl } from '@ant-design/pro-components';
