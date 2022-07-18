@@ -40,7 +40,7 @@ export default defineConfig({
     '@s-site-menu-width': '258px',
     '@root-entry-name': 'variable',
   },
-  styles: [resolve('./tailwind-prod.css')],
+  styles: ['https://raw.githubusercontent.com/next-dev-team/next-dev/main/public/tailwind-prod.css'],
   ignoreMomentLocale: true,
   headScripts: [
     'https://gw.alipayobjects.com/os/antfincdn/fdj3WlJd5c/darkreader.js',

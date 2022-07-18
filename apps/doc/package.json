@@ -13,8 +13,8 @@
     "local:preview":  "npx serve ./build",
     "publish": "gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o ../../public/tailwind-prod.css --minify",
-    "tailwind:dev": "npx tailwindcss -o ../../public/tailwind-prod.css --watch"
+    "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify",
+    "tailwind:dev": "npx tailwindcss -o tailwind-prod.css --watch"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
