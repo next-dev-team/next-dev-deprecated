@@ -1,5 +1,3 @@
-const color = require('tailwindcss/colors');
-
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -8,10 +6,12 @@ module.exports = {
     '.dumi/**/*.tsx',
     './docs/**/*.tsx',
     'docs/**/*.tsx',
+    './docs/**/*.{js,ts,jsx,tsx,md}',
     './node_modules/ui/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},
   },
   plugins: [],
+  corePlugins: {},
 };

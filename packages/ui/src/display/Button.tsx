@@ -134,3 +134,5 @@ export default function Button(props: IButton) {
     </button>
   );
 }
+
+Button.displayName = 'Button';

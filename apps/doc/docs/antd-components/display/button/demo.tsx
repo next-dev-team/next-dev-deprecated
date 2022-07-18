@@ -1,19 +1,9 @@
 import { Fragment } from 'react';
-import { Login1 } from 'antd-ui/src';
 const DemoButton = () => {
   const renderComponent = [
     {
       title: 'Primary',
-      render: (
-        <Login1
-          onFinish={async (values) => {
-            alert(JSON.stringify(values, null, 2));
-          }}
-          logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-          title="Github"
-          subTitle="World's Largest Gay Dating Site"
-        />
-      ),
+      render: <h1>coming soon</h1>,
     },
   ];
 

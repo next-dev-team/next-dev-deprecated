@@ -5,12 +5,16 @@
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "dev": "dumi dev",
+    "dev": "dumi dev && pnpm tailwind:dev",
     "build": "pnpm build-tailwind && dumi build",
     "build:only": "dumi build",
+    "local:prepare":  "rm -rf ./build &&  cp -a ./dist ./build",
+    "====== local:preview =====": " =========== after run `local:prepare`  need to change base url in build/index.html from /next-dev to / ==========",
+    "local:preview":  "npx serve ./build",
     "publish": "gh-pages -d ./dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify"
+    "build-tailwind": "npx tailwindcss -o ../../public/tailwind-prod.css --minify",
+    "tailwind:dev": "npx tailwindcss -o ../../public/tailwind-prod.css --watch"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -31,12 +35,12 @@
     "@types/react": "17.0.37",
     "@types/react-syntax-highlighter": "^15.5.3",
     "@umijs/preset-react": "^2.1.4",
+    "umi":"^3.5.30",
     "@umijs/ssr-darkreader": "^4.9.45",
     "ahooks": "^3.5.0",
     "antd": "^4.21.4",
     "autoprefixer": "^10.4.7",
     "babel-plugin-import": "^1.13.5",
-    "deploy:gh": "gh-pages -d ./dist",
     "dumi": "^1.1.45",
     "dumi-theme-default": "^1.1.21",
     "gh-pages": "^4.0.0",
