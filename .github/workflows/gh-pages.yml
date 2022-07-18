@@ -1,29 +1,42 @@
-name: github pages
+name: Deploy
 
 on:
   push:
     branches:
-      - main # default branch
+      - main
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Benchmark runner']
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    environment: deploy
     steps:
-       - uses: pnpm/action-setup@v2.2.2
+      - name: Checkout Commit
+        uses: actions/checkout@v3
         with:
-          version: 7.2.1
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: pnpm
-
+          node-version: '14'
+      - name: Install pnpm
+        run: curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@next-7
       - name: Install dependencies
         run: pnpm install
-      - run: npm run doc:build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/docs/dist
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+        run: pnpm crowdin:sync
+      - uses: webfactory/ssh-agent@v0.5.4
+      - name: Release to GitHub Pages
+        env:
+          USE_SSH: true
+          GIT_USER: git
+          DEPLOYMENT_BRANCH: main
+        run: |
+          pnpm run doc:deploy
