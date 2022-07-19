@@ -8,6 +8,7 @@ export default defineConfig({
   mode: 'site',
   chainWebpack(config, { }) {
     config.module.rule('ts-in-node_modules').include.clear();
+
     return config;
   },
   scripts: [!isProd ? 'https://cdn.tailwindcss.com' : ''],
@@ -23,15 +24,52 @@ export default defineConfig({
     edge: false,
     ios: false,
   },
+  // make bundle size small
   extraBabelPlugins: [
     [
       'import',
       {
         libraryName: 'antd',
         libraryDirectory: 'es',
-        style: 'css',
-      },
+        style: true,
+      }, 'antd'
+
     ],
+    [
+      'import',
+      {
+        libraryName: '@ant-design/icons',
+        camel2DashComponentName: false,
+        customName: (transformedMethodName: string) => {
+          // console.log('@ant-design/icons', transformedMethodName);
+
+          if (transformedMethodName === 'default') {
+            return '@ant-design/icons/es/components/Icon';
+          }
+          return `@ant-design/icons/es/icons/${transformedMethodName}`;
+        },
+      },
+      "@ant-design/icons"
+    ],
+    ["prismjs", {
+      "languages": ["javascript", "css", "markup"],
+      "plugins": ["line-numbers"],
+      "theme": "twilight",
+      "css": true
+    }]
+    // [
+    //   'import',
+    //   {
+    //     libraryName: 'ui/src',
+    //     customName: (name: string) => {
+    //       console.log('sila', name)
+
+    //       return `ui/src/${name}`;
+    //     },
+    //   },
+    //   'ui/src',
+    // ],
+
   ],
   hash: true,
   navs,
@@ -48,7 +86,7 @@ export default defineConfig({
   // },
   webpack5: {},
   fastRefresh: {},
-  dynamicImport: {},
+  // dynamicImport: {},
   antd: {
     // dark: true,
   },

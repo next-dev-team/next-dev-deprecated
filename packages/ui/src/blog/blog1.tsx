@@ -1,8 +1,7 @@
 // https://tailwind-elements.com/docs/standard/components/buttons/
 
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { ButtonHTMLAttributes, CSSProperties, ReactNode, useMemo } from 'react';
-import { twMerge as tw } from 'tailwind-merge';
+import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import { _omit } from 'utils/src';
 import Button from '../display/Button';
 

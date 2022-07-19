@@ -6,13 +6,23 @@ import PreView, {
 } from 'dumi-theme-default/src/builtins/Previewer';
 import React from 'react';
 import LazyLoad from 'react-lazyload';
+import { ToolOutlined } from '@ant-design/icons';
+import { _selAppStoreAppState } from '../../../stores/app/selector';
 
 export default ({
   children,
+  title,
+  btnToolboxTitle,
+  extra,
   ...rest
 }: IPreviewerProps & {
   height: string;
+  title?: string;
+  btnToolboxTitle?: string;
+  extra?: React.ReactNode;
 }) => {
+  const { toggleToolbox, toolboxContent } = _selAppStoreAppState();
+
   if (!isBrowser()) {
     return null;
   }
@@ -40,7 +50,19 @@ export default ({
       once
     >
       <div className="space-y-3">
-        <Button type="primary">Toolbox</Button>
+        <div className="flex justify-between w-full">
+          <div>{title}</div>
+          <div>
+            {/* {extra}
+            {toolboxContent?.content && (
+              <Button
+                type="primary"
+                icon={<ToolOutlined />}
+                onClick={toggleToolbox}
+              />
+            )} */}
+          </div>
+        </div>
         <PreView {...rest}>
           <div
             style={{

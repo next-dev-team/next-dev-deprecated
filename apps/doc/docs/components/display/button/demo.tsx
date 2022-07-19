@@ -1,12 +1,13 @@
 import { CodeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Modal, notification, Space } from 'antd';
 import { showCodeMode } from '@/helper';
 import { Fragment } from 'react';
 import { Button } from 'ui/src';
 import { useHyperuiBtn } from './hyperui_btn';
 import { tailusButton } from './tailus';
+import { _selAppStoreAppState } from '@/stores/app/selector';
 
 const DemoButton = () => {
+  const { setAppState } = _selAppStoreAppState();
   const renderComponent = [
     {
       title: 'Primary',
@@ -101,9 +102,14 @@ const DemoButton = () => {
           <div
             className="relative flex items-center gap-1 text-gray-500 cursor-pointer right-3 bottom-3 hover:text-pink-500"
             onClick={() => {
-              showCodeMode({
-                render: item.render,
-                title: item.title,
+              // @ts-ignore
+              setAppState({
+                toolBox: true,
+                toolboxContent: {
+                  content: item.render,
+                  title: item.title,
+                  width: '40vw',
+                },
               });
             }}
           >

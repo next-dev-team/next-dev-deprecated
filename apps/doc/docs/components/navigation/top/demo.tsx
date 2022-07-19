@@ -1,4 +1,4 @@
-import { showCodeMode } from '@/helper';
+import { _selAppStoreAppState } from '@/stores/app/selector';
 import { CodeOutlined } from '@ant-design/icons';
 import { Button, Collapse, Space, Typography } from 'antd';
 import { Fragment } from 'react';
@@ -7,6 +7,7 @@ import { KometaNav } from './kometa';
 import { TailBlocksNav } from './tailblocks';
 
 const DemoButton = () => {
+  const { toggleToolbox, setAppState } = _selAppStoreAppState();
   const renderComponent: {
     title: string;
     link: string;
@@ -66,9 +67,14 @@ const DemoButton = () => {
                   <div
                     className="relative flex items-center gap-1 mt-2 text-gray-500 cursor-pointer right-3 bottom-3 hover:text-pink-500"
                     onClick={() => {
-                      showCodeMode({
-                        render: item.render,
-                        title: item.title,
+                      // @ts-ignore
+                      toggleToolbox();
+                      // @ts-ignore
+                      setAppState({
+                        toolboxContent: {
+                          content: item.render,
+                          title: item.title,
+                        },
                       });
                     }}
                   >
