@@ -1,13 +1,11 @@
 ﻿import ProSkeleton from '@ant-design/pro-skeleton';
-import { Button, Spin } from 'antd';
+import { Spin } from 'antd';
 import { isBrowser } from 'dumi';
 import PreView, {
   IPreviewerProps,
 } from 'dumi-theme-default/src/builtins/Previewer';
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import { ToolOutlined } from '@ant-design/icons';
-import { _selAppStoreAppState } from '../../../stores/app/selector';
 
 export default ({
   children,
@@ -21,8 +19,6 @@ export default ({
   btnToolboxTitle?: string;
   extra?: React.ReactNode;
 }) => {
-  const { toggleToolbox, toolboxContent } = _selAppStoreAppState();
-
   if (!isBrowser()) {
     return null;
   }

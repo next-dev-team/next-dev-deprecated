@@ -1,4 +1,3 @@
-import { _selAppStoreAppState } from '@/stores/app/selector';
 import { CodeOutlined } from '@ant-design/icons';
 import { Button, Collapse, Space, Typography } from 'antd';
 import { Fragment } from 'react';
@@ -7,7 +6,7 @@ import { KometaNav } from './kometa';
 import { TailBlocksNav } from './tailblocks';
 
 const DemoButton = () => {
-  const { toggleToolbox, setAppState } = _selAppStoreAppState();
+  const { toggleToolbox, setAppState } = $sel._selAppStoreAppState();
   const renderComponent: {
     title: string;
     link: string;
@@ -19,7 +18,7 @@ const DemoButton = () => {
       item: TailBlocksNav,
     },
     {
-      title: 'Kometa Navs',
+      title: 'Kometa & tailwind-kit Navs',
       link: '',
       item: KometaNav,
     },

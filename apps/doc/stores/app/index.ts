@@ -1,24 +1,29 @@
+import { _omit } from 'utils/src';
 import { _axios } from '@/helper/request';
+import { createModel } from '@rematch/core';
 import type { RootModel } from '../model';
 import { _createModel } from '../useStore';
 import { AppStore } from './type';
 
-const initState = {
+
+const initState: AppStore = {
   appState: {
     toolboxContent: {
       content: '',
       title: "",
+      width: 768
     }
   },
-} as AppStore;
+};
 
 // const { appState: initAppState } = initState
 
-export const appStore = _createModel<RootModel>()({
+export const appStore = createModel<RootModel>()({
+  name: 'appStore',
   state: { ...initState },
   reducers: {
     setAppState: (state, payload: AppStore['appState']) => {
-      return { ...state, appState: { ...state.appState, ...payload } };
+      return { ...state, appState: { ...state.appState, ...payload, toolboxContent: { ...state.appState.toolboxContent, ...payload.toolboxContent }, } };
     },
     toggleToolbox: (state) => {
       return { ...state, appState: { ...state.appState, toolBox: !state.appState.toolBox } };

@@ -4,6 +4,7 @@
   Drawer,
   message,
   Radio,
+  Select,
   Space,
   Switch,
   Tabs,
@@ -15,7 +16,7 @@ import { format } from 'prettier/standalone';
 import { IRouteComponentProps, isBrowser } from 'dumi';
 import Layout from 'dumi-theme-default/src/layout';
 import React, { useEffect, useMemo, useState } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { _store } from '../../stores/store';
 import { CodePreview } from '../../helper';
@@ -26,10 +27,15 @@ import './layout.less';
 
 import { useDarkreader } from './useDarkreader';
 import { IntlProvider, enUSIntl } from '@ant-design/pro-components';
-import { _selAppStoreAppState } from '../../stores/app/selector';
-import { Dispatch } from '../../stores/type';
-import { AppState } from '../../stores/app/type';
-import { CopyOutlined, CopyrightOutlined } from '@ant-design/icons';
+import {
+  CopyOutlined,
+  DesktopOutlined,
+  LaptopOutlined,
+  MobileOutlined,
+  PhoneOutlined,
+} from '@ant-design/icons';
+import { $Sel } from './type';
+import { $_cons as $cons } from './helper';
 // import '@ant-design/pro-components/dist/components.css';
 
 const DarkButton = () => {
@@ -95,7 +101,14 @@ const DarkButton = () => {
 // }
 
 const InnerLayout = ({ children }: { children: React.ReactNode }) => {
-  const { toggleToolbox, toolboxContent, toolBox } = _selAppStoreAppState();
+  const {
+    toggleToolbox,
+    toolboxContent,
+    toolBox,
+    setAppState,
+  } = //@ts-ignore
+    ($sel as $Sel)._selAppStoreAppState();
+
   const [code, setCode] = useState<'preview' | 'react' | 'html' | 'vue'>(
     'preview',
   );
@@ -105,18 +118,25 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
     if (code === 'preview') {
       return toolboxContent?.content;
     }
+
     if (code === 'html') {
-      content = format(renderToStaticMarkup(toolboxContent?.content as any), {
-        plugins: [parserBabel, parserHtml],
-        parser: 'babel',
-        // useTabs: false,
-        // tabWidth: 2,
-        // endOfLine: 'lf',
-        // printWidth: 100,
-        // singleQuote: true,
-        // trailingComma: 'all',
-        // jsxBracketSameLine: false,
-      });
+      content = format(
+        renderToString(toolboxContent?.content as any).replace(
+          'data-reactroot="">',
+          '>',
+        ),
+        {
+          plugins: [parserBabel, parserHtml],
+          parser: 'babel',
+          // useTabs: false,
+          // tabWidth: 2,
+          // endOfLine: 'lf',
+          // printWidth: 100,
+          // singleQuote: true,
+          // trailingComma: 'all',
+          // jsxBracketSameLine: false,
+        },
+      );
     }
     if (code === 'react') {
       content = toolboxContent?.content;
@@ -141,24 +161,56 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const isSmall = toolboxContent?.width < 600;
+  const isXs = toolboxContent?.width < 500;
+
   return (
     <>
       <Drawer
         visible={toolBox}
         title={
-          <Space>
-            <Typography.Text strong className="capitalize">
-              {toolboxContent?.title}
-            </Typography.Text>
-          </Space>
+          <div className={isXs ? 'mr-1' : ''}>
+            <Space size={isSmall ? 'small' : 'middle'}>
+              <Typography.Text strong className="capitalize">
+                {toolboxContent?.title}
+              </Typography.Text>
+              <div className="mx-1">-</div>
+              <Select
+                dropdownMatchSelectWidth={160}
+                className="min-w-[70px]"
+                defaultValue={toolboxContent?.width}
+                options={$cons.layout.responsiveOption.map((i) => {
+                  return {
+                    label: `${i.label} - ${i.value}px`,
+                    value: i.value,
+                  };
+                })}
+                onSelect={(v: any) => {
+                  setTimeout(() => {
+                    setAppState({
+                      toolboxContent: {
+                        width: v,
+                      },
+                    });
+                  }, 200);
+                }}
+              />
+            </Space>
+          </div>
         }
         placement="right"
-        onClose={toggleToolbox}
+        onClose={() => {
+          toggleToolbox();
+          setTimeout(() => {
+            setAppState({ toolboxContent: { width: $cons.layout.mdWidth } });
+          }, 400);
+        }}
         size={'large'}
         width={toolboxContent?.width ?? '65vw'}
         extra={
           <Space>
             <Button
+              size={isSmall ? 'small' : 'middle'}
               className="hover:bg-green-600"
               shape="round"
               onClick={onCopy}
@@ -183,17 +235,24 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
                 ></path>
               </svg>
             </Button>
-            <Radio.Group
-              value={code}
-              onChange={(e) => {
-                setCode(e.target.value);
-              }}
-            >
-              <Radio.Button value="preview">Preview</Radio.Button>
-              <Radio.Button value="html">Html/Vue</Radio.Button>
-              <Radio.Button value="react">React</Radio.Button>
-              {/* <Radio.Button value="vue">Vue</Radio.Button> */}
-            </Radio.Group>
+            {isXs ? (
+              <Typography.Text className="relative bottom-0.5">
+                {code}
+              </Typography.Text>
+            ) : (
+              <Radio.Group
+                size={isSmall ? 'small' : 'middle'}
+                value={code}
+                onChange={(e) => {
+                  setCode(e.target.value);
+                }}
+              >
+                <Radio.Button value="preview">Preview</Radio.Button>
+                <Radio.Button value="html">Html/Vue</Radio.Button>
+                <Radio.Button value="react">React</Radio.Button>
+                {/* <Radio.Button value="vue">Vue</Radio.Button> */}
+              </Radio.Group>
+            )}
           </Space>
         }
       >

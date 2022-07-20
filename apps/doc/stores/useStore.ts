@@ -10,3 +10,4 @@ export function _useAction<MD>(selector: (dispatch: Dispatch) => MD) {
   const dispatch = _useDispatch();
   return selector(dispatch);
 }
+

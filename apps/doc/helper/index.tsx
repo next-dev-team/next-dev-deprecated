@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable @next/next/no-page-custom-font */
 /* eslint-disable @next/next/google-font-display */
 import { Modal } from 'antd';
@@ -9,6 +10,7 @@ import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-markup';
+import { _axios } from './request';
 export const showCodeMode = ({
   render,
   title,
@@ -59,5 +61,3 @@ export const CodePreview = ({ children }: { children: React.ReactNode }) => {
 export const goToTop = () => {
   window.scrollTo(0, 0);
 };
-
-export const isProd = process.env.NODE_ENV === 'production';

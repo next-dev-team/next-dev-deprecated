@@ -1,8 +1,7 @@
-import { _cons } from '@/constant';
 import axios, { AxiosRequestConfig } from 'axios';
 
 export const _axiosInstance = axios.create({
-  baseURL: _cons.blogCmsApiUrl,
+  baseURL: $cons.blogCmsApiUrl,
 });
 
 _axiosInstance.interceptors.request.use(
@@ -93,7 +92,7 @@ export async function _axios<T>(url = '', config?: IConfig<T>) {
   };
 
   const logger = (res: any) => {
-    if (axiosConfig?.isDebug && _cons.isNodeDev) {
+    if (axiosConfig?.isDebug && $cons.isNodeDev) {
       console.log(`request ${urlConfig} success`, res);
     }
   };

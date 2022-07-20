@@ -2,12 +2,21 @@ import { defineConfig, IConfig } from 'dumi';
 // more config: https://d.umijs.org/config
 const isProd = process.env.NODE_ENV === 'production';
 import { navs, menus } from './docs';
+import { resolve } from "path";
 
 export default defineConfig({
   title: 'Next Dev',
   mode: 'site',
-  chainWebpack(config, { }) {
+  chainWebpack(config, { webpack }) {
     config.module.rule('ts-in-node_modules').include.clear();
+    //Introduce global public methods
+    config.plugin("$global").use(
+      new webpack.ProvidePlugin({
+        $cons: [resolve('constant/index.ts'), 'default'],
+        $helper: [resolve('helper/global.ts'), 'default'],
+        $sel: [resolve('stores/global.ts'), 'default']
+      })
+    );
 
     return config;
   },

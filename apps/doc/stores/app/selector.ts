@@ -1,5 +1,5 @@
-import { Dispatch } from './../type';
 import { _useAction, _useSelector } from "../useStore";
+
 
 export const _selAppStoreAppState = () => {
   const appState = _useSelector(state => state.appStore.appState);
@@ -8,7 +8,6 @@ export const _selAppStoreAppState = () => {
     setAppState: dispatch.appStore.setAppState,
     toggleToolbox: dispatch.appStore.toggleToolbox,
   }));
-
-  return { ...appState, ...actions }
+  return { ...appState, appState, ...actions }
 };
 
