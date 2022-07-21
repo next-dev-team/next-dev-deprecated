@@ -67,7 +67,9 @@ export const goToTop = () => {
 export function source(html: any, spacing: string = 'relative') {
   return `
 
-    <link rel="stylesheet" href="${origin}/tailwind-prod.css">
+    <link rel="stylesheet" href="${
+      $cons.isNodeDev ? origin : origin + '//next-dev'
+    }/tailwind-prod.css">
 
     <body class="${spacing}">
       ${renderToStaticMarkup(html)}
