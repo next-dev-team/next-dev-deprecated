@@ -23,5 +23,9 @@ export const componentMenu: Menu = {
       title: 'Navigation',
       children: ['components/navigation/top/index.md'],
     },
+    {
+      title: 'Footer',
+      children: ['components/footer/index.md'],
+    },
   ],
 };

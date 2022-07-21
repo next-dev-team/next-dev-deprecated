@@ -1,5 +1,5 @@
 ﻿@import (reference) '~antd/es/style/variable.less';
-@import '../../tailwind-prod.css';
+@import '/tailwind-prod.css';
 
 .__dumi-default-external-link-icon {
   display: inherit;
@@ -177,4 +177,11 @@ html {
 }
 .token.entity {
   cursor: help;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  background: inherit;
 }

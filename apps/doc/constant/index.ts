@@ -7,6 +7,9 @@ const envCons = {
 };
 
 const mdWidth = 768;
+const lgWidth = 1024;
+const xlWidth = 1280;
+
 const layout = {
   responsiveOption: [
     {
@@ -15,7 +18,7 @@ const layout = {
     },
     {
       label: 'SM',
-      value: 576,
+      value: 640,
     },
     {
       label: 'MD',
@@ -23,18 +26,24 @@ const layout = {
     },
     {
       label: 'LG',
-      value: 992,
+      value: lgWidth,
     },
     {
       label: 'XL',
-      value: 1200,
+      value: xlWidth,
+    },
+    {
+      label: '2XL',
+      value: 1536,
     },
     {
       label: 'FULL',
-      value: screen.availWidth,
+      value: '100%',
     },
   ],
-  mdWidth
+  mdWidth,
+  lgWidth,
+  xlWidth
 }
 
 

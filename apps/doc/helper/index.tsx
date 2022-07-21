@@ -9,7 +9,9 @@ import atelierCaveDark from 'react-syntax-highlighter/dist/esm/styles/hljs/ateli
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+// import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/components/prism-markup';
+import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { _axios } from './request';
 export const showCodeMode = ({
   render,
@@ -61,3 +63,14 @@ export const CodePreview = ({ children }: { children: React.ReactNode }) => {
 export const goToTop = () => {
   window.scrollTo(0, 0);
 };
+
+export function source(html: any, spacing: string = 'relative') {
+  return `
+
+    <link rel="stylesheet" href="${origin}/tailwind-prod.css">
+
+    <body class="${spacing}">
+      ${renderToStaticMarkup(html)}
+    </body>
+  `;
+}

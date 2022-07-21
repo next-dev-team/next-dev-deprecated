@@ -12,6 +12,7 @@
 } from 'antd';
 import enUS from 'antd/lib/locale/en_US';
 import { format } from 'prettier/standalone';
+import '@ant-design/pro-components/dist/components.less';
 
 import { IRouteComponentProps, isBrowser } from 'dumi';
 import Layout from 'dumi-theme-default/src/layout';
@@ -19,7 +20,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { _store } from '../../stores/store';
-import { CodePreview } from '../../helper';
+import { CodePreview, source } from '../../helper';
 import parserBabel from 'prettier/parser-babel';
 import parserHtml from 'prettier/parser-html';
 
@@ -116,12 +117,19 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
   const renderContent = (isString = false) => {
     let content: any;
     if (code === 'preview') {
-      return toolboxContent?.content;
+      return (
+        <iframe
+          className="w-full h-[83vh] mt-2 bg-white  rounded-lg lg:transition-all "
+          loading="lazy"
+          srcDoc={source(toolboxContent?.content as any)}
+          style={{ maxWidth: toolboxContent?.width }}
+        ></iframe>
+      );
     }
 
     if (code === 'html') {
       content = format(
-        renderToString(toolboxContent?.content as any).replace(
+        renderToStaticMarkup(toolboxContent?.content as any).replace(
           'data-reactroot="">',
           '>',
         ),
@@ -169,19 +177,25 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
       <Drawer
         visible={toolBox}
         title={
-          <div className={isXs ? 'mr-1' : ''}>
+          <div className={isSmall ? 'mr-1' : ''}>
             <Space size={isSmall ? 'small' : 'middle'}>
-              <Typography.Text strong className="capitalize">
+              <Typography.Text
+                strong
+                className={`capitalize ${isSmall ? 'text-sm' : 'text-base'}`}
+              >
                 {toolboxContent?.title}
               </Typography.Text>
               <div className="mx-1">-</div>
               <Select
                 dropdownMatchSelectWidth={160}
                 className="min-w-[70px]"
+                value={toolboxContent?.width}
                 defaultValue={toolboxContent?.width}
                 options={$cons.layout.responsiveOption.map((i) => {
                   return {
-                    label: `${i.label} - ${i.value}px`,
+                    label: `${i.label} - ${
+                      typeof i.value === 'string' ? i.value : `${i.value}px`
+                    }`,
                     value: i.value,
                   };
                 })}
@@ -200,13 +214,15 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
         }
         placement="right"
         onClose={() => {
+          //reset after close
           toggleToolbox();
           setTimeout(() => {
-            setAppState({ toolboxContent: { width: $cons.layout.mdWidth } });
+            setCode('preview');
+            setAppState({ toolboxContent: { width: $cons.layout.xlWidth } });
           }, 400);
         }}
         size={'large'}
-        width={toolboxContent?.width ?? '65vw'}
+        width={toolboxContent?.width}
         extra={
           <Space>
             <Button
@@ -258,6 +274,7 @@ const InnerLayout = ({ children }: { children: React.ReactNode }) => {
       >
         {renderContent()}
       </Drawer>
+      {/* <SettingDrawer themeOnly enableDarkTheme /> */}
       {children}
     </>
   );

@@ -11,7 +11,7 @@ const initState: AppStore = {
     toolboxContent: {
       content: '',
       title: "",
-      width: 768
+      width: $cons.layout.xlWidth
     }
   },
 };

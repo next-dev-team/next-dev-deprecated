@@ -5,7 +5,7 @@
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "dev": "dumi dev && pnpm tailwind:dev",
+    "dev":  "concurrently \"pnpm tailwind:dev\" \"dumi dev\"",
     "build": "pnpm build-tailwind && dumi build",
     "build:only": "dumi build",
     "local:prepare": "rm -rf ./build &&  cp -a ./dist ./build",
@@ -13,8 +13,8 @@
     "====== local:preview =====": " =========== after run `local:prepare`  need to change base url in build/index.html from /next-dev to / ==========",
     "local:preview": "npx serve ./build",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "build-tailwind": "npx tailwindcss -o tailwind-prod.css --minify",
-    "tailwind:dev": "npx tailwindcss -o tailwind-prod.css --watch"
+    "build-tailwind": "npx tailwindcss -o  public/tailwind-prod.css --minify",
+    "tailwind:dev": "npx tailwindcss -o public/tailwind-prod.css --watch"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -28,6 +28,10 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.2",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.6",
     "@ant-design/pro-skeleton": "^1.0.9",

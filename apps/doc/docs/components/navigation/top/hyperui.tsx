@@ -139,15 +139,13 @@ export const hyperNavUi = [
         <ul className="flex items-center space-x-2 text-sm font-medium text-gray-500">
           <li className="hidden lg:block">
             <a className="px-3 py-2 rounded-lg" href="/">
-              {' '}
-              Home{' '}
+              Home
             </a>
           </li>
 
           <li>
             <a className="px-3 py-2 rounded-lg" href="">
-              {' '}
-              Projects{' '}
+              Projects
             </a>
           </li>
 
