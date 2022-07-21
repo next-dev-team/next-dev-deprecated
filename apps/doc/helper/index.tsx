@@ -68,7 +68,7 @@ export function source(html: any, spacing: string = 'relative') {
   return `
 
     <link rel="stylesheet" href="${
-      $cons.isNodeDev ? origin : origin + '//next-dev'
+      $cons.isNodeDev ? origin : origin + '/next-dev'
     }/tailwind-prod.css">
 
     <body class="${spacing}">
