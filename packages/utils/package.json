@@ -2,7 +2,7 @@
   "name": "next-dev-utils",
   "version": "1.0.0",
   "main": "dist/index.mjs",
-  "types": ".dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "repository": {
     "url": "git+https://github.com/next-dev-team/next-dev.git"
   },
