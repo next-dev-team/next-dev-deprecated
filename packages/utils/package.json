@@ -1,15 +1,22 @@
 {
-  "name": "utils",
-  "version": "0.0.0",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "name": "next-dev-utils",
+  "version": "1.0.0",
+  "main": "dist/index.mjs",
+  "types": ".dist/index.d.ts",
+  "repository": {
+    "url": "git+https://github.com/next-dev-team/next-dev.git"
+  },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "files": [
     "dist/**"
   ],
   "scripts": {
     "lint": "eslint *.ts*",
-    "build": "tsup src --format esm --dts --external react"
+    "build": "tsup src --format esm --minify --dts --external react"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
@@ -31,5 +38,14 @@
     "crypto-js": "^4.1.1",
     "jsencrypt": "^3.2.1",
     "@umijs/fabric": "^2.12.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/next-dev-team/next-dev/issues"
+  },
+  "homepage": "https://github.com/next-dev-team/next-dev#readme",
+  "author": "test",
+  "description": "test",
+  "keywords": [
+    "test"
+  ]
 }

@@ -1,59 +1,39 @@
 import { useState } from 'react';
-import { regex } from 'utils';
+import { _regexEmail, _regexPassword } from 'utils/src';
 import { Button, Space } from 'antd';
 import {
   ProFormText,
   ProForm,
+  ProCard,
   ProFormSelect,
 } from '@ant-design/pro-components';
 
-/**
- * motions:
- *  - click:[data-action="addon"]
- *  - timeout:1000
- *  - click:[data-action="addon"]
- *  - timeout:1000
- *  - click:[data-action="reset"]
- */
 export default function Demo() {
   const [form] = ProForm.useForm();
 
   return (
     <>
-      <ProForm form={form}>
-        <ProFormSelect
-          name="select"
-          label="Select a text"
-          fieldProps={{
-            onChange: (value) => {
-              form.setFieldsValue({ url: value });
-              form.validateFields();
-            },
-          }}
-          options={[
-            {
-              label: 'google.co',
-            },
-            {
-              label: 'www.google.co',
-            },
-          ]}
-          showSearch
-        />
-        <ProFormText
-          hasFeedback
-          name="url"
-          rules={[
-            {
-              required: true,
-            },
-            {
-              pattern: regex.urlRegexp,
-              message: 'invalid url',
-            },
-          ]}
-        />
-      </ProForm>
+      <ProCard bordered headerBordered title="Demo Regex">
+        <ProForm form={form}>
+          <ProForm.Group>
+            <ProFormText
+              label="Validate"
+              hasFeedback
+              placeholder="eg. abc@gmail.com"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                },
+                {
+                  pattern: _regexPassword.atLeastTwoNumber,
+                  message: 'invalid Email',
+                },
+              ]}
+            />
+          </ProForm.Group>
+        </ProForm>
+      </ProCard>
     </>
   );
 }

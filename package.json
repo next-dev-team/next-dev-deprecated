@@ -1,6 +1,6 @@
 {
   "name": "next-dev",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -20,7 +20,8 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=docs^... && changeset publish"
+    "release": "turbo run build --filter=docs^... && changeset publish",
+    "release:packages": "turbo run build --filter=packages^... && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.0",
@@ -40,5 +41,48 @@
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "pnpm@7.3.0"
+  "packageManager": "pnpm@7.3.0",
+  "description": "This is an official starter turborepo.",
+  "main": ".eslintrc.js",
+  "dependencies": {
+    "eslint-ast-utils": "^1.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-formatter-pretty": "^4.1.0",
+    "eslint": "^7.32.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-config-next": "^12.1.6",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-module-utils": "^2.7.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-jest": "^24.7.0",
+    "eslint-rule-composer": "^0.3.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unicorn": "^20.1.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-scope": "^5.1.1",
+    "eslint-utils": "^2.1.0",
+    "eslint-template-visitor": "^2.3.2",
+    "eslint-rule-docs": "^1.1.235",
+    "stylelint-config-prettier": "^8.0.2",
+    "eslint-visitor-keys": "^2.1.0",
+    "prettier-plugin-two-style-order": "^1.0.1",
+    "prettier-plugin-packagejson": "^2.2.18",
+    "prettier-plugin-organize-imports": "^2.3.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/next-dev-team/next-dev.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }, 
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/next-dev-team/next-dev/issues"
+  },
+  "homepage": "https://github.com/next-dev-team/next-dev#readme"
 }
