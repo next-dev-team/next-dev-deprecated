@@ -18,7 +18,7 @@ _axiosInstance.interceptors.request.use(
   function (error) {
     // Do something with request error
     return Promise.reject(error);
-  }
+  },
 );
 
 // Add a response interceptor
@@ -46,7 +46,7 @@ _axiosInstance.interceptors.response.use(
     // Do something with response error
 
     return Promise.reject(error);
-  }
+  },
 );
 
 // export const _axiosGet = <Data>(url: string) =>
@@ -63,19 +63,19 @@ _axiosInstance.interceptors.response.use(
 
 type IConfig<T> =
   | Partial<
-    {
-      formData: any;
-      isDebug: boolean;
-      /**
-       * get from graphql document
-       */
-      // gqlDocument: ASTNode;
-      /**
-       * variables for graphql query
-       */
-      variables: Record<string, any>;
-    } & AxiosRequestConfig<T>
-  >
+      {
+        formData: any;
+        isDebug: boolean;
+        /**
+         * get from graphql document
+         */
+        // gqlDocument: ASTNode;
+        /**
+         * variables for graphql query
+         */
+        variables: Record<string, any>;
+      } & AxiosRequestConfig<T>
+    >
   | undefined;
 
 /**
@@ -105,7 +105,7 @@ export async function _axios<T>(url = '', config?: IConfig<T>) {
       const resPost = await _axiosInstance?.post<T>(
         url,
         axiosConfig?.formData,
-        axiosConfig
+        axiosConfig,
       );
 
       logger(resPost);

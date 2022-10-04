@@ -5,6 +5,6 @@
  * usage: console.log("log", $const.a)
  */
 
-declare const $cons: typeof import('@/constant').default
-declare const $helper: typeof import('@/helper/global').default
-declare const $sel: typeof import('@/stores/global').default
+declare const $cons: typeof import('@/constant').default;
+declare const $helper: typeof import('@/helper/global').default;
+declare const $sel: typeof import('@/stores/global').default;

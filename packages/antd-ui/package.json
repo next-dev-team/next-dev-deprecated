@@ -6,7 +6,8 @@
   "types": "./dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.ts*"
+    "lint": "eslint *.ts*",
+    "build": "tsup src --format esm --dts --external react"
   },
   "peerDependencies": {
     "antd": ">=4",

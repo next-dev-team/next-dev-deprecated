@@ -4,7 +4,7 @@ import loading from '@rematch/loading';
 // import updated from '@rematch/updated';
 // import storage from 'redux-persist/lib/storage';
 import { models, RootModel } from './model';
-import { FullModel, } from './type';
+import { FullModel } from './type';
 
 // const persistConfig: PersistConfig<any> = {
 // 	key: 'root',
@@ -12,16 +12,14 @@ import { FullModel, } from './type';
 // 	whitelist: [],
 // };
 
-export const _store =
-  init<RootModel, FullModel>({
-    models,
-    plugins: [
-      // updated(),
-      loading(),
-      immerPlugin({
-        whitelist: [''],
-      }),
-      // persistPlugin(persistConfig),
-    ],
-  });
-
+export const _store = init<RootModel, FullModel>({
+  models,
+  plugins: [
+    // updated(),
+    loading(),
+    immerPlugin({
+      whitelist: [''],
+    }),
+    // persistPlugin(persistConfig),
+  ],
+});

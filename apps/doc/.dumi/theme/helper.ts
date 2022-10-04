@@ -1,4 +1,4 @@
-import { $Cons } from "./type";
+import { $Cons } from './type';
 
 // @ts-ignore
-export const $_cons = $cons as $Cons
+export const $_cons = $cons as $Cons;

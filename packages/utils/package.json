@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "lint": "eslint *.ts*",
-    "build": "tsup src --format cjs --dts --external react"
+    "build": "tsup src --format esm --dts --external react"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",

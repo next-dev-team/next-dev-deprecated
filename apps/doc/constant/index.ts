@@ -43,11 +43,10 @@ const layout = {
   ],
   mdWidth,
   lgWidth,
-  xlWidth
-}
-
+  xlWidth,
+};
 
 export default {
   ...envCons,
-  layout
-}
+  layout,
+};

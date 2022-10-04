@@ -1,10 +1,14 @@
-import type { RematchDispatch, RematchRootState, RematchStore } from '@rematch/core';
+import type {
+  RematchDispatch,
+  RematchRootState,
+  RematchStore,
+} from '@rematch/core';
 import type { ExtraModelsFromLoading } from '@rematch/loading';
 import type { ExtraModelsFromUpdated } from '@rematch/updated';
 import type { models, RootModel } from './model';
 
 export type FullModel = ExtraModelsFromLoading<RootModel> &
-	ExtraModelsFromUpdated<RootModel>;
+  ExtraModelsFromUpdated<RootModel>;
 export type Store = RematchStore<RootModel, FullModel>;
 export type Dispatch = RematchDispatch<RootModel>;
 export type RootState = RematchRootState<RootModel, FullModel>;

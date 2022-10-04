@@ -2,7 +2,7 @@ import { defineConfig, IConfig } from 'dumi';
 // more config: https://d.umijs.org/config
 const isProd = process.env.NODE_ENV === 'production';
 import { navs, menus } from './docs';
-import { resolve } from "path";
+import { resolve } from 'path';
 
 export default defineConfig({
   title: 'Next Dev',
@@ -10,12 +10,12 @@ export default defineConfig({
   chainWebpack(config, { webpack }) {
     config.module.rule('ts-in-node_modules').include.clear();
     //Introduce global public methods
-    config.plugin("$global").use(
+    config.plugin('$global').use(
       new webpack.ProvidePlugin({
         $cons: [resolve('constant/index.ts'), 'default'],
         $helper: [resolve('helper/global.ts'), 'default'],
-        $sel: [resolve('stores/global.ts'), 'default']
-      })
+        $sel: [resolve('stores/global.ts'), 'default'],
+      }),
     );
 
     return config;
@@ -41,8 +41,8 @@ export default defineConfig({
         libraryName: 'antd',
         libraryDirectory: 'es',
         style: true,
-      }, 'antd'
-
+      },
+      'antd',
     ],
     [
       'import',
@@ -58,14 +58,17 @@ export default defineConfig({
           return `@ant-design/icons/es/icons/${transformedMethodName}`;
         },
       },
-      "@ant-design/icons"
+      '@ant-design/icons',
     ],
-    ["prismjs", {
-      "languages": ["javascript", "css", "markup"],
-      "plugins": ["line-numbers"],
-      "theme": "twilight",
-      "css": true
-    }]
+    [
+      'prismjs',
+      {
+        languages: ['javascript', 'css', 'markup'],
+        plugins: ['line-numbers'],
+        theme: 'twilight',
+        css: true,
+      },
+    ],
     // [
     //   'import',
     //   {
@@ -78,7 +81,6 @@ export default defineConfig({
     //   },
     //   'ui/src',
     // ],
-
   ],
   hash: true,
   navs,
@@ -87,7 +89,7 @@ export default defineConfig({
     '@root-entry-name': 'variable',
   },
   ignoreMomentLocale: true,
-  externals: { darkreader: 'window.DarkReader', },
+  externals: { darkreader: 'window.DarkReader' },
   menus,
   // mfsu: {
   //   development: {},

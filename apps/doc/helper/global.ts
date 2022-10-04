@@ -4,6 +4,5 @@ import { _axiosInstance, _axios } from './request';
 export default {
   _axios,
   _axiosInstance,
-  source
-
-}
+  source,
+};
