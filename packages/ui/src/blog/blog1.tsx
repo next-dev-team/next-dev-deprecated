@@ -2,7 +2,7 @@
 
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
-import { _omit } from 'utils/src';
+import { _omit } from 'next-dev-utils/dist/_lodash/_omit';
 import Button from '../display/Button';
 
 type IVariant = 'outline' | 'primary' | 'link';

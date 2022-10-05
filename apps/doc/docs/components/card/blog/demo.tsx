@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Blog1 } from 'ui/src';
+import { Blog1 } from 'next-dev-ui/src';
 const DemoButton = () => {
   const renderComponent = [
     {

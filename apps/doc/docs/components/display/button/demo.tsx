@@ -1,7 +1,7 @@
 import { CodeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { showCodeMode } from '@/helper';
 import { Fragment } from 'react';
-import { Button } from 'ui/src';
+import { Button } from 'next-dev-ui/src';
 import { useHyperuiBtn } from './hyperui_btn';
 import { tailusButton } from './tailus';
 import { _selAppStoreAppState } from '@/stores/app/selector';

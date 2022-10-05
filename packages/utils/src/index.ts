@@ -15,3 +15,5 @@ export { default as _regexEmail } from './_regexEmail';
 export { default as _regexPhone } from './_regexPhone';
 export { default as _regexPassword } from './_regexPassword';
 export { default as _regexNumber } from './_regexNumber';
+// _lodash
+export { _omit } from './_lodash/_omit';

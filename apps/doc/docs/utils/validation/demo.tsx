@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { _regexEmail, _regexPassword } from 'utils/src';
+import { _regexEmail, _regexPassword } from 'next-dev-utils/src';
 import { Button, Space } from 'antd';
 import {
   ProFormText,

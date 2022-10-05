@@ -1,4 +1,3 @@
-import { _omit } from 'utils/src';
 import { _axios } from '@/helper/request';
 import { createModel } from '@rematch/core';
 import type { RootModel } from '../model';
