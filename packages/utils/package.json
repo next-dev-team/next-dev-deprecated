@@ -1,7 +1,7 @@
 {
   "name": "next-dev-utils",
-  "version": "1.0.2",
-  "main": "dist/index.mjs",
+  "version": "1.0.6",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "url": "git+https://github.com/next-dev-team/next-dev.git"
@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "lint": "eslint *.ts*",
-    "build": "tsup src --format esm --minify --dts --external react",
+    "build": "tsup src --format cjs --dts --external react",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
