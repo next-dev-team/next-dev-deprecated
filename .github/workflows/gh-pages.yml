@@ -15,7 +15,8 @@ jobs:
           node-version: 16.x
           cache: pnpm
       - name: Install
-        run: pnpm install
+        run: npx pnpm i --no-frozen-lockfile --store=node_modules/.pnpm-store
+
       - name: Build
         run: pnpm run doc:build
       - name: Deploy
