@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
-import { Login1 } from 'next-dev-antd-ui/src';
+import AuthLogin1 from 'next-dev-antd-ui/src/AuthLogin1';
 const DemoButton = () => {
   const renderComponent = [
     {
       title: 'Primary',
       render: (
-        <Login1
+        <AuthLogin1
           onFinish={async (values) => {
             alert(JSON.stringify(values, null, 2));
           }}
@@ -19,7 +19,7 @@ const DemoButton = () => {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
-      {renderComponent.map((item, key) => (
+      {(renderComponent as any).map((item, key) => (
         <Fragment key={key}>
           {item?.divider && <hr className="w-full border-b border-gray-200" />}
           {item.render}

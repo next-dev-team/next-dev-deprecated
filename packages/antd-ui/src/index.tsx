@@ -1,1 +1,1 @@
-export { default as Login1 } from './auth/login1';
+export { default as AuthLogin1 } from './AuthLogin1';

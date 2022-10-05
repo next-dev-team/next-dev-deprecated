@@ -1,4 +1,5 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import UserOutlined from '@ant-design/icons/UserOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
 import {
   LoginForm,
   LoginFormProps,
