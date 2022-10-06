@@ -19,3 +19,4 @@ export { default as _regexNumber } from './_regexNumber';
 export { _omit } from './__omit';
 export { _isFunction } from './__isFunction';
 export { _isArray } from './__isArray';
+export { _axios } from './_axios';

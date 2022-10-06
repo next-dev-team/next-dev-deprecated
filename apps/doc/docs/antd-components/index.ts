@@ -15,5 +15,9 @@ export const antdComponentMenu: Menu = {
       title: 'Display',
       children: ['antd-components/display/button/button.md'],
     },
+    {
+      title: 'Form',
+      children: ['antd-components/form/crud/crud.md'],
+    },
   ],
 };
