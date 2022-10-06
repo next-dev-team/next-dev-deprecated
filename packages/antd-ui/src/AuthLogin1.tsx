@@ -3,7 +3,6 @@ import LockOutlined from '@ant-design/icons/LockOutlined';
 import {
   LoginForm,
   LoginFormProps,
-  ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';

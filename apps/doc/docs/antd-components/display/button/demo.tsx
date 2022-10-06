@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import AuthLogin1 from 'next-dev-antd-ui/src/AuthLogin1';
+import { AuthLogin1 } from 'next-dev-antd-ui/src';
 const DemoButton = () => {
   const renderComponent = [
     {
