@@ -2,7 +2,7 @@
 
 import { ButtonHTMLAttributes, CSSProperties, ReactNode, useMemo } from 'react';
 import { twMerge as tw } from 'tailwind-merge';
-import { _omit } from 'next-dev-utils/src/_lodash/_omit';
+import { _omit } from 'next-dev-utils/src';
 
 type IVariant = 'outline' | 'primary' | 'link';
 type IType =

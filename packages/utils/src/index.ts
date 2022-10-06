@@ -16,4 +16,6 @@ export { default as _regexPhone } from './_regexPhone';
 export { default as _regexPassword } from './_regexPassword';
 export { default as _regexNumber } from './_regexNumber';
 // _lodash
-export { _omit } from './_lodash/_omit';
+export { _omit } from './__omit';
+export { _isFunction } from './__isFunction';
+export { _isArray } from './__isArray';
