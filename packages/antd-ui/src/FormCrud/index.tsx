@@ -1,10 +1,6 @@
 import React, { useMemo } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import type {
-  ProColumns,
-  ProDescriptionsItemProps,
-  ProTableProps,
-} from '@ant-design/pro-components';
+import type { ProTableProps } from '@ant-design/pro-components';
 import {
   ProCard,
   ProDescriptions,
@@ -58,6 +54,7 @@ export default function FormCrud<
         <Tabs.TabPane tab="descriptions" key="descriptions" />
       </Tabs>
       {['table', 'form'].includes(type) && (
+        // @ts-ignore
         <ProTable
           type={type as 'table'}
           pagination={{
@@ -79,7 +76,7 @@ export default function FormCrud<
       {type === 'descriptions' && (
         <ProDescriptions
           layout="vertical"
-          columns={newCol}
+          columns={newCol as any}
           dataSource={props?.dataSource?.[0] ?? []}
         />
       )}
