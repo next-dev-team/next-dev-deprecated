@@ -102,6 +102,7 @@ const DemoButton = () => {
           <div
             className="relative flex items-center gap-1 text-gray-500 cursor-pointer right-3 bottom-3 hover:text-pink-500"
             onClick={() => {
+              // @ts-ignore
               setAppState({
                 toolBox: true,
                 toolboxContent: {

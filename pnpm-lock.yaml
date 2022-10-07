@@ -36,12 +36,14 @@ importers:
       prettier-plugin-organize-imports: ^2.3.4
       prettier-plugin-packagejson: ^2.2.18
       prettier-plugin-two-style-order: ^1.0.1
+      react: ^18.2.0
       react-dom: ^17.0.0
       stylelint-config-prettier: ^8.0.2
       tailwind-merge: ^1.6.1
       tsup: ^6.2.3
       turbo: latest
       typescript: ^4.8.4
+      utility-types: ^3.10.0
     dependencies:
       eslint: 7.32.0
       eslint-ast-utils: 1.1.0
@@ -68,6 +70,7 @@ importers:
       prettier-plugin-organize-imports: 2.3.4_dmjzcauo3cshxeipj7bv64ktgm
       prettier-plugin-packagejson: 2.3.0_prettier@2.7.1
       prettier-plugin-two-style-order: 1.0.1_prettier@2.7.1
+      react: 18.2.0
       stylelint-config-prettier: 8.0.2
     devDependencies:
       '@changesets/cli': 2.25.0
@@ -77,11 +80,12 @@ importers:
       concurrently: 7.4.0
       eslint-config-custom: link:packages/eslint-config-custom
       prettier: 2.7.1
-      react-dom: 17.0.2
+      react-dom: 17.0.2_react@18.2.0
       tailwind-merge: 1.6.1
       tsup: 6.2.3_typescript@4.8.4
       turbo: 1.5.5
       typescript: 4.8.4
+      utility-types: 3.10.0
 
   apps/doc:
     specifiers:
@@ -13470,13 +13474,14 @@ packages:
       scheduler: 0.19.1
     dev: true
 
-  /react-dom/17.0.2:
+  /react-dom/17.0.2_react@18.2.0:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
       react: 17.0.2
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+      react: 18.2.0
       scheduler: 0.20.2
     dev: true
 
@@ -13786,6 +13791,12 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: true
+
+  /react/18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
 
   /reactcss/1.2.3:
     resolution: {integrity: sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/reactcss/-/reactcss-1.2.3.tgz}
@@ -16001,6 +16012,11 @@ packages:
     resolution: {integrity: sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==}
     dependencies:
       inherits: 2.0.3
+    dev: true
+
+  /utility-types/3.10.0:
+    resolution: {integrity: sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==}
+    engines: {node: '>= 4'}
     dev: true
 
   /uuid/8.3.2:

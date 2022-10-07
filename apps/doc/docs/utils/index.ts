@@ -8,6 +8,10 @@ export const utilsNav: Nav = [
 export const utilMenu: Menu = {
   '/utils': [
     {
+      title: 'Async',
+      children: ['utils/async/request.md'],
+    },
+    {
       title: 'Security',
       children: [
         'utils/authority.md',

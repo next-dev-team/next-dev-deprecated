@@ -15,8 +15,10 @@ export { default as _regexEmail } from './_regexEmail';
 export { default as _regexPhone } from './_regexPhone';
 export { default as _regexPassword } from './_regexPassword';
 export { default as _regexNumber } from './_regexNumber';
+
 // _lodash
-export { _omit } from './__omit';
-export { _isFunction } from './__isFunction';
-export { _isArray } from './__isArray';
-export { _axios } from './_axios';
+export * from './__omit';
+export * from './__isFunction';
+export * from './__isArray';
+export * from './_axios';
+export * from './_request';
