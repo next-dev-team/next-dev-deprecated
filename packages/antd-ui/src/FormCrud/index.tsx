@@ -21,7 +21,7 @@ export default function FormCrud<
   const [type, setType] = useState('table');
 
   // const isFormMode = type === 'form';
-  // const isDescriptions = type === 'descriptions';
+  const isDescriptions = type === 'descriptions';
 
   const newCol = useMemo(() => {
     const getCol = columns?.map((i) => {
@@ -40,39 +40,70 @@ export default function FormCrud<
         align: 'center',
         dataIndex: 'actions',
         hideInForm: true,
+        width: 300,
+        key: 'option',
+        valueType: 'option',
+        render: () => [
+          <a key="link" onClick={() => setType('descriptions')}>
+            View
+          </a>,
+          <a key="link2">Alarm</a>,
+          <a key="link3">Monitoring</a>,
+          <TableDropdown
+            key="actionGroup"
+            menus={[
+              { key: 'copy', name: 'copy' },
+              { key: 'delete', name: 'delete' },
+            ]}
+          />,
+        ],
       },
     ];
   }, [columns]);
 
-  console.log('columns', columns);
+  // console.log('columns', columns);
 
   return (
     <ProCard>
       <Tabs activeKey={type} onChange={(e) => setType(e)}>
         <Tabs.TabPane tab="table" key="table" />
         <Tabs.TabPane tab="form" key="form" />
-        <Tabs.TabPane tab="descriptions" key="descriptions" />
+        {isDescriptions && (
+          <Tabs.TabPane tab="descriptions" key="descriptions" />
+        )}
       </Tabs>
+
       {['table', 'form'].includes(type) && (
-        // @ts-ignore
         <ProTable
           type={type as 'table'}
-          pagination={{
-            pageSize: 5,
-          }}
           rowKey="id"
           dateFormatter="string"
-          headerTitle="查询 Table"
+          {...{
+            manualRequest: true,
+            tableLayout: 'fixed',
+            ...(rest as T),
+
+            scroll: {
+              // x: screen.availHeight - 80,
+              scrollToFirstRowOnChange: true,
+              y: screen.availHeight - screen.availHeight * 0.33,
+              ...rest?.scroll,
+            },
+            search: {
+              labelWidth: 'auto',
+              ...rest?.search,
+            },
+          }}
+          columns={newCol as any}
           toolBarRender={() => [
             <Button key="3" type="primary" onClick={() => setType('form')}>
               <PlusOutlined />
-              新建
+              Add
             </Button>,
           ]}
-          {...(rest as T)}
-          columns={newCol}
         />
       )}
+
       {type === 'descriptions' && (
         <ProDescriptions
           layout="vertical"
