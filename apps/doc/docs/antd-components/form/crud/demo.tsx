@@ -27,12 +27,11 @@ _setConfigAxios({
   baseURL: 'https://dwmniez7.directus.app',
 });
 const DemoButton = () => {
-  const getBloc = async () => _requestAxios<{ data: IBlog[] }>('/items/blog');
+  const { runAsync } = useRequest(async (params: any) =>
+    _requestAxios<IBlog>('/items/blog', { params }),
+  );
 
-  // using with hook provide loading, error cache etc
-  const { data, loading, refresh } = useRequest(getBloc);
-
-  const columns: ProColumns<Datum>[] = [
+  const columns: ProColumns<Datum, 'tag'>[] = [
     {
       title: 'Title',
       dataIndex: 'title',
@@ -41,24 +40,21 @@ const DemoButton = () => {
     {
       title: 'Short Description',
       dataIndex: 'short_description',
-      width: 400,
       ellipsis: true,
     },
+
     {
       title: 'Status',
       dataIndex: 'status',
+      valueType: 'tag',
     },
   ];
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
-      <FormCrud<IBlog>
-        options={{
-          reload: refresh,
-        }}
-        columns={columns}
-        loading={loading}
-        dataSource={data?.data?.data}
+      <FormCrud<Datum>
+        request={async (params = {}) => (await runAsync(params)).data}
+        columns={columns as any}
       />
     </div>
   );

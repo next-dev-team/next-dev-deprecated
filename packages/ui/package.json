@@ -21,7 +21,8 @@
     "@ant-design/icons": "^4.7.0"
   },
   "peerDependencies": {
-    "@ant-design/icons": "=>4"
+    "@ant-design/icons": "=>4",
+    "ahooks": "=>3"
   },
   "dependencies": {
     "classnames": "^2.3.1"

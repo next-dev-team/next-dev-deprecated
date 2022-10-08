@@ -23,6 +23,7 @@
     "release:packages": "turbo run build --filter=packages^... && changeset publish"
   },
   "devDependencies": {
+    "ahooks": "^3.7.1",
     "utility-types": "^3.10.0",
     "@changesets/cli": "^2.25.0",
     "@types/node": "^18.0.0",
