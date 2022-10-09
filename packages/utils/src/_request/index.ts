@@ -27,12 +27,13 @@ async function _requestAxios<T>(url = '', config?: IConfig<T>) {
     method: 'GET',
     ...config,
   } as IConfig<T>;
+  console.log('axiosConfig', axiosConfig);
 
   try {
     /**
      * Method POST
      */
-    if (axiosConfig?.method === 'post' || axiosConfig?.method === 'POST') {
+    if (axiosConfig?.method?.toLowerCase() === 'post') {
       const resPost = await _axiosInstance?.post<T>(
         url,
         axiosConfig?.formData,
@@ -42,19 +43,24 @@ async function _requestAxios<T>(url = '', config?: IConfig<T>) {
         console.log('request success', resPost);
       }
       return resPost;
-    }
+    } else if (axiosConfig?.method?.toLowerCase() === 'post') {
+      /**
+       * default is Method GET
+       */
+      delete axiosConfig?.formData;
+      const resGet = await _axiosInstance?.get<T>(url, axiosConfig);
+      if (axiosConfig?.isDebug) {
+        console.log('request success', resGet?.data);
+      }
+      return resGet;
+    } else {
+      // other method
+      const res = await _axiosInstance?.request<T>({ url, ...axiosConfig });
 
-    /**
-     * default is Method GET
-     */
-    delete axiosConfig?.formData;
-    const resGet = await _axiosInstance?.get<T>(url, axiosConfig);
-    if (axiosConfig?.isDebug) {
-      console.log('request success', resGet?.data);
+      return res;
     }
-    return resGet;
   } catch (error: any) {
-    console.info('request error', error.response);
+    // console.info('request error', error.response);
     return error as undefined;
   }
 }

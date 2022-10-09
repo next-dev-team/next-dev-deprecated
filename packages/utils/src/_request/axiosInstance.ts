@@ -1,9 +1,11 @@
 import { CreateAxiosDefaults } from 'axios';
+import { _isArray } from '../__isArray';
 import { _axios } from '../_axios';
 
 type IConfigAxios<T = any> = CreateAxiosDefaults<T> &
   Record<any, any> & {
     skipInterceptors?: boolean;
+    onError?: (errors: any) => void;
   };
 
 let _initConfigAxios: IConfigAxios = {};
@@ -45,7 +47,7 @@ _axiosInstance.interceptors.request.use(
 // Add a response interceptor
 _axiosInstance.interceptors.response.use(
   function (response) {
-    console.log('response', response);
+    console.log('===> response success:', response);
 
     //todo: refresh token
     // if (
@@ -65,6 +67,8 @@ _axiosInstance.interceptors.response.use(
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    console.log('===> response error:', error?.response);
+    _initConfigAxios?.onError(error?.response);
 
     return Promise.reject(error);
   },

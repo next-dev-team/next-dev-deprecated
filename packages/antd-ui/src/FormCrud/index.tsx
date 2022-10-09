@@ -24,15 +24,18 @@ import {
 import {
   Button,
   DropdownProps,
+  FormInstance,
   message,
+  Popconfirm,
   Space,
+  Spin,
   Tabs,
   Tag,
   Tooltip,
 } from 'antd';
 import { _axios } from 'next-dev-utils/dist/_axios';
+import { _requestAxios } from 'next-dev-utils/dist/_request';
 import { _capitalize } from 'next-dev-utils/dist/__capitalize';
-import { useForm } from 'antd/es/form/Form';
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
@@ -61,7 +64,11 @@ export type IFormCrud<
     record: T;
     tabMode: ITabMode;
     crudMode: ICrudMode;
+    isFormFinished?: boolean;
   }) => void;
+  onFormAddFinished?: (formValue: T) => void;
+  onFormEditFinished?: (formValue: T) => void;
+
   /**
    * custom record id for delete or detail param
    * @default id
@@ -72,6 +79,8 @@ export type IFormCrud<
    */
   actions?: Actions;
   formType?: 'tab' | 'modal';
+  form: FormInstance<any>;
+  deleteLoading?: boolean;
 };
 
 export default function FormCrud<
@@ -83,8 +92,12 @@ export default function FormCrud<
     columns = [],
     onSetMode,
     recordId,
+    onFormAddFinished,
+    onFormEditFinished,
     actions = {},
     formType = 'modal',
+    form,
+    deleteLoading,
     ...rest
   } = props;
 
@@ -94,9 +107,6 @@ export default function FormCrud<
     record: {},
   });
   const isModeForm = formType === 'modal';
-
-  const [form] = useForm();
-
   // const isFormMode = type === 'form';
   // const isTableMode = type === 'table';
   const isDescriptions = useCreation(
@@ -111,7 +121,7 @@ export default function FormCrud<
 
   // set tab and crud mode
   const onClickSetMode = useCallback(
-    (type: ICrudMode | ITabMode, record = {}) => {
+    (type: ICrudMode | ITabMode, record = {}, isFormFinished?: boolean) => {
       let crudMode: ICrudMode = 'list';
       let tabMode: ITabMode = 'table';
 
@@ -125,35 +135,44 @@ export default function FormCrud<
         crudMode = 'edit';
         tabMode = 'form';
         state.openModalForm = isModeForm;
+        if (isFormFinished) {
+          onFormEditFinished?.(record);
+        }
       }
 
       if (type === 'delete') {
         crudMode = 'delete';
         tabMode = 'table';
-      }
-
-      state.crudMode = crudMode;
-      if (!isModeForm) {
-        state.tabMode = tabMode;
+        console.log('onClick deleted');
       }
 
       state.record = record;
-      form.setFieldsValue(record);
+      form?.setFieldsValue?.(record);
 
       if (type === 'add') {
         crudMode = 'add';
         tabMode = 'form';
         state.openModalForm = isModeForm;
-        form.resetFields();
+        form?.resetFields();
+
+        if (isFormFinished) {
+          onFormAddFinished?.(record);
+        }
       }
+      state.crudMode = crudMode;
+      if (!isModeForm) {
+        state.tabMode = tabMode;
+      }
+
       // set mode and value
       onSetMode?.({
         crudMode,
         record,
         tabMode,
+        isFormFinished,
       });
     },
-    [form, isModeForm, onSetMode, state],
+    [form, isModeForm, onFormAddFinished, onFormEditFinished, onSetMode, state],
   );
 
   const actionOptMenu: typeof actions.moreOptMenu = [
@@ -229,24 +248,31 @@ export default function FormCrud<
         key: 'actions',
         render: (_: any, record: T) => [
           state.crudMode !== 'view' && (
-            <Tooltip title="view">
+            <Tooltip title="view" key="view">
               <EyeOutlined
-                key="view"
-                className="text-lg text-blue-600"
+                style={{ color: 'blue', fontSize: 18 }}
                 onClick={() => onClickSetMode('view', record)}
               />
             </Tooltip>
           ),
-          <EditOutlined
-            key="edit"
-            className="text-lg text-blue-600"
-            onClick={() => onClickSetMode('edit', record)}
-          />,
-          <DeleteOutlined
-            key="delete"
-            className="text-lg text-blue-600"
-            onClick={() => onClickSetMode('delete', record)}
-          />,
+
+          <Tooltip title="edit" key="edit">
+            <EditOutlined
+              style={{ color: 'orange', fontSize: 18 }}
+              onClick={() => onClickSetMode('edit', record)}
+            />
+          </Tooltip>,
+          <Popconfirm
+            title="Are you sure to delete it?"
+            onConfirm={() => onClickSetMode('delete', record)}
+          >
+            <Spin
+              size="small"
+              spinning={deleteLoading && record?.id === state.record?.id}
+            >
+              <DeleteOutlined style={{ color: 'red', fontSize: 18 }} />
+            </Spin>
+          </Popconfirm>,
           actions?.isShowOptMenu && actionOptMenu?.length > 0 && (
             <TableDropdown key="actionGroup" menus={actionOptMenu} />
           ),
@@ -257,7 +283,7 @@ export default function FormCrud<
 
   const isHasSearch = newCol.find((i) => !i?.hideInSearch);
 
-  console.log('columns', isHasSearch);
+  // console.log('columns');
 
   const renderTbl = (
     <ProTable<T>
@@ -351,9 +377,10 @@ export default function FormCrud<
             },
           }}
           open={state?.openModalForm && isModeForm}
-          onFinish={async (values: any) => {
-            console.log(values);
-            message.success('提交成功');
+          onFinish={async (values) => {
+            // console.log('onFinish', values);
+            onClickSetMode?.(state.crudMode, values, true);
+            // close modal
             state.openModalForm = false;
           }}
         />
