@@ -8,7 +8,7 @@ import { _requestAxios, _setConfigAxios } from 'next-dev-utils';
 
 // set init
 _setConfigAxios({
-  baseURL: 'https://yourapi.app',
+  baseURL: 'https://gorest.co.in/public/v1',
 });
 export { _requestAxios };
 

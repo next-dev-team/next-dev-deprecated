@@ -1,13 +1,30 @@
-export interface IBlog {
+interface IBlog {
+  meta: Meta;
+  data: Datum[];
+}
+
+interface Datum {
   id: number;
+  name: string;
+  email: string;
+  gender: string;
   status: string;
-  user_created: string;
-  date_created: string;
-  user_updated?: any;
-  date_updated?: any;
-  title: string;
-  photo: string;
-  iframeUr: string;
-  short_description: string;
-  description?: any;
+}
+
+interface Meta {
+  pagination: Pagination;
+}
+
+interface Pagination {
+  total: number;
+  pages: number;
+  page: number;
+  limit: number;
+  links: Links;
+}
+
+interface Links {
+  previous?: any;
+  current: string;
+  next: string;
 }
