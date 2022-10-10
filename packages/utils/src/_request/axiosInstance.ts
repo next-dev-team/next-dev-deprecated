@@ -6,6 +6,7 @@ type IConfigAxios<T = any> = CreateAxiosDefaults<T> &
   Record<any, any> & {
     skipInterceptors?: boolean;
     onError?: (errors: any) => void;
+    onSuccess?: (res: any) => void;
   };
 
 let _initConfigAxios: IConfigAxios = {};
@@ -48,6 +49,8 @@ _axiosInstance.interceptors.request.use(
 _axiosInstance.interceptors.response.use(
   function (response) {
     console.log('===> response success:', response);
+
+    _initConfigAxios?.onSuccess?.(response);
 
     //todo: refresh token
     // if (

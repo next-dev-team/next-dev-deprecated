@@ -1,4 +1,10 @@
-import React, { Fragment, ReactNode, useCallback, useMemo } from 'react';
+import React, {
+  Fragment,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import EditOutlined from '@ant-design/icons/EditOutlined';
@@ -59,8 +65,8 @@ export type IFormCrud<
     crudMode: ICrudMode;
     isFormFinished?: boolean;
   }) => void;
-  onFormAddFinished?: (formValue: T) => void;
-  onFormEditFinished?: (formValue: T) => void;
+  onFormAddFinished?: (formValue: T & { record: T }) => void;
+  onFormEditFinished?: (formValue: T & { record: T }) => void;
 
   /**
    * custom record id for delete or detail param
@@ -235,7 +241,7 @@ export default function FormCrud<
         dataIndex: 'actions',
         hideInForm: true,
         hideInSearch: true, // change df to true
-        width: '10%',
+        width: '15%',
         valueType: 'option',
         fixed: 'right',
         key: 'actions',
@@ -333,6 +339,20 @@ export default function FormCrud<
     />
   );
 
+  useEffect(() => {
+    if (
+      state.crudMode === 'delete' &&
+      state.tabMode === 'table' &&
+      !deleteLoading
+    ) {
+      state.openModalForm = false;
+    }
+  }, [deleteLoading, state]);
+
+  useEffect(() => {
+    console.log('state', state);
+  }, [state.crudMode]);
+
   return (
     <>
       {isModeForm && (
@@ -341,7 +361,7 @@ export default function FormCrud<
           width={state.crudMode === 'view' ? 800 : 900}
           grid
           columns={
-            state.crudMode === 'view'
+            state.crudMode === 'view' || state.crudMode === 'delete'
               ? [
                   {
                     title: descriptions,
@@ -372,7 +392,11 @@ export default function FormCrud<
           open={state?.openModalForm && isModeForm}
           onFinish={async (values) => {
             // console.log('onFinish', values);
-            onClickSetMode?.(state.crudMode, values, true);
+            onClickSetMode?.(
+              state.crudMode,
+              { ...values, record: state.record },
+              true,
+            );
             // close modal
             state.openModalForm = false;
           }}
