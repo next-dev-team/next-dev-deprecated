@@ -27,55 +27,47 @@ async function _requestAxios<T>(url = '', config?: IConfig<T>) {
     method: 'GET',
     ...config,
   } as IConfig<T>;
-  console.log('axiosConfig', axiosConfig);
+
+  if (axiosConfig?.isDebug) {
+    console.log('axiosConfig', axiosConfig);
+  }
 
   try {
-    /**
-     * Method POST
-     */
-    if (axiosConfig?.method?.toLowerCase() === 'post') {
-      const resPost = await _axiosInstance?.post<T>(
-        url,
-        axiosConfig?.formData,
-        axiosConfig,
-      );
-      if (axiosConfig?.isDebug) {
-        console.log('request success', resPost);
-      }
-      return resPost;
-    } else if (axiosConfig?.method?.toLowerCase() === 'post') {
-      /**
-       * default is Method GET
-       */
-      delete axiosConfig?.formData;
-      const resGet = await _axiosInstance?.get<T>(url, axiosConfig);
-      if (axiosConfig?.isDebug) {
-        console.log('request success', resGet?.data);
-      }
-      return resGet;
-    } else {
-      // other method
-      const res = await _axiosInstance?.request<T>({ url, ...axiosConfig });
-
-      return res;
+    const res = await _axiosInstance?.request<T>({ url, ...axiosConfig });
+    if (axiosConfig?.isDebug) {
+      console.log('_requestAxios success', res);
     }
+    return res;
   } catch (error: any) {
-    // console.info('request error', error.response);
+    console.info('_requestAxios error', error.response);
+
     return error as undefined;
   }
 }
 
 // ===================== Request Method =====================
-/**
- * requestPost: request axios with Method POST
- * @param config
- * @returns
- */
-function _requestPost<T>(config?: IConfig<T>) {
-  return _requestAxios<T>('', { method: 'POST', ...config });
+
+function _requestGet<T>(url: string, config?: IConfig<T>) {
+  return _requestAxios<T>(url, { method: 'POST', ...config });
+}
+function _requestPost<T>(url: string, config?: IConfig<T>) {
+  return _requestAxios<T>(url, { method: 'POST', ...config });
+}
+function _requestDelete<T>(url: string, config?: IConfig<T>) {
+  return _requestAxios<T>(url, { method: 'delete', ...config });
+}
+function _requestPut<T>(url: string, config?: IConfig<T>) {
+  return _requestAxios<T>(url, { method: 'put', ...config });
+}
+function _requestPatch<T>(url: string, config?: IConfig<T>) {
+  return _requestAxios<T>(url, { method: 'patch', ...config });
 }
 
 export {
+  _requestGet,
+  _requestPatch,
+  _requestPut,
+  _requestDelete,
   _axiosInstance,
   _initConfigAxios,
   _setConfigAxios,
