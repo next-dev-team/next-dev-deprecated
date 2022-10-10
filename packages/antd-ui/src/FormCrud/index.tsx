@@ -8,11 +8,7 @@ import useReactive from 'ahooks/es/useReactive';
 
 import {
   BetaSchemaForm,
-  ModalForm,
-  ProColumns,
   ProColumnType,
-  ProForm,
-  ProFormColumnsType,
   ProTableProps,
 } from '@ant-design/pro-components';
 import {
@@ -23,11 +19,8 @@ import {
 } from '@ant-design/pro-components';
 import {
   Button,
-  DropdownProps,
   FormInstance,
-  message,
   Popconfirm,
-  Space,
   Spin,
   Tabs,
   Tag,

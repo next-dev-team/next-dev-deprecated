@@ -47,18 +47,18 @@ interface CreateBlogParam {
   description: string;
 }
 
-// set init
-_setConfigAxios({
-  baseURL: 'https://dwmniez7.directus.app',
-  onError: (err) => {
-    console.log('er', err?.data?.errors);
-    message.error({
-      content: <ErrMsg err={err?.data?.errors} />,
-    });
-  },
-});
-
 const DemoButton = () => {
+  // set init
+  _setConfigAxios({
+    baseURL: 'https://dwmniez7.directus.app',
+    onError: (err) => {
+      console.log('er', err?.data?.errors);
+      message.error({
+        content: <ErrMsg err={err?.data?.errors} />,
+      });
+    },
+  });
+
   const addNewBlog = (params: CreateBlogParam) =>
     _requestAxios<IBlog>('/items/blog', { params, method: 'post' });
 

@@ -9,11 +9,11 @@ import {
 import { useRequest } from 'ahooks';
 import { ReloadOutlined } from '@ant-design/icons';
 
-_setConfigAxios({
-  baseURL: 'https://gorest.co.in/public/v1',
-});
-
 const UserList = () => {
+  _setConfigAxios({
+    baseURL: 'https://gorest.co.in/public/v1',
+  });
+
   const { data, loading, refresh } = useRequest(
     async () => (await _requestAxios<IBlog>('/users'))?.data,
   );
