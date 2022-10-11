@@ -1,11 +1,13 @@
 import { Fragment, useEffect, useRef } from 'react';
 import { FormCrud } from 'next-dev-antd-ui/src';
+import { IFormCrudState, dfState } from 'next-dev-antd-ui/src/FormCrud';
 import { _isArray, _requestAxios, _setConfigAxios } from 'next-dev-utils/src';
 import { useRequest } from 'ahooks';
 import { ActionType, ProColumns } from '@ant-design/pro-components';
 import { useForm } from 'antd/es/form/Form';
-import { message, Typography } from 'antd';
+import { message, notification, Typography } from 'antd';
 import useReactive from 'ahooks/es/useReactive';
+import { CheckCircleOutlined } from '@ant-design/icons';
 
 const ErrMsg = ({ err }: { err: any }) => {
   return (
@@ -89,6 +91,11 @@ const DemoButton = () => {
   const state = useReactive({
     deleteLoading: false,
   });
+  const parentState = useReactive<IFormCrudState>({
+    crudMode: 'list',
+    tabMode: 'table',
+    record: {},
+  });
 
   const columns: ProColumns<Datum, 'tag'>[] = [
     {
@@ -150,6 +157,30 @@ const DemoButton = () => {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
       <FormCrud<Datum>
+        actions={{
+          isShowOptMenu: true,
+          moreOptMenu: (val) => {
+            return [
+              {
+                key: 'check',
+                name: 'check',
+                icon: <CheckCircleOutlined />,
+                onClick: () => {
+                  notification.info({
+                    message: 'action click',
+                    description: (
+                      <Typography.Paragraph code>
+                        {JSON.stringify(val)}
+                      </Typography.Paragraph>
+                    ),
+                  });
+
+                  console.log('moreOptMenu check', val);
+                },
+              },
+            ];
+          },
+        }}
         deleteLoading={state.deleteLoading}
         form={form as any}
         actionRef={actionRef as any}
@@ -157,9 +188,9 @@ const DemoButton = () => {
           return (await _requestAxios<ResData>('/users', { params })).data;
         }}
         columns={columns as any}
-        onFormAddFinished={(res) => {
+        onFormAddFinished={async (res) => {
           console.log('onFormAddFinished', res);
-          addNewBlog({
+          return addNewBlog({
             name: res?.name,
             status: res?.status,
             email: res?.email,
@@ -168,9 +199,9 @@ const DemoButton = () => {
             actionRef.current?.reload();
           });
         }}
-        onFormEditFinished={(res) => {
+        onFormEditFinished={async (res) => {
           console.log('onFormEditFinished', res);
-          editBlog(res?.record?.id, {
+          return editBlog(res?.record?.id, {
             name: res?.name,
             status: res?.status,
             email: res?.email,
@@ -179,7 +210,7 @@ const DemoButton = () => {
             actionRef.current?.reload();
           });
         }}
-        onSetMode={(res) => {
+        onSetMode={async (res) => {
           if (res?.crudMode === 'delete') {
             state.deleteLoading = true;
             deleteBlog(res?.record?.id).then(() => {

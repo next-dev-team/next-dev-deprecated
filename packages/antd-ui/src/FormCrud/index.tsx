@@ -1,16 +1,11 @@
-import React, {
-  Fragment,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo } from 'react';
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import EditOutlined from '@ant-design/icons/EditOutlined';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 import useCreation from 'ahooks/es/useCreation';
 import useReactive from 'ahooks/es/useReactive';
+import useMemoizedFn from 'ahooks/es/useMemoizedFn';
 
 import {
   BetaSchemaForm,
@@ -27,6 +22,7 @@ import {
   Button,
   FormInstance,
   Popconfirm,
+  Space,
   Spin,
   Tabs,
   Tag,
@@ -38,20 +34,24 @@ import { _capitalize } from 'next-dev-utils/dist/__capitalize';
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
-type IFormCrudState = {
+export type IFormCrudState = {
   tabMode: ITabMode;
   crudMode: ICrudMode;
   record: Record<string, any>;
   openModalForm?: boolean;
-};
+  editLoading?: boolean;
+  addLoading?: boolean;
+} & Record<string, any>;
 
-type Actions = {
+type Actions<T> = {
   isHideView?: boolean;
   isHideAdd?: boolean;
   isHideDelete?: boolean;
   isShowOptMenu?: boolean;
   moreMenu?: ReactNode[];
-  moreOptMenu?: React.ComponentProps<typeof TableDropdown>['menus'];
+  moreOptMenu?: (
+    value: T,
+  ) => React.ComponentProps<typeof TableDropdown>['menus'];
 };
 
 export type IFormCrud<
@@ -64,9 +64,16 @@ export type IFormCrud<
     tabMode: ITabMode;
     crudMode: ICrudMode;
     isFormFinished?: boolean;
-  }) => void;
-  onFormAddFinished?: (formValue: T & { record: T }) => void;
-  onFormEditFinished?: (formValue: T & { record: T }) => void;
+  }) => Promise<void>;
+  /**
+   * required return promise
+   */
+  onFormAddFinished?: (formValue: T & { record: T }) => Promise<void>;
+  /**
+   * required return promise
+   */
+  onFormEditFinished?: (formValue: T & { record: T }) => Promise<void>;
+  isDebug?: boolean;
 
   /**
    * custom record id for delete or detail param
@@ -76,16 +83,28 @@ export type IFormCrud<
   /**
    * all related action props
    */
-  actions?: Actions;
+  actions?: Actions<T>;
   formType?: 'tab' | 'modal';
   form: FormInstance<any>;
   deleteLoading?: boolean;
+  texts?: {
+    tabAddText?: string;
+  };
+};
+
+export const dfState: IFormCrudState = {
+  crudMode: 'list',
+  tabMode: 'table',
+  record: {},
+  addLoading: false,
+  editLoading: false,
 };
 
 export default function FormCrud<
   T extends Record<string, any>,
   U = any,
   ValueType = ProColumnType,
+  TState = Record<string, any>,
 >(props: IFormCrud<T, U, ValueType>) {
   const {
     columns = [],
@@ -100,11 +119,8 @@ export default function FormCrud<
     ...rest
   } = props;
 
-  const state = useReactive<IFormCrudState>({
-    crudMode: 'list',
-    tabMode: 'table',
-    record: {},
-  });
+  const state = useReactive<IFormCrudState>({ ...dfState });
+
   const isModeForm = formType === 'modal';
   // const isFormMode = type === 'form';
   // const isTableMode = type === 'table';
@@ -119,8 +135,12 @@ export default function FormCrud<
   // const isListMode = state?.crudMode === 'list';
 
   // set tab and crud mode
-  const onClickSetMode = useCallback(
-    (type: ICrudMode | ITabMode, record = {}, isFormFinished?: boolean) => {
+  const onClickSetMode = useMemoizedFn(
+    async (
+      type: ICrudMode | ITabMode,
+      record = {},
+      isFormFinished?: boolean,
+    ) => {
       let crudMode: ICrudMode = 'list';
       let tabMode: ITabMode = 'table';
 
@@ -128,6 +148,9 @@ export default function FormCrud<
         crudMode = 'view';
         tabMode = 'descriptions';
         state.openModalForm = isModeForm;
+        if (isFormFinished) {
+          state.openModalForm = false;
+        }
       }
 
       if (type === 'edit') {
@@ -135,7 +158,17 @@ export default function FormCrud<
         tabMode = 'form';
         state.openModalForm = isModeForm;
         if (isFormFinished) {
-          onFormEditFinished?.(record);
+          state.editLoading = true;
+          onFormEditFinished?.(record)
+            .then(() => {
+              // close modal
+              state.openModalForm = false;
+              state.editLoading = false;
+            })
+            .catch(() => {
+              // close modal
+              state.editLoading = false;
+            });
         }
       }
 
@@ -155,7 +188,17 @@ export default function FormCrud<
         form?.resetFields();
 
         if (isFormFinished) {
-          onFormAddFinished?.(record);
+          state.addLoading = true;
+          onFormAddFinished?.(record)
+            .then(() => {
+              // close modal
+              state.openModalForm = false;
+              state.addLoading = false;
+            })
+            .catch(() => {
+              // close modal
+              state.addLoading = false;
+            });
         }
       }
       state.crudMode = crudMode;
@@ -171,16 +214,14 @@ export default function FormCrud<
         isFormFinished,
       });
     },
-    [form, isModeForm, onFormAddFinished, onFormEditFinished, onSetMode, state],
   );
 
-  const actionOptMenu: typeof actions.moreOptMenu = [
+  const actionOptMenu = useMemoizedFn((value: T) => [
     // { key: 'copy', name: 'copy', icon: <EditOutlined /> },
-    // { key: 'delete', name: 'delete' },
-    ...(actions?.moreOptMenu || []),
-  ];
+    ...(actions?.moreOptMenu?.(value) || []),
+  ]);
 
-  const newCol = useCreation(() => {
+  const newCol = useMemo(() => {
     const getCol = columns?.map((i) => {
       const isTag = i?.valueType === 'tag';
       // custom render tag
@@ -246,18 +287,22 @@ export default function FormCrud<
         fixed: 'right',
         key: 'actions',
         render: (_: any, record: T) => [
-          state.crudMode !== 'view' && (
-            <Tooltip title="view" key="view">
-              <EyeOutlined
-                style={{ color: 'blue', fontSize: 18 }}
-                onClick={() => onClickSetMode('view', record)}
-              />
-            </Tooltip>
-          ),
-
+          <Tooltip title="view" key="view">
+            <EyeOutlined
+              disabled={state.openModalForm}
+              style={{
+                color: state.openModalForm ? 'gray' : 'blue',
+                fontSize: 18,
+              }}
+              onClick={() => onClickSetMode('view', record)}
+            />
+          </Tooltip>,
           <Tooltip title="edit" key="edit">
             <EditOutlined
-              style={{ color: 'orange', fontSize: 18 }}
+              style={{
+                color: 'orange',
+                fontSize: 18,
+              }}
               onClick={() => onClickSetMode('edit', record)}
             />
           </Tooltip>,
@@ -272,13 +317,21 @@ export default function FormCrud<
               <DeleteOutlined style={{ color: 'red', fontSize: 18 }} />
             </Spin>
           </Popconfirm>,
-          actions?.isShowOptMenu && actionOptMenu?.length > 0 && (
-            <TableDropdown key="actionGroup" menus={actionOptMenu} />
+          actions?.isShowOptMenu && actionOptMenu(record)?.length > 0 && (
+            <TableDropdown key="actionGroup" menus={actionOptMenu(record)} />
           ),
         ],
       } as typeof columns[0],
     ];
-  }, [columns, onClickSetMode]);
+  }, [
+    actionOptMenu,
+    actions?.isShowOptMenu,
+    columns,
+    deleteLoading,
+    onClickSetMode,
+    state.openModalForm,
+    state.record?.id,
+  ]);
 
   const isHasSearch = newCol.find((i) => !i?.hideInSearch);
 
@@ -339,15 +392,15 @@ export default function FormCrud<
     />
   );
 
-  useEffect(() => {
-    if (
-      state.crudMode === 'delete' &&
-      state.tabMode === 'table' &&
-      !deleteLoading
-    ) {
-      state.openModalForm = false;
-    }
-  }, [deleteLoading, state]);
+  // useEffect(() => {
+  //   if (
+  //     state.crudMode === 'delete' &&
+  //     state.tabMode === 'table' &&
+  //     !deleteLoading
+  //   ) {
+  //     state.openModalForm = false;
+  //   }
+  // }, [deleteLoading, state]);
 
   useEffect(() => {
     console.log('state', state);
@@ -388,6 +441,21 @@ export default function FormCrud<
             onCancel: () => {
               state.openModalForm = false;
             },
+            // onOk: () => {
+            //   if (state.crudMode === 'view') {
+            //     state.openModalForm = false;
+            //   }
+            // },
+            modalRender(node) {
+              return (
+                <Spin
+                  spinning={state.addLoading || state.editLoading}
+                  className="!bg-opacity-90 bg-gray-200"
+                >
+                  {node}
+                </Spin>
+              );
+            },
           }}
           open={state?.openModalForm && isModeForm}
           onFinish={async (values) => {
@@ -397,8 +465,6 @@ export default function FormCrud<
               { ...values, record: state.record },
               true,
             );
-            // close modal
-            state.openModalForm = false;
           }}
         />
       )}
