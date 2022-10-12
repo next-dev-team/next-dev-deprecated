@@ -59,15 +59,15 @@ export default ({
             )} */}
           </div>
         </div>
-        {/* <PreView {...rest}> */}
-        <div
-          style={{
-            minHeight: rest.height,
-          }}
-        >
-          {children}
-        </div>
-        {/* </PreView> */}
+        <PreView {...rest}>
+          <div
+            style={{
+              minHeight: rest.height,
+            }}
+          >
+            {children}
+          </div>
+        </PreView>
       </div>
     </LazyLoad>
   );

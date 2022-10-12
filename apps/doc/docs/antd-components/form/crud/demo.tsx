@@ -1,12 +1,9 @@
-import { Fragment, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { FormCrud } from 'next-dev-antd-ui/src';
-import { IFormCrudState, dfState } from 'next-dev-antd-ui/src/FormCrud';
 import { _isArray, _requestAxios, _setConfigAxios } from 'next-dev-utils/src';
-import { useRequest } from 'ahooks';
 import { ActionType, ProColumns } from '@ant-design/pro-components';
 import { useForm } from 'antd/es/form/Form';
 import { message, notification, Typography } from 'antd';
-import useReactive from 'ahooks/es/useReactive';
 import { CheckCircleOutlined } from '@ant-design/icons';
 
 const ErrMsg = ({ err }: { err: any }) => {
@@ -54,7 +51,9 @@ interface Links {
   next: string;
 }
 
-const DemoButton = () => {
+type Filter = Pagination & Datum;
+
+export default function DemoCrud() {
   // set init
   _setConfigAxios({
     baseURL: 'https://gorest.co.in/public/v1',
@@ -88,15 +87,6 @@ const DemoButton = () => {
   const [form] = useForm<Datum>();
   const actionRef = useRef<ActionType>();
 
-  const state = useReactive({
-    deleteLoading: false,
-  });
-  const parentState = useReactive<IFormCrudState>({
-    crudMode: 'list',
-    tabMode: 'table',
-    record: {},
-  });
-
   const columns: ProColumns<Datum, 'tag'>[] = [
     {
       title: 'Name',
@@ -104,6 +94,7 @@ const DemoButton = () => {
       formItemProps: {
         rules: [{ required: true }],
       },
+      hideInSearch: false,
     },
     {
       title: 'Email',
@@ -134,6 +125,7 @@ const DemoButton = () => {
     },
     {
       title: 'Status',
+      hideInSearch: false,
       dataIndex: 'status',
       valueType: 'select',
       formItemProps: {
@@ -156,9 +148,74 @@ const DemoButton = () => {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
-      <FormCrud<Datum>
+      <FormCrud<Datum, Filter>
+        // manage form, setFieldsValue, resetFields ....
+        form={form as any}
+        // actionRef manage reload or refetch data, filter....
+        actionRef={actionRef as any}
+        // manage all column and render form, filter...
+        columns={columns as any}
+        // dataSource={[]}  is manual mode use request instead
+
+        // request is auto mode super fast for CRUD operation
+        request={async (params, filter, sorter) => {
+          console.log('change params', params, filter, sorter);
+
+          const finalParams = {
+            limit: params?.pageSize,
+            page: params?.current,
+            ...params,
+          } as Filter;
+
+          // re run when every param change
+          const res = await _requestAxios<ResData>('/users', {
+            params: finalParams,
+          });
+          return {
+            // dataSource for table
+            data: res?.data?.data,
+            success: res?.status === 200,
+            // total for pagination
+            total: res?.data?.meta?.pagination?.total,
+          };
+        }}
+        // if want to persist columnsState
+        columnsState={{
+          persistenceKey: 'crud-demo-key',
+          persistenceType: 'localStorage',
+        }}
+        // after confirm delete click
+        onDeleteFinished={async (res) => {
+          return deleteBlog(res?.id);
+        }}
+        pagination={{ defaultPageSize: 5, defaultCurrent: 1 }}
+        // run after success validate add form
+        onFormAddFinished={async (res) => {
+          console.log('onFormAddFinished', res);
+          return addNewBlog({
+            name: res?.name,
+            status: res?.status,
+            email: res?.email,
+            gender: res?.gender,
+          });
+        }}
+        // run after success validate edit form
+        onFormEditFinished={async (res) => {
+          console.log('onFormEditFinished', res);
+          return editBlog(res?.record?.id, {
+            name: res?.name,
+            status: res?.status,
+            email: res?.email,
+            gender: res?.gender,
+          });
+        }}
+        // tracking every event click
+        onSetMode={async (res) => {
+          console.log('onSetMode', res);
+        }}
+        // manage actions (fixed at the right)
         actions={{
-          isShowOptMenu: true,
+          // add more action to dropdown 3 dot
           moreOptMenu: (val) => {
             return [
               {
@@ -181,47 +238,7 @@ const DemoButton = () => {
             ];
           },
         }}
-        deleteLoading={state.deleteLoading}
-        form={form as any}
-        actionRef={actionRef as any}
-        request={async (params = {}) => {
-          return (await _requestAxios<ResData>('/users', { params })).data;
-        }}
-        columns={columns as any}
-        onFormAddFinished={async (res) => {
-          console.log('onFormAddFinished', res);
-          return addNewBlog({
-            name: res?.name,
-            status: res?.status,
-            email: res?.email,
-            gender: res?.gender,
-          }).then(() => {
-            actionRef.current?.reload();
-          });
-        }}
-        onFormEditFinished={async (res) => {
-          console.log('onFormEditFinished', res);
-          return editBlog(res?.record?.id, {
-            name: res?.name,
-            status: res?.status,
-            email: res?.email,
-            gender: res?.gender,
-          }).then(() => {
-            actionRef.current?.reload();
-          });
-        }}
-        onSetMode={async (res) => {
-          if (res?.crudMode === 'delete') {
-            state.deleteLoading = true;
-            deleteBlog(res?.record?.id).then(() => {
-              state.deleteLoading = false;
-              actionRef.current?.reload();
-            });
-          }
-        }}
       />
     </div>
   );
-};
-
-export default DemoButton;
+}
