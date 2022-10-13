@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useRef, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import EditOutlined from '@ant-design/icons/EditOutlined';
@@ -28,7 +28,7 @@ import Spin from 'antd/es/Spin';
 import Tooltip from 'antd/es/tooltip';
 import Popconfirm from 'antd/es/Popconfirm';
 import Button from 'antd/es/Button';
-import Space from 'antd/es/Space';
+
 import {
   _setConfigAxios,
   _requestDelete,
@@ -36,7 +36,6 @@ import {
   _initConfigAxios,
 } from 'next-dev-utils/dist/_request';
 import { _capitalize } from 'next-dev-utils/dist/__capitalize';
-import { message } from 'antd';
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
