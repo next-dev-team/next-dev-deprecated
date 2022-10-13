@@ -14,7 +14,7 @@ import {
   ProColumnType,
   ProFormInstance,
   ProTableProps,
-} from '@ant-design/pro-components';
+} from '@ant-design/pro-components/es';
 import {
   ProCard,
   ProDescriptions,
