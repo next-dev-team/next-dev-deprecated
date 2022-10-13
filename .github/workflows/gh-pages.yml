@@ -38,7 +38,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm rebuild
+        run: pnpm store prune
 
       - name: Build
         run: pnpm run build
