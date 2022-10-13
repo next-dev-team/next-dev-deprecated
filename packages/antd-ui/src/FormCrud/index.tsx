@@ -6,6 +6,7 @@ import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 import useCreation from 'ahooks/es/useCreation';
 import useReactive from 'ahooks/es/useReactive';
 import useMemoizedFn from 'ahooks/es/useMemoizedFn';
+import useRequest from 'ahooks/es/useRequest';
 
 import {
   ActionType,
@@ -28,9 +29,14 @@ import Tooltip from 'antd/es/tooltip';
 import Popconfirm from 'antd/es/Popconfirm';
 import Button from 'antd/es/Button';
 import Space from 'antd/es/Space';
-import { _axios } from 'next-dev-utils/dist/_axios';
-import { _requestAxios } from 'next-dev-utils/dist/_request';
+import {
+  _setConfigAxios,
+  _requestDelete,
+  _requestAxios,
+  _initConfigAxios,
+} from 'next-dev-utils/dist/_request';
 import { _capitalize } from 'next-dev-utils/dist/__capitalize';
+import { message } from 'antd';
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
@@ -97,6 +103,12 @@ export type IFormCrud<
   texts?: {
     tabAddText?: string;
   };
+  requestConfig?: (value: T & { record: T }) => typeof _initConfigAxios & {
+    deleteUrl?: string;
+    editUrl?: string;
+    editParam?: Partial<U>;
+    editMethod?: string;
+  };
 };
 
 export const dfState: IFormCrudState<IFilter> = {
@@ -126,9 +138,44 @@ export default function FormCrud<
     actionRef,
     formType = 'modal',
     form,
+    requestConfig,
     ...rest
   } = props;
   const state = useReactive<IFormCrudState<IFilter>>({ ...dfState });
+
+  const deleteAction = () => {
+    const requestCon = requestConfig?.(state?.record as any) || {};
+    return _requestDelete(requestCon?.deleteUrl as string, requestCon as any);
+  };
+
+  // auto mode if not provide onDeleteFinished
+  const { run: runDelete, loading: loadingDelete } = useRequest(deleteAction, {
+    manual: true,
+    onSuccess: () => {
+      _actionRef.current?.reload();
+    },
+  });
+
+  const editAction = () => {
+    const requestCon = requestConfig?.(state?.record as any) || {};
+    return _requestAxios(
+      requestCon?.editUrl as string,
+      {
+        ...requestCon,
+        method: requestCon?.editMethod || 'post',
+        params: requestCon?.editParam,
+      } as any,
+    );
+  };
+
+  // auto mode if not provide onDeleteFinished
+  const { run: runEdit, loading: loadingEdit } = useRequest(editAction, {
+    manual: true,
+    onSuccess: () => {
+      state.openModalForm = false;
+      _actionRef.current?.reload();
+    },
+  });
 
   const _actionRef: { current: ActionType } = actionRef as any;
   const isModeForm = formType === 'modal';
@@ -154,6 +201,8 @@ export default function FormCrud<
       let crudMode: ICrudMode = 'list';
       let tabMode: ITabMode = 'table';
 
+      state.record = record;
+
       if (type === 'view') {
         crudMode = 'view';
         tabMode = 'descriptions';
@@ -164,22 +213,27 @@ export default function FormCrud<
       }
 
       if (type === 'edit') {
+        form?.setFieldsValue?.(record);
         crudMode = 'edit';
         tabMode = 'form';
         state.openModalForm = isModeForm;
         if (isFormFinished) {
-          state.editLoading = true;
-          onFormEditFinished?.(record)
-            .then(() => {
-              // close modal
-              state.openModalForm = false;
-              state.editLoading = false;
-              _actionRef.current?.reload();
-            })
-            .finally(() => {
-              // close modal
-              state.editLoading = false;
-            });
+          if (onFormEditFinished) {
+            state.editLoading = true;
+            onFormEditFinished?.(record)
+              .then(() => {
+                // close modal
+                state.openModalForm = false;
+                state.editLoading = false;
+                _actionRef.current?.reload();
+              })
+              .finally(() => {
+                // close modal
+                state.editLoading = false;
+              });
+          } else {
+            runEdit();
+          }
         }
       }
 
@@ -187,20 +241,22 @@ export default function FormCrud<
         crudMode = 'delete';
         tabMode = 'table';
         console.log('onClick deleted');
+
         if (isFormFinished) {
-          state.deleteLoading = true;
-          onDeleteFinished?.({ ...record, record })
-            .then(() => {
-              _actionRef.current?.reload();
-            })
-            .finally(() => {
-              state.deleteLoading = false;
-            });
+          if (onDeleteFinished) {
+            state.deleteLoading = true;
+            onDeleteFinished?.({ ...record, record })
+              .then(() => {
+                _actionRef.current?.reload();
+              })
+              .finally(() => {
+                state.deleteLoading = false;
+              });
+          } else {
+            runDelete();
+          }
         }
       }
-
-      state.record = record;
-      form?.setFieldsValue?.(record);
 
       if (type === 'add') {
         crudMode = 'add';
@@ -338,7 +394,10 @@ export default function FormCrud<
           >
             <Spin
               size="small"
-              spinning={state.deleteLoading && record?.id === state.record?.id}
+              spinning={
+                (state.deleteLoading || loadingDelete) &&
+                record?.id === state.record?.id
+              }
             >
               <DeleteOutlined
                 style={{ color: 'red', fontSize: 18, cursor: 'pointer' }}
@@ -357,6 +416,7 @@ export default function FormCrud<
     actionOptMenu,
     actions,
     columns,
+    loadingDelete,
     onClickSetMode,
     state.deleteLoading,
     state.openModalForm,
@@ -481,7 +541,9 @@ export default function FormCrud<
             modalRender(node) {
               return (
                 <Spin
-                  spinning={state.addLoading || state.editLoading}
+                  spinning={
+                    state.addLoading || state.editLoading || loadingEdit
+                  }
                   className="!bg-opacity-90 bg-gray-200"
                 >
                   {node}

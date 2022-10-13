@@ -1,11 +1,6 @@
 import { useRef } from 'react';
 import { FormCrud } from 'next-dev-antd-ui/src';
-import {
-  _isArray,
-  _omit,
-  _requestAxios,
-  _setConfigAxios,
-} from 'next-dev-utils/src';
+import { _isArray, _requestAxios, _setConfigAxios } from 'next-dev-utils/src';
 import { ActionType, ProColumns } from '@ant-design/pro-components';
 import { useForm } from 'antd/es/form/Form';
 import { message, notification, Typography } from 'antd';
@@ -83,6 +78,11 @@ export default function DemoCrud() {
 
   const addNewBlog = (params: Partial<Datum>) =>
     _requestAxios<IBlog>('/users', { params, method: 'post' });
+  const editBlog = (id: number, params: Partial<Datum>) =>
+    _requestAxios<IBlog>(`/users/${id}`, { params, method: 'put' });
+
+  const deleteBlog = (id: string | number) =>
+    _requestAxios<IBlog>(`/users/${id}`, { method: 'delete' });
 
   const [form] = useForm<Datum>();
   const actionRef = useRef<ActionType>();
@@ -157,28 +157,6 @@ export default function DemoCrud() {
         columns={columns as any}
         // dataSource={[]}  is manual mode use request instead
 
-        // set credential to _axios request
-        requestConfig={(value) => {
-          console.log('requestConfig', value);
-          return {
-            //common
-            headers: {
-              Authorization:
-                'Bearer 0b4c0fa225e4e432de7e51fe13691e86e27ac12a360ca251bf714eeb00942325',
-            },
-            baseURL: 'https://gorest.co.in/public/v1',
-
-            // delete
-            deleteUrl: `/users/${value?.record?.id}`,
-
-            //edit
-            editUrl: `/users/${value?.record?.id}`,
-            editMethod: 'put',
-            editParam: {
-              ..._omit(value, 'record'),
-            },
-          };
-        }}
         // request is auto mode super fast for CRUD operation
         request={async (params, filter, sorter) => {
           console.log('change params', params, filter, sorter);
@@ -201,11 +179,30 @@ export default function DemoCrud() {
             total: res?.data?.meta?.pagination?.total,
           };
         }}
+        // if want to persist columnsState
+        columnsState={{
+          persistenceKey: 'crud-demo-key',
+          persistenceType: 'localStorage',
+        }}
+        // after confirm delete click
+        onDeleteFinished={async (res) => {
+          return deleteBlog(res?.id);
+        }}
         pagination={{ defaultPageSize: 10, defaultCurrent: 1 }}
         // run after success validate add form
         onFormAddFinished={async (res) => {
           console.log('onFormAddFinished', res);
           return addNewBlog({
+            name: res?.name,
+            status: res?.status,
+            email: res?.email,
+            gender: res?.gender,
+          });
+        }}
+        // run after success validate edit form
+        onFormEditFinished={async (res) => {
+          console.log('onFormEditFinished', res);
+          return editBlog(res?.record?.id, {
             name: res?.name,
             status: res?.status,
             email: res?.email,
