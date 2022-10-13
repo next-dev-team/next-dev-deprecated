@@ -22,12 +22,12 @@ import {
   TableDropdown,
 } from '@ant-design/pro-components';
 
-import Tag from 'antd/es/Tag';
-import Tabs from 'antd/es/Tabs';
-import Spin from 'antd/es/Spin';
+import Tag from 'antd/es/tag';
+import Tabs from 'antd/es/tabs';
+import Spin from 'antd/es/spin';
 import Tooltip from 'antd/es/tooltip';
-import Popconfirm from 'antd/es/Popconfirm';
-import Button from 'antd/es/Button';
+import Popconfirm from 'antd/es/popconfirm';
+import Button from 'antd/es/button';
 
 import {
   _setConfigAxios,
