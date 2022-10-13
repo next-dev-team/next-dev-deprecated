@@ -23,10 +23,6 @@
     "release:packages": "turbo run build --filter=packages^... && changeset publish"
   },
   "devDependencies": {
-    "antd": "^4.23.5",
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-components": "^2.3.16",
-    "ahooks": "^3.7.1",
     "utility-types": "^3.10.0",
     "@changesets/cli": "^2.25.0",
     "@types/node": "^18.0.0",
