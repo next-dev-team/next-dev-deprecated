@@ -11,6 +11,7 @@ import {
   ActionType,
   BetaSchemaForm,
   ProColumnType,
+  ProFormInstance,
   ProTableProps,
 } from '@ant-design/pro-components';
 import {
@@ -19,21 +20,17 @@ import {
   ProTable,
   TableDropdown,
 } from '@ant-design/pro-components';
-import {
-  Button,
-  FormInstance,
-  Popconfirm,
-  Space,
-  Spin,
-  Tabs,
-  Tag,
-  Tooltip,
-} from 'antd';
+
+import Tag from 'antd/es/Tag';
+import Tabs from 'antd/es/Tabs';
+import Spin from 'antd/es/Spin';
+import Tooltip from 'antd/es/tooltip';
+import Popconfirm from 'antd/es/Popconfirm';
+import Button from 'antd/es/Button';
+import Space from 'antd/es/Space';
 import { _axios } from 'next-dev-utils/dist/_axios';
 import { _requestAxios } from 'next-dev-utils/dist/_request';
 import { _capitalize } from 'next-dev-utils/dist/__capitalize';
-import { AnyRecord } from 'dns';
-import { TablePaginationConfig } from 'antd/es/table/interface';
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
@@ -96,7 +93,7 @@ export type IFormCrud<
    */
   actions?: Actions<T>;
   formType?: 'tab' | 'modal';
-  form: FormInstance<any>;
+  form: ProFormInstance<T>;
   texts?: {
     tabAddText?: string;
   };
@@ -218,7 +215,7 @@ export default function FormCrud<
               // close modal
               state.openModalForm = false;
               state.addLoading = false;
-              _actionRef.current?.reload();
+              _actionRef.current?.reload(true);
             })
             .finally(() => {
               // close modal

@@ -17,11 +17,10 @@
     "react": "^17.0.2",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
-    "next-dev-utils": "workspace:*",
-    "@ant-design/icons": "^4.7.0"
+    "next-dev-utils": "workspace:*"
   },
   "peerDependencies": {
-    "@ant-design/icons": "=>4",
+    "@ant-design/icons": ">=4",
     "ahooks": "=>3"
   },
   "dependencies": {

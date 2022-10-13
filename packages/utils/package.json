@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "lint": "eslint *.ts*",
-    "build": "tsup src --format cjs --dts --external react",
+    "build": "tsup src --format cjs --minify --dts --external react",
     "clean": "rm -rf dist"
   },
   "devDependencies": {

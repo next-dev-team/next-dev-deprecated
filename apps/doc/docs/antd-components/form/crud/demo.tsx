@@ -188,7 +188,7 @@ export default function DemoCrud() {
         onDeleteFinished={async (res) => {
           return deleteBlog(res?.id);
         }}
-        pagination={{ defaultPageSize: 5, defaultCurrent: 1 }}
+        pagination={{ defaultPageSize: 10, defaultCurrent: 1 }}
         // run after success validate add form
         onFormAddFinished={async (res) => {
           console.log('onFormAddFinished', res);
