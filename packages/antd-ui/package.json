@@ -17,7 +17,7 @@
     "ahooks": "=>3"
   },
   "devDependencies": {
-    "antd": "4.21.4",
+    "antd": "^4.23.5",
     "ahooks": "^3.7.1",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.3.17",

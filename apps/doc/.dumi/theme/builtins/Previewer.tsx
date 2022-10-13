@@ -1,4 +1,4 @@
-﻿import ProSkeleton from '@ant-design/pro-skeleton';
+﻿import { ProSkeleton } from '@ant-design/pro-components';
 import { Spin } from 'antd';
 import { isBrowser } from 'dumi';
 import PreView, {

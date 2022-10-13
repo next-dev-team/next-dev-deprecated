@@ -12,12 +12,11 @@
 } from 'antd';
 import enUS from 'antd/lib/locale/en_US';
 import { format } from 'prettier/standalone';
-import '@ant-design/pro-components/dist/components.less';
 
 import { IRouteComponentProps, isBrowser } from 'dumi';
 import Layout from 'dumi-theme-default/src/layout';
 import React, { useEffect, useMemo, useState } from 'react';
-import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { _store } from '../../stores/store';
 import { CodePreview, source } from '../../helper';
@@ -299,10 +298,12 @@ const LayoutPage = ({ children, ...props }: IRouteComponentProps) => {
       >
         <Layout {...props}>
           <IntlProvider
-            value={{
-              intl: enUSIntl,
-              valueTypeMap: {},
-            }}
+            value={
+              {
+                intl: enUSIntl,
+                valueTypeMap: {},
+              } as any
+            }
           >
             <InnerLayout>
               <div>
