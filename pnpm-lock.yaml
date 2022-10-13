@@ -192,6 +192,7 @@ importers:
       '@ant-design/pro-components': ^2.3.17
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
+      ahooks: ^3.7.1
       antd: 4.21.4
       classnames: ^2.3.1
       eslint: ^7.32.0
@@ -207,6 +208,7 @@ importers:
       '@ant-design/pro-components': 2.3.17_antd@4.21.4+react@17.0.2
       '@types/react': 17.0.47
       '@types/react-dom': 17.0.17
+      ahooks: 3.7.1_react@17.0.2
       antd: 4.21.4_react@17.0.2
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
@@ -5018,6 +5020,23 @@ packages:
       intersection-observer: 0.12.2
       js-cookie: 2.2.1
       lodash: 4.17.21
+      resize-observer-polyfill: 1.5.1
+      screenfull: 5.2.0
+    dev: true
+
+  /ahooks/3.7.1_react@17.0.2:
+    resolution: {integrity: sha512-9fooKjhScNyJaIPnlWd13LkY1gQYqv3BqwSA9ynHg1ZUtDqAICuCRoedV97ylrEL6QqI4zeq3bO3lQxkfWVNcg==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@types/js-cookie': 2.2.7
+      ahooks-v3-count: 1.0.0
+      dayjs: 1.11.5
+      intersection-observer: 0.12.2
+      js-cookie: 2.2.1
+      lodash: 4.17.21
+      react: 17.0.2
       resize-observer-polyfill: 1.5.1
       screenfull: 5.2.0
     dev: true
