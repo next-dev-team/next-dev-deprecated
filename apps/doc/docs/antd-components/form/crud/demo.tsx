@@ -87,7 +87,9 @@ export default function DemoCrud() {
   const [form] = useForm<Datum>();
   const actionRef = useRef<ActionType>();
 
-  const columns: ProColumns<Datum, 'tag'>[] = [
+  const columns: Array<
+    ProColumns<Datum> & { dataIndex?: keyof Datum; customRenderType?: 'tag' }
+  > = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -107,6 +109,7 @@ export default function DemoCrud() {
       title: 'Gender',
       dataIndex: 'gender',
       valueType: 'radioButton',
+      customRenderType: 'tag',
       fieldProps: {
         options: [
           {
@@ -128,6 +131,7 @@ export default function DemoCrud() {
       hideInSearch: false,
       dataIndex: 'status',
       valueType: 'select',
+      customRenderType: 'tag',
       formItemProps: {
         rules: [{ required: true }],
       },
@@ -150,16 +154,20 @@ export default function DemoCrud() {
     <div className="flex flex-wrap items-center justify-center gap-4">
       <FormCrud<Datum, Filter>
         // manage form, setFieldsValue, resetFields ....
-        form={form as any}
+        form={form}
         // actionRef manage reload or refetch data, filter....
-        actionRef={actionRef as any}
+        actionRef={actionRef}
         // manage all column and render form, filter...
         columns={columns as any}
         // dataSource={[]}  is manual mode use request instead
 
         // set credential to _axios request
         requestConfig={(value) => {
-          console.log('requestConfig', value);
+          const newVal = value as typeof value & ResData;
+          console.log('requestConfig', newVal);
+
+          const idField = value?.id || value?.record?.id;
+
           return {
             //common
             headers: {
@@ -168,37 +176,25 @@ export default function DemoCrud() {
             },
             baseURL: 'https://gorest.co.in/public/v1',
 
+            // getConfig
+            getConfig: {
+              url: `/users`,
+              requestReturn: {
+                data: newVal?.data,
+                success: true,
+                total: newVal?.meta?.pagination?.total,
+              },
+            },
+
             // delete
-            deleteUrl: `/users/${value?.record?.id}`,
+            deleteUrl: `/users/${idField}`,
 
             //edit
-            editUrl: `/users/${value?.record?.id}`,
+            editUrl: `/users/${idField}`,
             editMethod: 'put',
             editParam: {
               ..._omit(value, 'record'),
             },
-          };
-        }}
-        // request is auto mode super fast for CRUD operation
-        request={async (params, filter, sorter) => {
-          console.log('change params', params, filter, sorter);
-
-          const finalParams = {
-            limit: params?.pageSize,
-            page: params?.current,
-            ...params,
-          } as Filter;
-
-          // re run when every param change
-          const res = await _requestAxios<ResData>('/users', {
-            params: finalParams,
-          });
-          return {
-            // dataSource for table
-            data: res?.data?.data,
-            success: res?.status === 200,
-            // total for pagination
-            total: res?.data?.meta?.pagination?.total,
           };
         }}
         pagination={{ defaultPageSize: 10, defaultCurrent: 1 }}

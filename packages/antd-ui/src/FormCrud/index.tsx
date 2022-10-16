@@ -102,11 +102,21 @@ export type IFormCrud<
   texts?: {
     tabAddText?: string;
   };
-  requestConfig?: (value: T & { record: T }) => typeof _initConfigAxios & {
+  requestConfig?: (
+    value: T & { record: T } & Record<any, any>,
+  ) => typeof _initConfigAxios & {
     deleteUrl?: string;
     editUrl?: string;
     editParam?: Partial<U>;
     editMethod?: string;
+    getConfig?: {
+      requestReturn: {
+        data: T[];
+        success?: boolean;
+        total?: number | undefined;
+      };
+      url?: string;
+    };
   };
 };
 
@@ -301,13 +311,15 @@ export default function FormCrud<
 
   const newCol = useMemo(() => {
     const getCol = columns?.map((i) => {
-      const isTag = i?.valueType === 'tag';
+      const newItem = i as typeof i & { customRenderType?: 'tag' };
+      const isTag = newItem?.customRenderType === 'tag';
+
       // custom render tag
       const renderTag = isTag
         ? {
             render: (_: string, row: any) => {
-              const succColor = ['published', 'success'];
-              const errColor = ['failed', 'error', 'not found'];
+              const succColor = ['published', 'success', 'active'];
+              const errColor = ['failed', 'error', 'not found', 'inactive'];
               const warnColor = ['draft', 'pending', 'in-progress'];
               //@ts-ignore
               const renderText: string = row?.[i?.dataIndex] ?? '';
@@ -435,6 +447,32 @@ export default function FormCrud<
       rowKey="id"
       dateFormatter="string"
       actionRef={actionRef}
+      // request is auto mode super fast for CRUD operation
+      request={async (params, filter, sorter) => {
+        console.log('change params', params, filter, sorter);
+
+        const finalParams = {
+          limit: params?.pageSize,
+          page: params?.current,
+          ...params,
+        };
+
+        const requestCon = requestConfig?.(state?.record as any) || {};
+
+        // re run when every param change
+        const res = await _requestAxios(requestCon?.getConfig?.url, {
+          params: finalParams,
+          ...(requestCon as any),
+        });
+
+        const asyncRes = requestConfig?.((res?.data as any) || {}) || {};
+
+        return {
+          data: asyncRes?.getConfig?.requestReturn?.data,
+          success: asyncRes?.getConfig?.requestReturn?.success,
+          total: asyncRes?.getConfig?.requestReturn?.total,
+        };
+      }}
       {...{
         // manualRequest: true,
         tableLayout: 'fixed',
@@ -454,7 +492,7 @@ export default function FormCrud<
               ...rest?.search,
             },
       }}
-      columns={newCol as any}
+      columns={newCol}
       toolBarRender={() => [
         <Button
           data-action="on_click_add"
