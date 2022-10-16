@@ -492,7 +492,7 @@ export default function FormCrud<
               ...rest?.search,
             },
       }}
-      columns={newCol}
+      columns={newCol as any}
       toolBarRender={() => [
         <Button
           data-action="on_click_add"
