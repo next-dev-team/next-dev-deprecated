@@ -120,6 +120,11 @@ export type IFormCrud<
       method?: string;
       params?: Partial<T>;
     };
+    addConfig?: {
+      url?: string;
+      method?: string;
+      params?: Partial<T>;
+    };
   };
 };
 
@@ -191,11 +196,11 @@ export default function FormCrud<
   const addAction = () => {
     const requestCon = requestConfig?.(state?.record as any) || {};
     return _requestAxios(
-      requestCon?.getConfig?.url as string,
+      requestCon?.addConfig?.url as string,
       {
         ...requestCon,
-        method: requestCon?.getConfig?.method || 'post',
-        params: requestCon?.getConfig?.params,
+        method: requestCon?.addConfig?.method || 'post',
+        params: requestCon?.addConfig?.params,
       } as any,
     );
   };
@@ -396,7 +401,7 @@ export default function FormCrud<
       ...getCol,
       {
         title: 'Actions',
-        align: 'center',
+        align: 'right',
         dataIndex: 'actions',
         hideInForm: true,
         hideInSearch: true, // change df to true
@@ -477,20 +482,16 @@ export default function FormCrud<
       actionRef={actionRef}
       // request is auto mode super fast for CRUD operation
       request={async (params, filter, sorter) => {
-        console.log('change params', params, filter, sorter);
+        const paginate = { params, filter, sorter };
+        console.log('change params', paginate);
 
-        const finalParams = {
-          limit: params?.pageSize,
-          page: params?.current,
-          ...params,
-        };
-
-        const requestCon = requestConfig?.(state?.record as any) || {};
+        const requestCon =
+          requestConfig?.({ ...(state?.record as any), paginate }) || {};
 
         // re run when every param change
         const res = await _requestAxios(requestCon?.getConfig?.url, {
-          params: finalParams,
           ...(requestCon as any),
+          params: requestCon?.getConfig?.params,
         });
 
         const asyncRes = requestConfig?.((res?.data as any) || {}) || {};

@@ -118,6 +118,22 @@ export default function DemoCrud() {
       },
     },
   ];
+  interface IPaginate {
+    paginate: Paginate;
+  }
+
+  interface Paginate {
+    params: Params;
+    filter: Filter;
+    sorter: Filter;
+  }
+
+  interface Filter {}
+
+  interface Params {
+    current: number;
+    pageSize: number;
+  }
 
   return (
     <FormCrud<Datum, Filter>
@@ -129,7 +145,7 @@ export default function DemoCrud() {
       columns={columns}
       // custom config, params, to _axios request
       requestConfig={(value) => {
-        const newVal = value as typeof value & ResData;
+        const newVal = value as typeof value & ResData & IPaginate;
         console.log('requestConfig', newVal);
 
         const idField = value?.id || value?.record?.id;
@@ -150,6 +166,14 @@ export default function DemoCrud() {
               success: true,
               total: newVal?.meta?.pagination?.total,
             },
+            params: {
+              limit: newVal?.paginate?.params?.pageSize,
+              page: newVal?.paginate?.params?.current,
+            },
+          },
+          // add or create
+          addConfig: {
+            url: '/users',
             params: {
               email: value?.email,
               gender: value?.gender,

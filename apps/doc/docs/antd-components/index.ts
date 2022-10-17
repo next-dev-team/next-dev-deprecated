@@ -12,12 +12,12 @@ export const antdComponentMenu: Menu = {
       children: ['antd-components/getting-started.md'],
     },
     {
-      title: 'Display',
-      children: ['antd-components/display/button/button.md'],
-    },
-    {
       title: 'Form',
       children: ['antd-components/form/crud/crud.md'],
+    },
+    {
+      title: 'Display',
+      children: ['antd-components/display/button/button.md'],
     },
   ],
 };

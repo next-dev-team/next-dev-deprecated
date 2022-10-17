@@ -10,37 +10,25 @@ import { ActionType, ProColumns } from '@ant-design/pro-components';
 import { useForm } from 'antd/es/form/Form';
 
 interface ResData {
-  meta: Meta;
   data: Datum[];
 }
 
 interface Datum {
   id: number;
-  name: string;
-  email: string;
-  gender: string;
   status: string;
-}
-
-interface Meta {
-  pagination: Pagination;
-}
-
-interface Pagination {
-  total: number;
-  pages: number;
-  page: number;
-  limit: number;
-  links: Links;
-}
-
-interface Links {
-  previous?: any;
-  current: string;
-  next: string;
+  user_created?: any;
+  date_created: string;
+  user_updated: string;
+  date_updated: string;
+  title: string;
+  photo: string;
+  iframeUr?: any;
+  short_description: string;
+  description: string;
 }
 
 type Filter = Pagination & Datum;
+const ASSETS = 'https://dwmniez7.directus.app/assets/';
 
 export default function DemoCrud() {
   const [form] = useForm<Datum>();
@@ -55,45 +43,34 @@ export default function DemoCrud() {
       width: '10%',
     },
     {
-      width: '20%',
+      width: '10%',
       title: 'Name',
-      dataIndex: 'name',
+      dataIndex: 'title',
       formItemProps: {
         rules: [{ required: true }],
       },
       hideInSearch: false,
     },
     {
-      width: '30%',
-
-      title: 'Email',
-      dataIndex: 'email',
-      formItemProps: {
-        rules: [{ required: true }],
-      },
+      width: '10%',
+      title: 'Photo',
+      dataIndex: 'photo',
+      valueType: { type: 'image', width: 70 },
     },
     {
-      width: '15%',
-      title: 'Gender',
-      dataIndex: 'gender',
-      valueType: 'radioButton',
-      customRenderType: 'tag',
-      fieldProps: {
-        options: [
-          {
-            label: 'Male',
-            value: 'male',
-          },
-          {
-            label: 'Female',
-            value: 'female',
-          },
-        ],
-      },
-      formItemProps: {
-        rules: [{ required: true }],
-      },
+      width: '30%',
+      title: 'Short Description',
+      dataIndex: 'short_description',
+      valueType: 'textarea',
+      ellipsis: true,
     },
+    {
+      width: '20%',
+      title: 'Modified date',
+      dataIndex: 'date_updated',
+      valueType: 'date',
+    },
+
     {
       width: '10%',
       title: 'Status',
@@ -107,12 +84,12 @@ export default function DemoCrud() {
       fieldProps: {
         options: [
           {
-            value: 'inactive',
-            label: 'Inactive',
+            value: 'published',
+            label: 'Published',
           },
           {
-            value: 'active',
-            label: 'Active',
+            value: 'draft',
+            label: 'Draft',
           },
         ],
       },
@@ -128,41 +105,44 @@ export default function DemoCrud() {
       // manage all column and render form, filter...
       columns={columns}
       // custom config, params, to _axios request
-      requestConfig={(value) => {
-        const newVal = value as typeof value & ResData;
-        console.log('requestConfig', newVal);
+      requestConfig={(returnVal) => {
+        const value = returnVal as unknown as ResData & typeof returnVal;
+        console.log('requestConfig', value);
 
         const idField = value?.id || value?.record?.id;
 
         return {
-          //common
+          // common
           headers: {
-            Authorization:
-              'Bearer 0b4c0fa225e4e432de7e51fe13691e86e27ac12a360ca251bf714eeb00942325',
+            Authorization: 'Bearer D5UspbnsDoF-PMLpPSESE072T6vky2DJ',
           },
-          baseURL: 'https://gorest.co.in/public/v1',
+          baseURL: 'https://dwmniez7.directus.app/items',
 
           // getConfig
           getConfig: {
-            url: '/users',
+            url: '/blog',
             requestReturn: {
-              data: newVal?.data,
-              success: true,
-              total: newVal?.meta?.pagination?.total,
+              data: value?.data?.map?.((i) => {
+                return { ...i, photo: ASSETS + i?.photo };
+              }),
+              total: 10,
             },
+          },
+          addConfig: {
             params: {
-              email: value?.email,
-              gender: value?.gender,
-              name: value?.name,
-              status: value?.status,
+              status: 'published',
+              title: 'hello',
+              short_description: 'bg',
+              description: '<p>j</p>',
+              photo: '5c2a896e-b3f4-4098-9ddf-7cefda50905c',
             },
           },
 
           // delete
-          deleteUrl: `/users/${idField}`,
+          deleteUrl: `/blog/${idField}`,
 
           //edit
-          editUrl: `/users/${idField}`,
+          editUrl: `/blog/${idField}`,
           editMethod: 'put',
           editParam: {
             ..._omit(value, 'record'),
