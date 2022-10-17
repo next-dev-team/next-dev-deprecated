@@ -36,6 +36,7 @@ import {
   _initConfigAxios,
 } from 'next-dev-utils/dist/_request';
 import { _capitalize } from 'next-dev-utils/dist/__capitalize';
+import { TagProps } from 'antd';
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
@@ -116,6 +117,8 @@ export type IFormCrud<
         total?: number | undefined;
       };
       url?: string;
+      method?: string;
+      params?: Partial<T>;
     };
   };
 };
@@ -179,6 +182,26 @@ export default function FormCrud<
 
   // auto mode if not provide onDeleteFinished
   const { run: runEdit, loading: loadingEdit } = useRequest(editAction, {
+    manual: true,
+    onSuccess: () => {
+      state.openModalForm = false;
+      _actionRef.current?.reload();
+    },
+  });
+  const addAction = () => {
+    const requestCon = requestConfig?.(state?.record as any) || {};
+    return _requestAxios(
+      requestCon?.getConfig?.url as string,
+      {
+        ...requestCon,
+        method: requestCon?.getConfig?.method || 'post',
+        params: requestCon?.getConfig?.params,
+      } as any,
+    );
+  };
+
+  // auto mode if not provide onDeleteFinished
+  const { run: runAdd, loading: loadingAdd } = useRequest(addAction, {
     manual: true,
     onSuccess: () => {
       state.openModalForm = false;
@@ -274,18 +297,22 @@ export default function FormCrud<
         form?.resetFields();
 
         if (isFormFinished) {
-          state.addLoading = true;
-          onFormAddFinished?.(record)
-            .then(() => {
-              // close modal
-              state.openModalForm = false;
-              state.addLoading = false;
-              _actionRef.current?.reload(true);
-            })
-            .finally(() => {
-              // close modal
-              state.addLoading = false;
-            });
+          if (onFormAddFinished) {
+            state.addLoading = true;
+            onFormAddFinished?.(record)
+              .then(() => {
+                // close modal
+                state.openModalForm = false;
+                state.addLoading = false;
+                _actionRef.current?.reload(true);
+              })
+              .finally(() => {
+                // close modal
+                state.addLoading = false;
+              });
+          } else {
+            runAdd();
+          }
         }
       }
       state.crudMode = crudMode;
@@ -309,9 +336,18 @@ export default function FormCrud<
     ...(actions?.moreOptMenu?.(value) || []),
   ]);
 
+  type CustomRenderType = 'tag';
+
   const newCol = useMemo(() => {
     const getCol = columns?.map((i) => {
-      const newItem = i as typeof i & { customRenderType?: 'tag' };
+      const newItem = i as typeof i & {
+        customRenderType?:
+          | CustomRenderType
+          | {
+              customRenderType?: CustomRenderType;
+              tagsProps?: TagProps;
+            };
+      };
       const isTag = newItem?.customRenderType === 'tag';
 
       // custom render tag
@@ -325,10 +361,17 @@ export default function FormCrud<
               const renderText: string = row?.[i?.dataIndex] ?? '';
               // console.log('_',renderText);
 
+              const tagsProps =
+                typeof newItem?.customRenderType === 'object'
+                  ? newItem?.customRenderType?.tagsProps
+                  : {};
+
               return (
                 <Tag
-                  style={{ minWidth: 68, textAlign: 'center' }}
+                  {...tagsProps}
+                  style={{ textAlign: 'center', ...tagsProps?.style }}
                   color={
+                    tagsProps?.color ||
                     (succColor.includes(renderText) && 'success') ||
                     (errColor.includes(renderText) && 'red') ||
                     (warnColor.includes(renderText) && 'orange') ||
@@ -342,25 +385,10 @@ export default function FormCrud<
           }
         : {};
 
-      const renFixed =
-        isTag && i?.dataIndex === 'status'
-          ? ({ fixed: 'right', width: 80, align: 'center' } as typeof i)
-          : {};
-
-      const renWidth = !i?.ellipsis
-        ? {
-            width: '20%', // not yet finalize
-          }
-        : {
-            width: i?.width ?? 300,
-          };
-
       return {
         hideInSearch: true,
-        ...renWidth,
         ...renderTag,
         ...i,
-        ...renFixed,
       };
     });
 
@@ -372,9 +400,9 @@ export default function FormCrud<
         dataIndex: 'actions',
         hideInForm: true,
         hideInSearch: true, // change df to true
-        width: '15%',
         valueType: 'option',
         fixed: 'right',
+        width: 130,
         key: 'actions',
         render: (_: any, record: T) => [
           <Tooltip title="view" key="view">
@@ -579,7 +607,10 @@ export default function FormCrud<
               return (
                 <Spin
                   spinning={
-                    state.addLoading || state.editLoading || loadingEdit
+                    state.addLoading ||
+                    state.editLoading ||
+                    loadingEdit ||
+                    loadingAdd
                   }
                   className="!bg-opacity-90 bg-gray-200"
                 >

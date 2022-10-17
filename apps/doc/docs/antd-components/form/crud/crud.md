@@ -1,3 +1,5 @@
 # Form Crud
 
-<code src="./demo.tsx"></code>
+<code src="./advanceCrud.tsx" title='Advance CRUD' />
+
+<code src="./basicCrud.tsx" title='Basic CRUD' />
