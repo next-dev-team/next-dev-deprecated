@@ -12,6 +12,7 @@ import {
   ActionType,
   BetaSchemaForm,
   ProColumnType,
+  ProDescriptionsProps,
   ProFormInstance,
   ProTableProps,
 } from '@ant-design/pro-components/es';
@@ -126,6 +127,7 @@ export type IFormCrud<
       params?: Partial<T>;
     };
   };
+  descriptionsProps?: ProDescriptionsProps;
 };
 
 export const dfState: IFormCrudState<IFilter> = {
@@ -155,6 +157,7 @@ export default function FormCrud<
     actionRef,
     formType = 'modal',
     form,
+    descriptionsProps,
     requestConfig,
     ...rest
   } = props;
@@ -343,6 +346,7 @@ export default function FormCrud<
 
   type CustomRenderType = 'tag';
 
+  const actionWidth = 130;
   const newCol = useMemo(() => {
     const getCol = columns?.map((i) => {
       const newItem = i as typeof i & {
@@ -407,7 +411,7 @@ export default function FormCrud<
         hideInSearch: true, // change df to true
         valueType: 'option',
         fixed: 'right',
-        width: 130,
+        width: actionWidth,
         key: 'actions',
         render: (_: any, record: T) => [
           <Tooltip title="view" key="view">
@@ -505,11 +509,16 @@ export default function FormCrud<
       {...{
         // manualRequest: true,
         tableLayout: 'fixed',
+
         // rest will be apply
         ...(rest as unknown as T),
 
+        pagination: {
+          showQuickJumper: true,
+          ...rest?.pagination,
+        },
         scroll: {
-          // x: screen.availHeight - 80,
+          x: screen.availHeight - actionWidth,
           scrollToFirstRowOnChange: true,
           y: screen.availHeight - screen.availHeight * 0.33,
           ...rest?.scroll,
@@ -538,17 +547,20 @@ export default function FormCrud<
 
   const renderDes = (
     <ProDescriptions
-      layout="vertical"
-      columns={newCol as any}
-      dataSource={state?.record}
       {...{
-        column: 2,
+        layout: 'vertical',
+        columns: newCol as any,
+        dataSource: state?.record,
+        column: 3,
+        ...descriptionsProps,
         contentStyle: {
           maxWidth: '100%',
+          ...descriptionsProps?.contentStyle,
         },
         labelStyle: {
           fontWeight: 'bold',
           marginBottom: -13,
+          ...descriptionsProps?.labelStyle,
         },
       }}
     />

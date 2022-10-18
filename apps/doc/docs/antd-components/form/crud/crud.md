@@ -1,6 +1,6 @@
 # Form Crud
 
-## Advance CRUD
+## Advance Table CRUD
 
 <code src="./advanceCrud.tsx" />
 

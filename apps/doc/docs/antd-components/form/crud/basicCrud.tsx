@@ -64,7 +64,7 @@ export default function DemoCrud() {
       hideInSearch: false,
     },
     {
-      width: '30%',
+      width: 200,
 
       title: 'Email',
       dataIndex: 'email',
