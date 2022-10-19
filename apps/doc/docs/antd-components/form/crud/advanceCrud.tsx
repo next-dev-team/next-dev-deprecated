@@ -51,7 +51,7 @@ const intlMap = {
 export default function DemoCrud() {
   const [form] = useForm<Datum>();
   const actionRef = useRef<ActionType>();
-  const [intl, setIntl] = useState<keyof typeof intlMap>('kmKHIntl');
+  const [intl, setIntl] = useState<keyof typeof intlMap>('enUSIntl');
 
   const columns: Array<
     ProColumns<Datum> & { dataIndex?: keyof Datum; customRenderType?: 'tag' }
@@ -70,6 +70,7 @@ export default function DemoCrud() {
         rules: [{ required: true }],
       },
       hideInSearch: false,
+      copyable: true,
     },
     {
       width: '10%',

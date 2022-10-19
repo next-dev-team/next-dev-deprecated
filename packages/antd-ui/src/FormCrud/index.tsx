@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo, useState } from 'react';
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import EditOutlined from '@ant-design/icons/EditOutlined';
@@ -13,7 +13,10 @@ import {
   BetaSchemaForm,
   ProColumnType,
   ProDescriptionsProps,
+  ProFieldValueObjectType,
   ProFormInstance,
+  ProFormUploadButton,
+  ProFormUploadDragger,
   ProTableProps,
 } from '@ant-design/pro-components/es';
 import {
@@ -37,7 +40,16 @@ import {
   _initConfigAxios,
 } from 'next-dev-utils/dist/_request';
 import { _capitalize } from 'next-dev-utils/dist/__capitalize';
-import { TagProps } from 'antd';
+import { Image, Input, Modal, TagProps } from 'antd';
+import Upload, { RcFile, UploadFile } from 'antd/es/upload';
+
+const getBase64 = (file: RcFile): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
 
 type ITabMode = 'form' | 'table' | 'descriptions';
 type ICrudMode = 'list' | 'add' | 'edit' | 'view' | 'delete';
@@ -163,6 +175,10 @@ export default function FormCrud<
   } = props;
   const state = useReactive<IFormCrudState<IFilter>>({ ...dfState });
 
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+
   const deleteAction = () => {
     const requestCon = requestConfig?.(state?.record as any) || {};
     return _requestDelete(requestCon?.deleteUrl as string, requestCon as any);
@@ -191,10 +207,15 @@ export default function FormCrud<
   // auto mode if not provide onDeleteFinished
   const { run: runEdit, loading: loadingEdit } = useRequest(editAction, {
     manual: true,
-    onSuccess: () => {
-      state.openModalForm = false;
-      _actionRef.current?.reload();
+    onSuccess: (res) => {
+      console.log('res edit: ', res);
+
+      if (res?.data) {
+        state.openModalForm = false;
+        _actionRef.current?.reload();
+      }
     },
+    onFinally: () => {},
   });
   const addAction = () => {
     const requestCon = requestConfig?.(state?.record as any) || {};
@@ -347,16 +368,19 @@ export default function FormCrud<
   type CustomRenderType = 'tag';
 
   const actionWidth = 130;
+
+  type IFormCrudColumn = typeof columns['0'] & {
+    customRenderType?:
+      | CustomRenderType
+      | {
+          customRenderType?: CustomRenderType;
+          tagsProps?: TagProps;
+        };
+  };
+
   const newCol = useMemo(() => {
     const getCol = columns?.map((i) => {
-      const newItem = i as typeof i & {
-        customRenderType?:
-          | CustomRenderType
-          | {
-              customRenderType?: CustomRenderType;
-              tagsProps?: TagProps;
-            };
-      };
+      const newItem: IFormCrudColumn = i;
       const isTag = newItem?.customRenderType === 'tag';
 
       // custom render tag
@@ -394,9 +418,65 @@ export default function FormCrud<
           }
         : {};
 
+      const valueType =
+        typeof newItem?.valueType === 'object'
+          ? ((newItem?.valueType as any)
+              ?.type as ProFieldValueObjectType['type'])
+          : newItem?.valueType;
+
+      const isValueIsImg = valueType === 'image';
+
+      const renderValueImage: IFormCrudColumn = isValueIsImg
+        ? {
+            renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
+              return (
+                <>
+                  <ProFormUploadDragger
+                    label={newItem?.title}
+                    action="/upload.do"
+                    fieldProps={{
+                      style: {
+                        marginBottom: 8,
+                      },
+                      listType: 'picture-card',
+                      onPreview: async (file: UploadFile) => {
+                        if (!file.url && !file.preview) {
+                          file.preview = await getBase64(
+                            file.originFileObj as RcFile,
+                          );
+                        }
+
+                        setPreviewImage(file.url || (file.preview as string));
+                        setPreviewOpen(true);
+                        setPreviewTitle(
+                          file.name ||
+                            file.url!.substring(file.url!.lastIndexOf('/') + 1),
+                        );
+                      },
+                    }}
+                  />
+                  <Image
+                    alt="preview"
+                    style={{ display: 'none' }}
+                    preview={{
+                      src: previewImage,
+                      visible: previewOpen,
+                      onVisibleChange: (value) => {
+                        setPreviewOpen(value);
+                      },
+                    }}
+                  />
+                </>
+              );
+            },
+            ignoreFormItem: true,
+          }
+        : {};
+
       return {
         hideInSearch: true,
         ...renderTag,
+        ...renderValueImage,
         ...i,
       };
     });
@@ -512,7 +592,10 @@ export default function FormCrud<
 
         // rest will be apply
         ...(rest as unknown as T),
-
+        options: {
+          fullScreen: true,
+          ...rest?.options,
+        },
         pagination: {
           showQuickJumper: true,
           ...rest?.pagination,

@@ -1,4 +1,4 @@
-﻿import { SettingDrawer } from '@ant-design/pro-components';
+﻿// import { SettingDrawer } from '@ant-design/pro-components';
 import React from 'react';
 export default ({ children, location, ...rest }) => {
   if (location.pathname.startsWith('/~demos/layout')) {
@@ -18,7 +18,7 @@ export default ({ children, location, ...rest }) => {
         }}
       >
         {children}
-        <SettingDrawer themeOnly enableDarkTheme />
+        {/* <SettingDrawer themeOnly enableDarkTheme /> */}
       </div>
     </div>
   );
