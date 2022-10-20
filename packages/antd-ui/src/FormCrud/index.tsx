@@ -425,18 +425,41 @@ export default function FormCrud<
           : newItem?.valueType;
 
       const isValueIsImg = valueType === 'image';
+      const requestCon = requestConfig?.(state?.record as any) || {};
 
       const renderValueImage: IFormCrudColumn = isValueIsImg
         ? {
             renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
+              const formName =
+                newItem?.formItemProps?.name ?? newItem?.dataIndex;
+              const getFieldsValue = form.getFieldsValue();
+
+              console.log('form');
+
+              if (!formName) {
+                console.error('missing form name');
+              }
+
               return (
                 <>
                   <ProFormUploadDragger
                     label={newItem?.title}
-                    action="/upload.do"
+                    name={formName}
+                    action={
+                      (requestCon?.baseURL as any) +
+                      (requestCon?.editUrl as any)
+                    }
+                    formItemProps={{
+                      ...newItem?.formItemProps,
+                    }}
                     fieldProps={{
                       style: {
                         marginBottom: 8,
+                        //@ts-ignore
+                        ...(newItem?.fieldProps?.style ?? {}),
+                      },
+                      headers: {
+                        ...(requestCon?.headers as any),
                       },
                       listType: 'picture-card',
                       onPreview: async (file: UploadFile) => {
@@ -453,6 +476,16 @@ export default function FormCrud<
                             file.url!.substring(file.url!.lastIndexOf('/') + 1),
                         );
                       },
+                      fileList: [],
+                      ...(newItem?.fieldProps ?? ({} as any)),
+
+                      // fileList: [
+                      //   {
+                      //     url: getFieldsValue?.photo,
+                      //     name: 'test',
+                      //     uid: getFieldsValue?.photo,
+                      //   },
+                      // ],
                     }}
                   />
                   <Image
@@ -485,7 +518,7 @@ export default function FormCrud<
       ...getCol,
       {
         title: 'Actions',
-        align: 'right',
+        align: 'center',
         dataIndex: 'actions',
         hideInForm: true,
         hideInSearch: true, // change df to true
@@ -546,9 +579,12 @@ export default function FormCrud<
     columns,
     loadingDelete,
     onClickSetMode,
+    previewImage,
+    previewOpen,
+    requestConfig,
     state.deleteLoading,
     state.openModalForm,
-    state.record?.id,
+    state.record,
   ]);
 
   const isHasSearch = useCreation(
@@ -649,16 +685,6 @@ export default function FormCrud<
     />
   );
 
-  // useEffect(() => {
-  //   if (
-  //     state.crudMode === 'delete' &&
-  //     state.tabMode === 'table' &&
-  //     !deleteLoading
-  //   ) {
-  //     state.openModalForm = false;
-  //   }
-  // }, [deleteLoading, state]);
-
   return (
     <>
       {isModeForm && (
@@ -691,14 +717,15 @@ export default function FormCrud<
           }}
           layoutType="ModalForm"
           modalProps={{
+            // bug antd not working
+            // confirmLoading: true,
+            // okButtonProps: {
+            //   loading: true,
+            // },
+
             onCancel: () => {
               state.openModalForm = false;
             },
-            // onOk: () => {
-            //   if (state.crudMode === 'view') {
-            //     state.openModalForm = false;
-            //   }
-            // },
             modalRender(node) {
               return (
                 <Spin
