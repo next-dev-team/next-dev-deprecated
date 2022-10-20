@@ -169,6 +169,7 @@ export default function DemoCrud() {
             params: {
               limit: newVal?.paginate?.params?.pageSize,
               page: newVal?.paginate?.params?.current,
+              ..._omit(newVal?.paginate?.params, 'pageSize', 'current'),
             },
           },
           // add or create
