@@ -18,6 +18,8 @@ import {
   ConfigProvider,
   Descriptions,
   Divider,
+  Dropdown,
+  Menu,
   notification,
   Row,
   Select,
@@ -28,7 +30,7 @@ import {
 import enUSIntl from 'antd/es/locale/en_US';
 import kmKHIntl from 'antd/es/locale/km_KH';
 import dayjs from 'dayjs';
-import { CheckCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 interface ResData {
   data: Datum[];
@@ -301,6 +303,9 @@ export default function DemoCrud() {
         }}
         // manage actions (fixed at the right)
         actions={{
+          // hideActionCol: true,
+          // isHideAdd: true,
+          // isHideEdit: true,
           // add more action to dropdown 3 dot
           moreOptMenu: (val) => {
             return [
@@ -324,6 +329,35 @@ export default function DemoCrud() {
             ];
           },
         }}
+        // toolbar
+
+        moreToolBarRender={() => [
+          <Dropdown
+            key="menu"
+            overlay={
+              <Menu
+                items={[
+                  {
+                    label: '1st item',
+                    key: '1',
+                  },
+                  {
+                    label: '2nd item',
+                    key: '2',
+                  },
+                  {
+                    label: '3rd item',
+                    key: '3',
+                  },
+                ]}
+              />
+            }
+          >
+            <Button>
+              <EllipsisOutlined />
+            </Button>
+          </Dropdown>,
+        ]}
       />
     </ConfigProvider>
   );

@@ -70,8 +70,13 @@ export type IFormCrudState<U = IFilter> = {
 } & Record<string, any>;
 
 type Actions<T> = {
+  /**
+   * will hide all action colum
+   */
+  hideActionCol?: boolean;
   isHideView?: boolean;
   isHideAdd?: boolean;
+  isHideEdit?: boolean;
   isHideDelete?: boolean;
   isShowOptMenu?: boolean;
   moreMenu?: ReactNode[];
@@ -140,6 +145,7 @@ export type IFormCrud<
     };
   };
   descriptionsProps?: ProDescriptionsProps;
+  moreToolBarRender?: (record: T) => ReactNode[];
 };
 
 export const dfState: IFormCrudState<IFilter> = {
@@ -171,6 +177,7 @@ export default function FormCrud<
     form,
     descriptionsProps,
     requestConfig,
+    moreToolBarRender = () => [],
     ...rest
   } = props;
   const state = useReactive<IFormCrudState<IFilter>>({ ...dfState });
@@ -432,7 +439,7 @@ export default function FormCrud<
             renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
               const formName =
                 newItem?.formItemProps?.name ?? newItem?.dataIndex;
-              const getFieldsValue = form.getFieldsValue();
+              // const getFieldsValue = form.getFieldsValue();
 
               console.log('form');
 
@@ -516,62 +523,81 @@ export default function FormCrud<
 
     return [
       ...getCol,
-      {
-        title: 'Actions',
-        align: 'center',
-        dataIndex: 'actions',
-        hideInForm: true,
-        hideInSearch: true, // change df to true
-        valueType: 'option',
-        fixed: 'right',
-        width: actionWidth,
-        key: 'actions',
-        render: (_: any, record: T) => [
-          <Tooltip title="view" key="view">
-            <EyeOutlined
-              disabled={state.openModalForm}
-              style={{
-                color: state.openModalForm ? 'gray' : 'blue',
-                fontSize: 18,
-                cursor: state.openModalForm ? 'not-allowed' : 'pointer',
-              }}
-              onClick={() => {
-                !state.openModalForm && onClickSetMode('view', record);
-              }}
-            />
-          </Tooltip>,
-          <Tooltip title="edit" key="edit">
-            <EditOutlined
-              style={{
-                color: 'orange',
-                fontSize: 18,
-              }}
-              onClick={() => onClickSetMode('edit', record)}
-            />
-          </Tooltip>,
-          <Popconfirm
-            title="Are you sure to delete it?"
-            onConfirm={() => onClickSetMode('delete', record, true)}
-          >
-            <Spin
-              size="small"
-              spinning={
-                (state.deleteLoading || loadingDelete) &&
-                record?.id === state.record?.id
-              }
-            >
-              <DeleteOutlined
-                style={{ color: 'red', fontSize: 18, cursor: 'pointer' }}
-              />
-            </Spin>
-          </Popconfirm>,
-          (actions?.isShowOptMenu ||
-            //@ts-ignore
-            actions?.moreOptMenu?.(record)?.length > 0) && (
-            <TableDropdown key="actionGroup" menus={actionOptMenu(record)} />
-          ),
-        ],
-      } as typeof columns[0],
+      ...(actions?.hideActionCol
+        ? []
+        : [
+            {
+              title: 'Actions',
+              align: 'center',
+              dataIndex: 'actions',
+              hideInForm: true,
+              hideInSearch: true, // change df to true
+              valueType: 'option',
+              fixed: 'right',
+              width: actionWidth,
+              key: 'actions',
+              render: (_: any, record: T) => [
+                ...(actions?.isHideView
+                  ? []
+                  : [
+                      <Tooltip title="view" key="view">
+                        <EyeOutlined
+                          disabled={state.openModalForm}
+                          style={{
+                            color: state.openModalForm ? 'gray' : 'blue',
+                            fontSize: 18,
+                            cursor: state.openModalForm
+                              ? 'not-allowed'
+                              : 'pointer',
+                          }}
+                          onClick={() => {
+                            !state.openModalForm &&
+                              onClickSetMode('view', record);
+                          }}
+                        />
+                      </Tooltip>,
+                    ]),
+                ,
+                ...(actions?.isHideEdit
+                  ? []
+                  : [
+                      <Tooltip title="edit" key="edit">
+                        <EditOutlined
+                          style={{
+                            color: 'orange',
+                            fontSize: 18,
+                          }}
+                          onClick={() => onClickSetMode('edit', record)}
+                        />
+                      </Tooltip>,
+                    ]),
+                <Popconfirm
+                  title="Are you sure to delete it?"
+                  onConfirm={() => onClickSetMode('delete', record, true)}
+                >
+                  <Spin
+                    size="small"
+                    spinning={
+                      (state.deleteLoading || loadingDelete) &&
+                      record?.id === state.record?.id
+                    }
+                  >
+                    <DeleteOutlined
+                      style={{ color: 'red', fontSize: 18, cursor: 'pointer' }}
+                    />
+                  </Spin>
+                </Popconfirm>,
+                (actions?.isShowOptMenu ||
+                  //@ts-ignore
+                  actions?.moreOptMenu?.(record)?.length > 0) && (
+                  <TableDropdown
+                    key="actionGroup"
+                    menus={actionOptMenu(record)}
+                  />
+                ),
+              ],
+            } as typeof columns[0],
+          ]),
     ];
   }, [
     actionOptMenu,
@@ -651,15 +677,19 @@ export default function FormCrud<
       }}
       columns={newCol as any}
       toolBarRender={() => [
-        <Button
-          data-action="on_click_add"
-          key="3"
-          type="primary"
-          onClick={() => onClickSetMode('add', {})}
-        >
-          <PlusOutlined />
-          Add
-        </Button>,
+        ...(actions?.isHideAdd
+          ? []
+          : [
+              <Button
+                key="add"
+                type="primary"
+                onClick={() => onClickSetMode('add', {})}
+              >
+                <PlusOutlined />
+                Add
+              </Button>,
+            ]),
+        ...moreToolBarRender?.(state.record as T),
       ]}
     />
   );
