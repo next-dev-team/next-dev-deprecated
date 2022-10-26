@@ -67,6 +67,7 @@ export type IFormCrudState<U = IFilter> = {
   deleteLoading?: boolean;
   addLoading?: boolean;
   filter: U;
+  fileList: Array<any>;
 } & Record<string, any>;
 
 type Actions<T> = {
@@ -124,6 +125,7 @@ export type IFormCrud<
   requestConfig?: (
     value: T & { record: T } & Record<any, any>,
   ) => typeof _initConfigAxios & {
+    isFormDataAutoUpload?: boolean;
     deleteUrl?: string;
     editUrl?: string;
     editParam?: Partial<U>;
@@ -157,6 +159,7 @@ export const dfState: IFormCrudState<IFilter> = {
   deleteLoading: false,
   filter: {},
   openModalForm: false,
+  fileList: [],
 };
 
 export default function FormCrud<
@@ -439,9 +442,8 @@ export default function FormCrud<
             renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
               const formName =
                 newItem?.formItemProps?.name ?? newItem?.dataIndex;
-              // const getFieldsValue = form.getFieldsValue();
 
-              console.log('form');
+              console.log('form', state.record);
 
               if (!formName) {
                 console.error('missing form name');
@@ -483,16 +485,27 @@ export default function FormCrud<
                             file.url!.substring(file.url!.lastIndexOf('/') + 1),
                         );
                       },
-                      fileList: [],
                       ...(newItem?.fieldProps ?? ({} as any)),
 
-                      // fileList: [
-                      //   {
-                      //     url: getFieldsValue?.photo,
-                      //     name: 'test',
-                      //     uid: getFieldsValue?.photo,
-                      //   },
-                      // ],
+                      fileList:
+                        state.fileList?.length > 0
+                          ? state.fileLis
+                          : // @ts-ignore
+                          state?.record?.[newItem?.dataIndex]
+                          ? [
+                              {
+                                // @ts-ignore
+                                url: state?.record?.[newItem?.dataIndex],
+                                name: newItem?.dataIndex,
+                                // @ts-ignore
+                                uid: state?.record?.[newItem?.dataIndex],
+                              },
+                            ]
+                          : [],
+                      onChange(info) {
+                        console.log('on file', info);
+                        state.fileList = state.fileList.concat(info?.file);
+                      },
                     }}
                   />
                   <Image
@@ -749,9 +762,6 @@ export default function FormCrud<
           modalProps={{
             // bug antd not working
             // confirmLoading: true,
-            // okButtonProps: {
-            //   loading: true,
-            // },
 
             onCancel: () => {
               state.openModalForm = false;

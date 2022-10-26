@@ -26,7 +26,7 @@ import parserHtml from 'prettier/parser-html';
 import './layout.less';
 
 import { useDarkreader } from './useDarkreader';
-import { IntlProvider, enUSIntl } from '@ant-design/pro-components';
+import { enUSIntl } from '@ant-design/pro-components';
 import {
   CopyOutlined,
   DesktopOutlined,
@@ -297,34 +297,25 @@ const LayoutPage = ({ children, ...props }: IRouteComponentProps) => {
         }}
       >
         <Layout {...props}>
-          <IntlProvider
-            value={
-              {
-                intl: enUSIntl,
-                valueTypeMap: {},
-              } as any
-            }
-          >
-            <InnerLayout>
-              <div>
-                <div key="children">{children}</div>
-                <div
-                  style={{
-                    position: 'fixed',
-                    right: 8,
-                    top: 0,
-                    zIndex: 999,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  key="procomponents_dark_theme_view"
-                  className="procomponents_dark_theme_view"
-                >
-                  {isBrowser() ? <DarkButton /> : null}
-                </div>
+          <InnerLayout>
+            <div>
+              <div key="children">{children}</div>
+              <div
+                style={{
+                  position: 'fixed',
+                  right: 8,
+                  top: 0,
+                  zIndex: 999,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+                key="procomponents_dark_theme_view"
+                className="procomponents_dark_theme_view"
+              >
+                {isBrowser() ? <DarkButton /> : null}
               </div>
-            </InnerLayout>
-          </IntlProvider>
+            </div>
+          </InnerLayout>
         </Layout>
       </ConfigProvider>
     </Provider>
