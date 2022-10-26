@@ -107,6 +107,17 @@ export default function DemoCrud() {
       },
     },
     {
+      order: 2,
+      width: '10%',
+      title: 'Photo',
+      dataIndex: 'photo1',
+      valueType: { type: 'image', width: 70 },
+      formItemProps: {
+        rules: [{ required: true }],
+        name: 'photo1',
+      },
+    },
+    {
       order: 4,
       width: '30%',
       title: 'Short Description',
@@ -266,6 +277,7 @@ export default function DemoCrud() {
             },
             baseURL: 'https://dwmniez7.directus.app/items',
 
+            isFormManualUpload: true,
             // getConfig
             getConfig: {
               url: '/blog',

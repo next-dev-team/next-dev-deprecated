@@ -15,7 +15,6 @@ import {
   ProDescriptionsProps,
   ProFieldValueObjectType,
   ProFormInstance,
-  ProFormUploadButton,
   ProFormUploadDragger,
   ProTableProps,
 } from '@ant-design/pro-components/es';
@@ -125,7 +124,7 @@ export type IFormCrud<
   requestConfig?: (
     value: T & { record: T } & Record<any, any>,
   ) => typeof _initConfigAxios & {
-    isFormDataAutoUpload?: boolean;
+    isFormManualUpload?: boolean;
     deleteUrl?: string;
     editUrl?: string;
     editParam?: Partial<U>;
@@ -189,6 +188,12 @@ export default function FormCrud<
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
 
+  const resetState = () => {
+    state.openModalForm = false;
+    state.record = {};
+    state.fileList = [];
+  };
+
   const deleteAction = () => {
     const requestCon = requestConfig?.(state?.record as any) || {};
     return _requestDelete(requestCon?.deleteUrl as string, requestCon as any);
@@ -244,6 +249,8 @@ export default function FormCrud<
     manual: true,
     onSuccess: () => {
       state.openModalForm = false;
+      state.record = {};
+      state.fileList = [];
       _actionRef.current?.reload();
     },
   });
@@ -294,7 +301,7 @@ export default function FormCrud<
             onFormEditFinished?.(record)
               .then(() => {
                 // close modal
-                state.openModalForm = false;
+                resetState();
                 state.editLoading = false;
                 _actionRef.current?.reload();
               })
@@ -341,7 +348,7 @@ export default function FormCrud<
             onFormAddFinished?.(record)
               .then(() => {
                 // close modal
-                state.openModalForm = false;
+                resetState();
                 state.addLoading = false;
                 _actionRef.current?.reload(true);
               })
@@ -437,6 +444,20 @@ export default function FormCrud<
       const isValueIsImg = valueType === 'image';
       const requestCon = requestConfig?.(state?.record as any) || {};
 
+      const uploadProps = {
+        onError(err: any) {
+          console.log('onError', err);
+        },
+        async customRequest({ file }) {
+          const formData = new FormData();
+          const formName = newItem?.formItemProps?.name as string;
+          if (formName) {
+            formData.append(formName, file);
+            state[formName] = formData;
+          }
+        },
+      } as typeof Upload.defaultProps;
+
       const renderValueImage: IFormCrudColumn = isValueIsImg
         ? {
             renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
@@ -471,6 +492,9 @@ export default function FormCrud<
                         ...(requestCon?.headers as any),
                       },
                       listType: 'picture-card',
+                      // manual upload when submit
+
+                      ...(!requestCon?.isFormManualUpload ? {} : uploadProps),
                       onPreview: async (file: UploadFile) => {
                         if (!file.url && !file.preview) {
                           file.preview = await getBase64(
@@ -503,8 +527,11 @@ export default function FormCrud<
                             ]
                           : [],
                       onChange(info) {
-                        console.log('on file', info);
-                        state.fileList = state.fileList.concat(info?.file);
+                        if (requestCon?.isFormManualUpload) {
+                          info.file.status = 'done';
+                        }
+                        console.log('on file', requestCon?.isFormManualUpload);
+                        state.fileList = [...state.fileList, ...info?.fileList];
                       },
                     }}
                   />
@@ -621,9 +648,7 @@ export default function FormCrud<
     previewImage,
     previewOpen,
     requestConfig,
-    state.deleteLoading,
-    state.openModalForm,
-    state.record,
+    state,
   ]);
 
   const isHasSearch = useCreation(
@@ -764,7 +789,7 @@ export default function FormCrud<
             // confirmLoading: true,
 
             onCancel: () => {
-              state.openModalForm = false;
+              resetState();
             },
             modalRender(node) {
               return (
