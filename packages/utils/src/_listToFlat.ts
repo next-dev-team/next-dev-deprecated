@@ -1,5 +1,5 @@
-import reduce from 'lodash/reduce';
-import { TKeyValue } from '../types';
+import reduce from 'lodash-es/reduce';
+import { TKeyValue } from './_types';
 
 /**
  * Convert array object to object object
@@ -18,8 +18,7 @@ export function listToFlat<T extends []>(
     items,
     (redu: TKeyValue<string, string>, item) => {
       const reduKey = item[key as any];
-      // @ts-ignore
-      // eslint-disable-next-line no-param-reassign
+      //@ts-ignore
       redu[reduKey] = item[text];
       return redu;
     },

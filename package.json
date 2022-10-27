@@ -30,7 +30,7 @@
     "concurrently": "^7.4.0",
     "eslint-config-custom": "workspace:0.0.0",
     "prettier": "latest",
-    "tailwind-merge": "^1.6.2",
+    "tailwind-merge": "^1.7.0",
     "tsup": "^6.2.3",
     "turbo": "latest",
     "typescript": "^4.8.4",

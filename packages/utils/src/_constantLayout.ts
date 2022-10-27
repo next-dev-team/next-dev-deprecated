@@ -1,7 +1,7 @@
 /**
  * Universal layout, fixed label width of 98px, other adaptive
  */
-export const LAYOUT_FIXED_LABEL = {
+const LAYOUT_FIXED_LABEL = {
   labelCol: {
     flex: '98px',
   },
@@ -13,7 +13,7 @@ export const LAYOUT_FIXED_LABEL = {
 /**
  * Form item single-column layout Responsive configuration (recommended to be assigned to Form)
  */
-export const LAYOUT_FORM_SINGLE = {
+const LAYOUT_FORM_SINGLE = {
   labelCol: { flex: '98px' },
   wrapperCol: {
     xs: { span: 16 },
@@ -28,7 +28,7 @@ export const LAYOUT_FORM_SINGLE = {
 /**
  * Form two-column layout Responsive configuration (recommended to be assigned to Form)
  */
-export const LAYOUT_FORM_TWO = {
+const LAYOUT_FORM_TWO = {
   labelCol: {
     xs: { span: 8 },
     sm: { span: 6 },
@@ -50,7 +50,7 @@ export const LAYOUT_FORM_TWO = {
 /**
  * Col two-column layout responsive (used in From)
  */
-export const LAYOUT_COL_TWO = {
+const LAYOUT_COL_TWO = {
   xs: 24, // <576px
   sm: 24, // ≥576px
   md: 24, // ≥768px
@@ -62,7 +62,7 @@ export const LAYOUT_COL_TWO = {
 /**
  * Search form Col with two columns Responsive configuration
  */
-export const LAYOUT_COL_SEARCH_TWO = {
+const LAYOUT_COL_SEARCH_TWO = {
   xs: 24,
   sm: 12,
   md: 12,
@@ -74,7 +74,7 @@ export const LAYOUT_COL_SEARCH_TWO = {
 /**
  * Search form Col three columns Responsive configuration
  */
-export const LAYOUT_COL_SEARCH_THREE = {
+const LAYOUT_COL_SEARCH_THREE = {
   xs: 24,
   sm: 12,
   md: 12,
@@ -86,7 +86,7 @@ export const LAYOUT_COL_SEARCH_THREE = {
 /**
  * Search form Col four columns Responsive configuration
  */
-export const LAYOUT_COL_SEARCH_FOUR = {
+const LAYOUT_COL_SEARCH_FOUR = {
   xs: 24,
   sm: 12,
   md: 12,
@@ -98,7 +98,7 @@ export const LAYOUT_COL_SEARCH_FOUR = {
 /**
  * Search form Col six columns Responsive configuration
  */
-export const LAYOUT_COL_SEARCH_SIX = {
+const LAYOUT_COL_SEARCH_SIX = {
   xs: 24,
   sm: 12,
   md: 8,
@@ -110,7 +110,7 @@ export const LAYOUT_COL_SEARCH_SIX = {
 /**
  * Single select, check six columns Responsive configuration
  */
-export const LAYOUT_CHECK_SIX = {
+const LAYOUT_CHECK_SIX = {
   xs: 1,
   sm: 1,
   md: 2,
@@ -122,7 +122,7 @@ export const LAYOUT_CHECK_SIX = {
 /**
  * Single select, check eight columns Responsive configuration
  */
-export const LAYOUT_CHECK_EIGHT = {
+const LAYOUT_CHECK_EIGHT = {
   xs: 12,
   sm: 12,
   md: 8,
@@ -130,3 +130,15 @@ export const LAYOUT_CHECK_EIGHT = {
   xl: 4,
   xxl: 3,
 };
+
+const _constantLayout = {
+  LAYOUT_CHECK_EIGHT,
+  LAYOUT_CHECK_SIX,
+  LAYOUT_COL_SEARCH_SIX,
+  LAYOUT_COL_TWO,
+  LAYOUT_COL_SEARCH_FOUR,
+  LAYOUT_FORM_SINGLE,
+  LAYOUT_FIXED_LABEL,
+};
+
+export default _constantLayout;

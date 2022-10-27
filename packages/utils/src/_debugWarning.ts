@@ -1,6 +1,6 @@
 let warned: Record<string, boolean> = {};
 
-export function warning(valid: boolean, message: string) {
+function warning(valid: boolean, message: string) {
   // Support uglify
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -11,7 +11,7 @@ export function warning(valid: boolean, message: string) {
   }
 }
 
-export function note(valid: boolean, message: string) {
+function note(valid: boolean, message: string) {
   // Support uglify
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -22,11 +22,11 @@ export function note(valid: boolean, message: string) {
   }
 }
 
-export function resetWarned() {
+function resetWarned() {
   warned = {};
 }
 
-export function call(
+function call(
   method: (valid: boolean, message: string) => void,
   valid: boolean,
   message: string,
@@ -37,10 +37,18 @@ export function call(
   }
 }
 
-export function warningOnce(valid: boolean, message: string) {
+function warningOnce(valid: boolean, message: string) {
   call(warning, valid, message);
 }
 
-export function noteOnce(valid: boolean, message: string) {
+function noteOnce(valid: boolean, message: string) {
   call(note, valid, message);
 }
+
+const _debugWarning = {
+  noteOnce,
+  warningOnce,
+  resetWarned,
+  warning,
+};
+export default _debugWarning;

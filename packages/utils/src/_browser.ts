@@ -75,6 +75,5 @@ const getPlatform = (userAgent: string = navigator.userAgent): Platform => {
   return 'desktop';
 };
 
-export default { getBrowserName, getOperatingSystem, getPlatform };
-
 export type { BrowserName, OperatingSystem, Platform };
+export { getBrowserName, getOperatingSystem, getPlatform };

@@ -17,6 +17,7 @@ export { default as _regexPassword } from './_regexPassword';
 export { default as _regexNumber } from './_regexNumber';
 
 // _lodash
+export * from './_isEmpty';
 export * from './__omit';
 export * from './__isFunction';
 export * from './__isArray';

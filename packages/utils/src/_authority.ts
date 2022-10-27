@@ -1,4 +1,4 @@
-import storeWithExp from './store';
+import storeWithExp from './_store';
 
 let token_name = `authToken`;
 

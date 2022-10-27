@@ -10,7 +10,7 @@ const base =
  * @param {any} data
  * @example log('This is an apple', 'iPhone')
  */
-export function log(message: any, data: any) {
+function log(message: any, data: any) {
   if (data) {
     console.log(`%c ${message} `, `${base} background: #001628;`, data);
   } else {
@@ -26,7 +26,7 @@ export function log(message: any, data: any) {
  * logDeprecation('This method is about to deprecate')
  * logDeprecation('This method is about to deprecate', true)
  */
-export function logDeprecation(message: any, hard: boolean = false) {
+function logDeprecation(message: any, hard: boolean = false) {
   if (hard) {
     console.error(
       '%c --------DEPRECATION WARNING--------',
@@ -48,7 +48,7 @@ export function logDeprecation(message: any, hard: boolean = false) {
  * @param {string} error
  * @example logError('This is an error', '3+2=6')
  */
-export function logError(message: any, error: any) {
+function logError(message: any, error: any) {
   // always log errors, even in production env
   if (error) {
     console.error(`%c ${message} `, `${base} background: #dc3545;`, error);
@@ -56,3 +56,11 @@ export function logError(message: any, error: any) {
     console.error(`%c ${message} `, `${base} background: #dc3545;`);
   }
 }
+
+const _debugLogger = {
+  logError,
+  logDeprecation,
+  log,
+};
+
+export default _debugLogger;

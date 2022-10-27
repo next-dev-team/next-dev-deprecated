@@ -1,4 +1,4 @@
-import regex from '../regex';
+import regex from './_regex';
 
 /**
  * @param {string} path
