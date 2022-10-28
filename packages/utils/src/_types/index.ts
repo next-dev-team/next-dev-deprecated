@@ -1,6 +1,20 @@
-/**
- * origin source https://raw.githubusercontent.com/antfu/utils/main/src/types.ts
+/** most of the source from github
+ *  @see https://github.com/antfu/utils/blob/main/src/types.ts
  */
+
+export type Recordable<T = any> = Record<string, T>;
+
+export type ObjectKeys = {
+  [key: string]: string | number | undefined | boolean;
+};
+export interface FormattedTime {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
+}
+
 export type TWithFalse<T> = T | false;
 
 /**
