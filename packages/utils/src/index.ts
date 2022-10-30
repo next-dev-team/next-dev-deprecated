@@ -15,6 +15,8 @@ export { default as _regexEmail } from './_regexEmail';
 export { default as _regexPhone } from './_regexPhone';
 export { default as _regexPassword } from './_regexPassword';
 export { default as _regexNumber } from './_regexNumber';
+export { default as _isSsr } from './_isSsr';
+export { default as _isMobile } from './_isMobile';
 
 // _lodash
 export * from './_isEmpty';

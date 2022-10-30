@@ -2,6 +2,52 @@
 
 Most of function base on <https://lodash.com/>
 
+## isNull
+
+```tsx | pure
+_isNull(null);
+// => true
+
+_.isNull(void 0);
+// => false
+```
+
+## isSsr
+
+detect is mobile device
+
+```tsx
+import { _isSsr } from 'next-dev-utils/src';
+import React from 'react';
+
+export default () => {
+  return <>{String(_isSsr)}</>;
+};
+```
+
+## isMobile
+
+detect is mobile device
+
+```tsx
+import React from 'react';
+import { _isMobile } from 'next-dev-utils/src';
+
+export default () => {
+  return <>{String(_isMobile())}</>;
+};
+```
+
+## isRegExp
+
+```tsx |pure
+_isRegExp(/abc/);
+// => true
+
+_isRegExp('/abc/');
+// => false
+```
+
 ## isArray
 
 ```tsx |pure

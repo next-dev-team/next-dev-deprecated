@@ -18,7 +18,6 @@ export const utilMenu: Menu = {
         'utils/crypto.md',
         'utils/constant.md',
         'utils/store.md',
-        'utils/common.md',
       ],
     },
     {

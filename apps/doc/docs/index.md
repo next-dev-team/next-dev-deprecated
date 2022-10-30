@@ -4,7 +4,7 @@ order: 10
 sidebar: false
 hero:
   title: Next Dev
-  desc: 🏆 Make middle and backstage development easier
+  desc: 🏆 Working in process
   actions:
     - text: 👨‍💻👩‍💻 quick-start →
       link: /introduce/introduce

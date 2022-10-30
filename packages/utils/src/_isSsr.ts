@@ -1,3 +1,4 @@
 import { _isClient } from './_isClient';
 
-export const _isSsr = !_isClient;
+const _isSsr = !_isClient;
+export default _isSsr;
