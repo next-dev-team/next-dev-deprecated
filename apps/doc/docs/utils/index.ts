@@ -23,7 +23,7 @@ export const utilMenu: Menu = {
     },
     {
       title: 'Validation',
-      children: ['utils/validation/regex.md'],
+      children: ['utils/validation/regex.md', 'utils/validation/is.md'],
     },
   ],
 };
