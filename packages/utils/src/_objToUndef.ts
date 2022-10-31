@@ -3,12 +3,13 @@ import type { ObjectKeys } from './_types';
 import { _omit } from './__omit';
 
 /**
- * remove object key to undefine with exclude key (pick like)
+ *
+ * pick object with include key otherwise will be undefined
  * @param obj
  * @param rest
  * @returns
  */
-export function objToUndef<T extends object, U extends keyof T>(
+export default function _objToUndef<T extends object, U extends keyof T>(
   obj: T,
   ...rest: Array<Many<U>>
 ) {

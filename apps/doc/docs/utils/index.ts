@@ -12,6 +12,10 @@ export const utilMenu: Menu = {
       children: ['utils/async/request.md'],
     },
     {
+      title: 'Javascript',
+      children: ['utils/js/object'],
+    },
+    {
       title: 'Security',
       children: [
         'utils/authority.md',

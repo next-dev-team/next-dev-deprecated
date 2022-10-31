@@ -44,11 +44,15 @@ export const CodePreview = ({ children }: { children: React.ReactNode }) => {
       {/* @ts-ignore */}
       <Editor
         disabled
-        value={jsxToString(children)
-          .replace('{`<', '<')
-          .replace('`}', '')
-          .replace('>;', '>')
-          .replace('>`}', '>')}
+        value={
+          typeof children === 'string'
+            ? children
+            : jsxToString(children)
+                .replace('{`<', '<')
+                .replace('`}', '')
+                .replace('>;', '>')
+                .replace('>`}', '>')
+        }
         highlight={(code) => highlight(code, languages.jsx!, 'jsx')}
         padding={10}
         style={{
