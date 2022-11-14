@@ -9,7 +9,7 @@ import { TKeyValue } from './_types';
  * @returns TKeyValue
  * @summary It is recommended to use with the memoize method to avoid unnecessary conversion and improve performance
  */
-export function listToFlat<T extends []>(
+export default function _listToFlat<T extends []>(
   items: T[],
   key: string | number = 'value',
   text: string = 'label',
