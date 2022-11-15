@@ -1,6 +1,6 @@
 {
   "name": "next-dev-utils",
-  "version": "1.0.11-rc3",
+  "version": "1.0.11-rc4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -17,7 +17,8 @@
   "scripts": {
     "lint": "eslint *.ts*",
     "build": "tsup src --format cjs --minify --dts --external react",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
