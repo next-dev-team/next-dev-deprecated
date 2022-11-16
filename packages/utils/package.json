@@ -17,8 +17,7 @@
   "scripts": {
     "lint": "eslint *.ts*",
     "build": "tsup src --format cjs --minify --dts --external react",
-    "clean": "rm -rf dist",
-    "release": "pnpm build && changeset publish"
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
