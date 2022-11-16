@@ -10,7 +10,7 @@
   Tabs,
   Typography,
 } from 'antd';
-import enUS from 'antd/lib/locale/en_US';
+import enUS from 'antd/es/locale/en_US';
 import { format } from 'prettier/standalone';
 
 import { IRouteComponentProps, isBrowser } from 'dumi';
@@ -26,7 +26,6 @@ import parserHtml from 'prettier/parser-html';
 import './layout.less';
 
 import { useDarkreader } from './useDarkreader';
-import { enUSIntl } from '@ant-design/pro-components';
 import {
   CopyOutlined,
   DesktopOutlined,

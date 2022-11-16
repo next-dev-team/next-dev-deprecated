@@ -35,15 +35,15 @@ export default defineConfig({
   },
   // make bundle size small
   extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-      },
-      'antd',
-    ],
+    // [
+    //   'import',
+    //   {
+    //     libraryName: 'antd',
+    //     libraryDirectory: 'es',
+    //     style: true,
+    //   },
+    //   'antd',
+    // ],
     [
       'import',
       {
@@ -89,18 +89,13 @@ export default defineConfig({
     '@root-entry-name': 'variable',
   },
   ignoreMomentLocale: true,
-  externals: { darkreader: 'window.DarkReader' },
+  externals: { darkreader: 'window.DarkReader', React: 'React' },
   menus,
-  // mfsu: {
-  //   development: {},
-  //   production: {}
-  // },
+
   webpack5: {},
   fastRefresh: {},
-  // dynamicImport: {},
-  antd: {
-    // dark: true,
-  },
+  dynamicImport: {},
+  antd: false,
   nodeModulesTransform: {
     type: 'none',
     exclude: [],
