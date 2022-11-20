@@ -9,6 +9,7 @@ importers:
       '@types/react-dom': ^18.0.9
       babel-plugin-import: ^1.13.5
       concurrently: ^7.5.0
+      cross-env: ^7.0.3
       dumi: ^2.0.2
       eslint: ^7.32.0
       eslint-ast-utils: ^1.1.0
@@ -79,6 +80,7 @@ importers:
       '@types/react-dom': 18.0.9
       babel-plugin-import: 1.13.5
       concurrently: 7.5.0
+      cross-env: 7.0.3
       eslint-config-custom: link:packages/eslint-config-custom
       prettier: 2.7.1
       tailwind-merge: 1.8.0
@@ -7777,6 +7779,14 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/5.1.0:
