@@ -5,8 +5,8 @@
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "dev": "concurrently \"pnpm tailwind:dev\" \"dumi dev\"",
-    "build": "pnpm build-tailwind && dumi build",
+    "dev1": "concurrently \"pnpm tailwind:dev\" \"dumi dev\"",
+    "build1": "pnpm build-tailwind && dumi build",
     "build:only": "dumi build",
     "local:prepare": "rm -rf ./build &&  cp -a ./dist ./build",
     "publish": "gh-pages -d ./dist",

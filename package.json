@@ -6,6 +6,9 @@
     "packages/*"
   ],
   "scripts": {
+    "dev:dumi": "dumi dev && pnpm dev",
+    "build:dumi": "dumi build",
+    "prepare": "dumi setup",
     "setup": "pnpm install",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -43,6 +46,7 @@
   "description": "This is an official starter turborepo.",
   "main": ".eslintrc.js",
   "dependencies": {
+    "dumi": "^2.0.2",
     "eslint": "^7.32.0",
     "eslint-ast-utils": "^1.1.0",
     "eslint-config-next": "^12.3.3",
@@ -78,7 +82,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/next-dev-team/next-dev/issues"
   },
