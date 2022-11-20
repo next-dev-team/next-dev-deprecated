@@ -1,0 +1,4 @@
+
+> @next-dev/docs@ clean /Users/sila/Documents/Project/next-dev-team/next-dev/apps/doc
+> rm -rf dist
+

@@ -6,20 +6,21 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:dumi": "dumi dev && pnpm dev",
+    "dev:dumi": "dumi dev",
     "build:dumi": "dumi build",
     "prepare": "dumi setup",
     "setup": "pnpm install",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "doc:dev": "turbo run dev --filter ./apps/doc...",
-    "doc:build": "pnpm clean &&  turbo run build --filter ./apps/doc...",
+    "doc:build": "pnpm clean &&  turbo run build --filter ./apps/doc... && pnpm build:dumi",
     "doc:predeploy": "turbo run publish --filter ./apps/doc...",
     "doc:deploy": "pnpm doc:build",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "npx only-allow pnpm",
     "clean": "turbo run clean",
+    "publish": "gh-pages -d ./dist",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release:packages": "turbo run build --filter=packages^... && changeset publish"
@@ -72,7 +73,8 @@
     "prettier-plugin-organize-imports": "^2.3.4",
     "prettier-plugin-packagejson": "^2.3.0",
     "prettier-plugin-two-style-order": "^1.0.1",
-    "stylelint-config-prettier": "^8.0.2"
+    "stylelint-config-prettier": "^8.0.2",
+    "gh-pages": "^4.0.0"
   },
   "repository": {
     "type": "git",

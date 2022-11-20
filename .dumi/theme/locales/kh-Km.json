@@ -1,0 +1,22 @@
+{
+  "a": "ហេ",
+  "header.search.placeholder": "បញ្ចូលពាក្យគន្លឹះដើម្បីស្វែងរក...",
+  "previewer.actions.code.expand": "ពង្រីកកូដ",
+  "previewer.actions.code.shrink": "បង្រួមកូដ",
+  "previewer.actions.codesandbox": "បើកក្នុង CodeSandbox",
+  "previewer.actions.codepen": "បើកក្នុង CodePen (មិនត្រូវបានអនុវត្ត)",
+  "previewer.actions.stackblitz": "បើកក្នុង Stackblitz",
+  "previewer.actions.separate": "បើកក្នុងទំព័រដាច់ដោយឡែក",
+  "404.title": "រកមិនឃើញទំព័រ",
+  "404.back": "ត្រឡប់ទៅទំព័រដើម",
+  "api.component.name": "ឈ្មោះអចលនទ្រព្យ",
+  "api.component.description": "ការពិពណ៌នា",
+  "api.component.type": "ប្រភេទ",
+  "api.component.default": "តម្លៃលំនាំដើម",
+  "api.component.required": "(ទាមទារ)",
+  "api.component.loading": "និយមន័យអចលនទ្រព្យកំពុងត្រូវបានញែក សូមរង់ចាំបន្តិច...",
+  "api.component.not.found": "និយមន័យអចលនទ្រព្យសម្រាប់សមាសភាគ {id} រកមិនឃើញ",
+  "content.tabs.default": "ឯកសារ",
+  "search.not.found": "រកមិនឃើញខ្លឹមសារពាក់ព័ន្ធ",
+  "layout.sidebar.btn": "ម៉ឺនុយចំហៀង"
+}

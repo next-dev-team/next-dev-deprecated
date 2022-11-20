@@ -1,0 +1,18 @@
+
+> next-dev-antd-ui@0.0.14-beta.1 build /Users/sila/Documents/Project/next-dev-team/next-dev/packages/antd-ui
+> tsup src --format cjs --minify --dts --external react
+
+CLI Building entry: src/AuthLogin1.tsx, src/index.ts, src/FormCrud/index.tsx
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.5.0
+CLI Target: es6
+CJS Build start
+CJS dist/AuthLogin1.js     2.25 KB
+CJS dist/index.js          217.92 KB
+CJS dist/FormCrud/index.js 216.68 KB
+CJS ⚡️ Build success in 53ms
+DTS Build start
+DTS ⚡️ Build success in 1656ms
+DTS dist/AuthLogin1.d.ts     315.00 B
+DTS dist/index.d.ts          248.00 B
+DTS dist/FormCrud/index.d.ts 3.00 KB

@@ -5,6 +5,7 @@ nav:
 group:
   title: Umi
   order: 1
+toc: content
 ---
 
 # Umi 4
@@ -138,7 +139,7 @@ group:
   会优先使用这份代码。
 </p>
 
-以上是 Umi 4 目前的新功能。
+## 以上是 Umi 4 目前的新功能。
 
 除此之外，还有一些计划在正式版发布之前做的事情。包括 <span style={{color:'red'}}>api route、umi server and adapter、route loader、稳定的 lint、更多命令、组件研发 father 4、文档工具 dumi 2</span> 等，会在之后的 RC 版本中与大家见面。
 
