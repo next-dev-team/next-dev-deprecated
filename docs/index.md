@@ -1,7 +1,7 @@
 ---
 title: dumi - A static site framework for component development
 hero:
-  title: dumi
+  title: Next Dev
   description: |
     A static site framework for component development
     <br />

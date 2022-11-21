@@ -11,7 +11,7 @@
     "prepare": "dumi setup",
     "setup": "pnpm install",
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "concurrently \"turbo run dev --parallel\" \"dumi dev\"",
     "doc:dev": "turbo run dev --filter ./apps/doc...",
     "doc:build": "pnpm clean &&  turbo run build --filter ./apps/doc... && pnpm build:dumi",
     "doc:predeploy": "turbo run publish --filter ./apps/doc...",
