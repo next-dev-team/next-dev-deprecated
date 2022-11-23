@@ -1,7 +1,7 @@
 ---
 nav:
   title: Blog
-  order: 1
+  order: -1
 group:
   title: Umi
   order: 1

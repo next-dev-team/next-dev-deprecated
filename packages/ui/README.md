@@ -1,9 +1,9 @@
 ---
 nav:
-  title: Utilities
-  order: 3
+  title: Tw UI
+  order: 1
 group:
-  title: Utilities
+  title: Tw Components
   order: 1
 toc: content
 ---

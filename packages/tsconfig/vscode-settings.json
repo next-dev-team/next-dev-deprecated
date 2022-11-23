@@ -1,5 +1,8 @@
 {
-  "eslint.validate": ["typescript", "typescriptreact"],
+  "eslint.validate": [
+    "typescript",
+    "typescriptreact"
+  ],
   "[typescript]": {
     "editor.formatOnSave": true,
     "editor.autoClosingBrackets": "always"

@@ -2,7 +2,9 @@
   "name": "next-dev",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "examples/*",
+    "boilerplate/*",
+    "docs/*",
     "packages/*"
   ],
   "scripts": {
@@ -12,9 +14,9 @@
     "setup": "pnpm install",
     "build": "turbo run build",
     "dev": "concurrently \"turbo run dev --parallel\" \"dumi dev\"",
-    "doc:dev": "turbo run dev --filter ./apps/doc...",
-    "doc:build": "pnpm clean &&  turbo run build --filter ./apps/doc... && pnpm build:dumi",
-    "doc:predeploy": "turbo run publish --filter ./apps/doc...",
+    "doc:dev": "turbo run dev --filter ./boilerplate/doc...",
+    "doc:build": "pnpm clean &&  turbo run build --filter ./doc... && pnpm build:dumi",
+    "doc:predeploy": "turbo run publish --filter ./boilerplate/doc...",
     "doc:deploy": "pnpm doc:build",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -26,32 +28,23 @@
     "release:packages": "turbo run build --filter=packages^... && changeset publish"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "@changesets/cli": "^2.25.2",
     "@types/node": "^18.11.9",
     "@types/react-dom": "^18.0.9",
     "babel-plugin-import": "^1.13.5",
-    "concurrently": "^7.5.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
     "eslint-config-custom": "workspace:0.0.0",
     "prettier": "latest",
     "tailwind-merge": "^1.8.0",
     "tsup": "^6.5.0",
     "turbo": "latest",
     "typescript": "^4.9.3",
-    "utility-types": "^3.10.0"
-  },
-  "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "packageManager": "pnpm@7.3.0",
-  "description": "This is an official starter turborepo.",
-  "main": ".eslintrc.js",
-  "dependencies": {
-    "dumi": "^2.0.2",
+    "utility-types": "^3.10.0",
+    "dumi": "^2.0.5",
     "eslint": "^7.32.0",
     "eslint-ast-utils": "^1.1.0",
-    "eslint-config-next": "^12.3.3",
+    "eslint-config-next": "^12.3.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-formatter-pretty": "^4.1.0",
     "eslint-import-resolver-node": "^0.3.6",
@@ -62,7 +55,7 @@
     "eslint-plugin-jest": "^24.7.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unicorn": "^20.1.0",
     "eslint-rule-composer": "^0.3.0",
@@ -71,12 +64,19 @@
     "eslint-template-visitor": "^2.3.2",
     "eslint-utils": "^2.1.0",
     "eslint-visitor-keys": "^2.1.0",
+    "gh-pages": "^4.0.0",
     "prettier-plugin-organize-imports": "^2.3.4",
     "prettier-plugin-packagejson": "^2.3.0",
     "prettier-plugin-two-style-order": "^1.0.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "gh-pages": "^4.0.0"
+    "stylelint-config-prettier": "^8.0.2"
   },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "pnpm@7.3.0",
+  "description": "🚀 All in one fullstack Development solutions",
+  "main": ".eslintrc.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/next-dev-team/next-dev.git"
@@ -84,7 +84,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "author": "",
+  "author": "Next-Dev",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/next-dev-team/next-dev/issues"

@@ -1,18 +1,23 @@
 ---
 nav:
-  title: Utils
-  order: 1
+  title: Lint
+  order: 4
 group:
-  title: Utils
+  title: Lint
   order: 1
 toc: content
 ---
 
-# - Getting-started
+# Getting-started
 
-ProComponents is a template component developed based on Ant Design, which provides higher-level abstraction support out of the box. It can significantly improve the efficiency of making CRUD pages and focus more on pages.
+## next-dev-utils
 
-Check out a typical demo to see if the component is right for your business before using it. ProComponents focuses on CRUD in the middle and back end, with quite a few preset styles and behaviors. These behaviors and styles will be more difficult to change. If your business requires rich customization, it is recommended to use Ant Design directly.
+next-dev-utils is just a javaScript utility collection for widely used by Front-end developers.
+most of them are from popular library such as Lodash etc.
+
+## Purpose
+
+as a front-end developers are very difficult to create and use javascript utility for every projects that use the same javascript utility. so here we are going to create this library for collection all common use cases where developers need to use it daily.
 
 ## Install
 

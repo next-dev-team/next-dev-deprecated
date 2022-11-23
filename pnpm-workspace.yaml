@@ -1,3 +1,5 @@
 packages:
-  - "apps/*"
+  - "boilerplate/*"
+  - "docs/*"
+  - "examples/*"
   - "packages/*"

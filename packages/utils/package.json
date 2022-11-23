@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "lint": "eslint *.ts*",
-    "build": "tsup src --format cjs --minify --dts --external react",
+    "build": "tsup",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "@types/lodash": "^4.14.182",
     "@types/store": "^2.0.2",
     "@types/crypto-js": "^4.1.1",
-    "tsup": "^6.3.0",
+    "tsup": "^6.5.0",
     "@types/lodash-es": "4.17.6"
   },
   "dependencies": {

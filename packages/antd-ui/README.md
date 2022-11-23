@@ -1,9 +1,9 @@
 ---
 nav:
-  title: Utilities
-  order: 3
+  title: Antd UI
+  order: 2
 group:
-  title: Utilities
+  title: Components
   order: 1
 toc: content
 ---

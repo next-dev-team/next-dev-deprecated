@@ -1,11 +1,11 @@
 ---
-title: dumi - A static site framework for component development
+title: Next Dev - All in one Full-Stack Development
 hero:
   title: Next Dev
   description: |
-    A static site framework for component development
-    <br />
-    <small style="opacity: 0.7;">V1 documentation is available at <a href="https://v1.d.umijs.org" style="color: #1677ff;">v1.d.umijs.org< /a></small>
+    Next Dev - All in one Full-Stack Development
+     <br />
+     <small style="opacity: 0.7;">  documentation is available at <a href="https://d.umijs.org" style="color: #1677ff;">d.umijs.org< /a></small>
   actions:
     - text: Get started now
       link: /guide

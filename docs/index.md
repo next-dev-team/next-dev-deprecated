@@ -1,14 +1,14 @@
 ---
-title: dumi - A static site framework for component development
+title: Next Dev - All in one Full-Stack Development
 hero:
   title: Next Dev
   description: |
-    A static site framework for component development
+    Next Dev - All in one Full-Stack Development
     <br />
-    <small style="opacity: 0.7;">V1 documentation is available at <a href="https://v1.d.umijs.org" style="color: #1677ff;">v1.d.umijs.org< /a></small>
+    <small style="opacity: 0.7;">Common languages we use such as Typescript, React (NextJs/UmiJs), React Native, Vue (Vue3/Nuxt3), Fluter, NestJs, Go etc.</small>
   actions:
     - text: Get started now
-      link: /guide
+      link: /blog
     - text: GitHub
       link: https://github.com/umijs/dumi
 features:
