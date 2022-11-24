@@ -1,6 +1,22 @@
 {
   "name": "next-dev",
+  "author": "Next-Dev",
   "private": true,
+  "packageManager": "pnpm@7.3.0",
+  "description": "🚀 All in one fullstack Development solutions",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/next-dev-team/next-dev.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/next-dev-team/next-dev/issues"
+  },
+  "homepage": "https://github.com/next-dev-team/next-dev#readme",
   "workspaces": [
     "examples/*",
     "boilerplate/*",
@@ -19,7 +35,7 @@
     "doc:predeploy": "turbo run publish --filter ./boilerplate/doc...",
     "doc:deploy": "pnpm doc:build",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"  --ignore-path .gitignore",
     "preinstall": "npx only-allow pnpm",
     "clean": "turbo run clean",
     "publish": "gh-pages -d ./dist",
@@ -71,23 +87,6 @@
     "stylelint-config-prettier": "^8.0.2"
   },
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "packageManager": "pnpm@7.3.0",
-  "description": "🚀 All in one fullstack Development solutions",
-  "main": ".eslintrc.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/next-dev-team/next-dev.git"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "author": "Next-Dev",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/next-dev-team/next-dev/issues"
-  },
-  "homepage": "https://github.com/next-dev-team/next-dev#readme"
+    "node": ">=16.0.0"
+  }
 }

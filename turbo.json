@@ -1,10 +1,12 @@
 {
+  "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
       "dependsOn": [
         "^build"
       ],
       "outputs": [
+        "es/**",
         "lib/**",
         "dist/**",
         ".next/**"
@@ -20,7 +22,7 @@
       "outputs": []
     },
     "dev": {
-      "cache": true
+      "cache": false
     }
   }
 }
