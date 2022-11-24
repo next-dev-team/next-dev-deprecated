@@ -44,6 +44,14 @@
     "release:packages": "turbo run build --filter=packages^... && changeset publish"
   },
   "devDependencies": {
+    "antd-token-previewer": "^1.1.0-13",
+    "antd": "^5.0.1",
+    "@emotion/babel-preset-css-prop": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "18.0.25",
+    "@ant-design/icons": "^4.8.0",
     "@changesets/cli": "^2.25.2",
     "@types/node": "^18.11.9",
     "@types/react-dom": "^18.0.9",
