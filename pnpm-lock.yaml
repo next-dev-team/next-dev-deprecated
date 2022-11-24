@@ -8,6 +8,7 @@ importers:
       '@changesets/cli': ^2.25.2
       '@emotion/babel-preset-css-prop': ^11.10.0
       '@emotion/react': ^11.10.4
+      '@next-dev/utils': workspace:1.0.11-rc4
       '@types/node': ^18.11.9
       '@types/react': 18.0.25
       '@types/react-dom': ^18.0.9
@@ -58,6 +59,7 @@ importers:
       '@changesets/cli': 2.25.2
       '@emotion/babel-preset-css-prop': 11.10.0
       '@emotion/react': 11.10.5_fan5qbzahqtxlm5dzefqlqx5ia
+      '@next-dev/utils': link:packages/utils
       '@types/node': 18.11.9
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
@@ -108,6 +110,7 @@ importers:
     specifiers:
       '@ant-design/icons': ^4.7.0
       '@ant-design/pro-components': ^2.3.33
+      '@next-dev/utils': workspace:1.0.11-rc4
       '@rematch/core': ^2.2.0
       '@rematch/immer': ^2.1.3
       '@rematch/loading': ^2.1.2
@@ -139,7 +142,6 @@ importers:
       lint-staged: ^10.5.4
       next-dev-antd-ui: workspace:0.0.14-beta.1
       next-dev-ui: workspace:0.0.0
-      next-dev-utils: workspace:1.0.11-rc4
       postcss: ^8.4.19
       prettier: ^2.7.1
       prismjs: ^1.29.0
@@ -156,9 +158,9 @@ importers:
       umi: ^3.5.35
       yorkie: ^2.0.0
     dependencies:
+      '@next-dev/utils': link:../../packages/utils
       next-dev-antd-ui: link:../../packages/antd-ui
       next-dev-ui: link:../../packages/ui
-      next-dev-utils: link:../../packages/utils
     devDependencies:
       '@ant-design/icons': 4.7.0
       '@ant-design/pro-components': 2.3.33_antd@5.0.0-rc.3
@@ -211,26 +213,26 @@ importers:
     specifiers:
       '@ant-design/icons': ^4.7.0
       '@ant-design/pro-components': ^2.3.33
+      '@next-dev/utils': workspace:*
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
       ahooks: ^3.7.2
       antd: next
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
-      next-dev-utils: workspace:*
       react: ^17.0.2
       tsconfig: workspace:*
       typescript: ^4.5.2
     devDependencies:
       '@ant-design/icons': 4.7.0_react@17.0.2
       '@ant-design/pro-components': 2.3.33_e2b56uierdqws6o4n5e6hgerom
+      '@next-dev/utils': link:../utils
       '@types/react': 17.0.52
       '@types/react-dom': 17.0.18
       ahooks: 3.7.2_react@17.0.2
       antd: 5.0.0-rc.3_react@17.0.2
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
-      next-dev-utils: link:../utils
       react: 17.0.2
       tsconfig: link:../tsconfig
       typescript: 4.9.3
@@ -251,12 +253,12 @@ importers:
   packages/ui:
     specifiers:
       '@ant-design/icons': ^4.7.0
+      '@next-dev/utils': workspace:*
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
       classnames: ^2.3.1
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
-      next-dev-utils: workspace:*
       react: ^17.0.2
       tsconfig: workspace:*
       typescript: ^4.5.2
@@ -264,11 +266,11 @@ importers:
       classnames: 2.3.2
     devDependencies:
       '@ant-design/icons': 4.7.0_react@17.0.2
+      '@next-dev/utils': link:../utils
       '@types/react': 17.0.52
       '@types/react-dom': 17.0.18
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
-      next-dev-utils: link:../utils
       react: 17.0.2
       tsconfig: link:../tsconfig
       typescript: 4.9.3

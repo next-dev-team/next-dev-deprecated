@@ -18,7 +18,7 @@
     "react": "^17.0.2",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
-    "next-dev-utils": "workspace:*"
+    "@next-dev/utils": "workspace:*"
   },
   "peerDependencies": {
     "@ant-design/icons": ">=4",

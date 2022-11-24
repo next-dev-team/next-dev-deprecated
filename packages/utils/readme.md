@@ -2,9 +2,6 @@
 nav:
   title: Utilities
   order: 3
-group:
-  title: Utilities
-  order: 1
 toc: content
 ---
 
@@ -24,7 +21,7 @@ as a front-end developers are very difficult to create and use javascript utilit
 Currently, each component of ProComponents is an independent package, you need to install the corresponding npm package in your project and use it.
 
 ```shell
-$ npm i @ant-design/pro-components --save
+npm i @ant-design/pro-components --save
 ```
 
 Currently ProComponents provides the following components for direct use:

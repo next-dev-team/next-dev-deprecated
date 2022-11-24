@@ -59,6 +59,7 @@
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "eslint-config-custom": "workspace:0.0.0",
+    "@next-dev/utils": "workspace:1.0.11-rc4",
     "prettier": "latest",
     "tailwind-merge": "^1.8.0",
     "tsup": "^6.5.0",
