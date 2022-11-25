@@ -32,13 +32,13 @@ import Tabs from 'antd/es/tabs';
 import Tag from 'antd/es/tag';
 import Tooltip from 'antd/es/tooltip';
 
-import { Image, TagProps } from 'antd';
-import Upload, { RcFile, UploadFile } from 'antd/es/upload';
 import {
   _initConfigAxios,
   _requestAxios,
   _requestDelete,
-} from 'next-dev-utils/es/_request';
+} from '@next-dev/utils';
+import { Image, TagProps } from 'antd';
+import Upload, { RcFile, UploadFile } from 'antd/es/upload';
 import { _capitalize } from 'next-dev-utils/es/__capitalize';
 
 const getBase64 = (file: RcFile): Promise<string> =>

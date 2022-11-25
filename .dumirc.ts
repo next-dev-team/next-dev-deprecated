@@ -6,7 +6,7 @@ export default defineConfig({
     { id: 'kh-Km', name: 'ខ្មែរ', suffix: '-km' },
   ],
   resolve: {
-    // auto generate
+    // auto generate docs
     atomDirs: [
       // utils
       { type: 'lib', dir: 'packages/utils/src' },
