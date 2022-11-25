@@ -11,24 +11,23 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "antd": ">4",
     "@ant-design/icons": ">=4",
     "@ant-design/pro-components": ">=2",
-    "ahooks": ">=3"
+    "ahooks": ">=3",
+    "antd": ">4"
   },
   "devDependencies": {
-    "antd": "^5.0.1",
-    "ahooks": "^3.7.2",
     "@ant-design/icons": "^4.8.0",
     "@ant-design/pro-components": "^2.3.35",
+    "@next-dev/utils": "workspace:1.0.11-rc4",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
+    "ahooks": "^3.7.2",
+    "antd": "^5.0.1",
     "eslint": "^8.28.0",
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-custom": "workspace:0.0.0",
     "react": "^18.2.0",
-    "tsconfig": "workspace:*",
-    "typescript": "^4.5.2",
-    "@next-dev/utils": "workspace:*"
-  },
-  "dependencies": {}
+    "tsconfig": "workspace:0.0.0",
+    "typescript": "^4.9.3"
+  }
 }
