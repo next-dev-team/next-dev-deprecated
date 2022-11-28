@@ -18,8 +18,9 @@ as a front-end developers are very difficult to create and use javascript utilit
 
 ## Install
 
-Currently, each component of ProComponents is an independent package, you need to install the corresponding npm package in your project and use it.
+coming soon
 
+<!--
 ```shell
 npm i @ant-design/pro-components --save
 ```
@@ -38,4 +39,4 @@ All our packages use less for style management and easy theme customization. If 
 import '@ant-design/pro-components/dist/components.css';
 ```
 
-It is recommended to use less, which can facilitate theme customization, and can also be loaded on demand.
+It is recommended to use less, which can facilitate theme customization, and can also be loaded on demand. -->

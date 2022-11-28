@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "jsxFactory": "React.createElement",
-    "jsxFragmentFactory": "React.Fragment",
-    "baseUrl": "./",
-    "paths": {
-      "@@/*": ["./.dumi/tmp"]
-    }
+    "jsx": "react"
   },
-  "exclude": ["dist"]
+  "baseUrl": "./",
+  "paths": {
+    "@@/*": ["./.dumi/tmp"]
+  },
+  "extends": "tsconfig/react-library.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
 }

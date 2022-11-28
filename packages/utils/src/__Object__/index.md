@@ -15,7 +15,7 @@ JavaScript object utility
 ## Omit
 
 omit are base on lodash.omit
-use for `remove property from object`
+use for `remove specific property from object`
 
 ```tsx | pure
 import { _omit } from 'next-dev-utils';
@@ -26,6 +26,7 @@ import { _omit } from 'next-dev-utils';
 
   ====> Output: { b: 'hello', c: false  }
 ```
+<embed> 
 
 ## objToUndef
 

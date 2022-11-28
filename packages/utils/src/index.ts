@@ -11,17 +11,11 @@
  */
 // ============================END Content=============================
 // _regex
-export { default as _regexEmail } from './_regexEmail';
-export { default as _regexPhone } from './_regexPhone';
-export { default as _regexPassword } from './_regexPassword';
-export { default as _regexNumber } from './_regexNumber';
-export { default as _isSsr } from './_isSsr';
-export { default as _isMobile } from './_isMobile';
-export { default as _objGetOnlyValue } from './_objGetOnlyValue';
-export { default as _objToUndef } from './_objToUndef';
-export { _omit } from './_omit';
 export { default as _asyncSleep } from './_asyncSleep';
+export * from './_authority';
+export * from './_axios';
 export { _axios } from './_axios';
+export * from './_browser';
 export * from './_capitalize';
 export { default as _dateConstant } from './_constantDate';
 export { default as _constantLayout } from './_constantLayout';
@@ -48,31 +42,33 @@ export * from './_isImg';
 export * from './_isInteger';
 export { default as _isKeyOf } from './_isKeyOf';
 export { default as _isMergableObject } from './_isMergableObject';
+export { default as _isMobile } from './_isMobile';
 export * from './_isNaN';
 export * from './_isNull';
 export * from './_isNumber';
 export * from './_isObject';
 export * from './_isPromise';
 export * from './_isRegExp';
+export { default as _isSsr } from './_isSsr';
 export * from './_isUndefined';
-export { default as _listToFlat } from './_listToFlat';
-export { default as _urlToList } from './_urlToList';
 export { default as _keyCode } from './_keyCode';
+export { default as _listToFlat } from './_listToFlat';
 export { default as _nanoid } from './_nanoid';
 export { _noop } from './_noop';
+export { default as _objGetOnlyValue } from './_objGetOnlyValue';
+export { default as _objToUndef } from './_objToUndef';
+export { _omit } from './_omit';
 export { _pickBy } from './_pickBy';
 export { default as _placeholder } from './_placeholder';
+export { default as _regexEmail } from './_regexEmail';
+export { default as _regexNumber } from './_regexNumber';
+export { default as _regexPassword } from './_regexPassword';
+export { default as _regexPhone } from './_regexPhone';
 export { default as _removeEmpty } from './_removeEmpty';
 export { default as _removeNil } from './_removeNil';
 export { default as _renameObjKeys } from './_renameObjKeys';
-
-export * from './_browser';
-export * from './_authority';
-
-// _lodash
-export * from './_isEmpty';
-export * from './__omit';
-export * from './__isFunction';
-export * from './__isArray';
-export * from './_axios';
 export * from './_request';
+export { default as _urlToList } from './_urlToList';
+export * from './__isArray';
+export * from './__isFunction';
+export * from './__omit';
