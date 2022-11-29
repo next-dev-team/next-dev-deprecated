@@ -45,6 +45,10 @@
     "example:web": "cd example/next && npm next"
   },
   "devDependencies": {
+    "react-simple-code-editor": "^0.13.1",
+    "react-element-to-jsx-string": "^15.0.0",
+    "@types/react-syntax-highlighter": "^15.5.5",
+    "prismjs": "^1.29.0",
     "@ant-design/icons": "^4.8.0",
     "@changesets/cli": "^2.25.2",
     "@emotion/babel-preset-css-prop": "^11.10.0",
@@ -58,7 +62,7 @@
     "babel-plugin-import": "^1.13.5",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
-    "dumi": "^2.0.7",
+    "dumi": "^2.0.8",
     "eslint": "^7.32.0",
     "eslint-ast-utils": "^1.1.0",
     "eslint-config-custom": "workspace:0.0.0",

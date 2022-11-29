@@ -12,12 +12,13 @@ importers:
       '@types/node': ^18.11.9
       '@types/react': 18.0.25
       '@types/react-dom': ^18.0.9
+      '@types/react-syntax-highlighter': ^15.5.5
       antd: latest
       antd-token-previewer: ^1.1.0-13
       babel-plugin-import: ^1.13.5
       concurrently: ^7.6.0
       cross-env: ^7.0.3
-      dumi: ^2.0.7
+      dumi: ^2.0.8
       eslint: ^7.32.0
       eslint-ast-utils: ^1.1.0
       eslint-config-custom: workspace:0.0.0
@@ -46,8 +47,11 @@ importers:
       prettier-plugin-organize-imports: ^2.3.4
       prettier-plugin-packagejson: ^2.3.0
       prettier-plugin-two-style-order: ^1.0.1
+      prismjs: ^1.29.0
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-element-to-jsx-string: ^15.0.0
+      react-simple-code-editor: ^0.13.1
       stylelint-config-prettier: ^8.0.2
       tailwind-merge: ^1.8.0
       tsup: ^6.5.0
@@ -63,12 +67,13 @@ importers:
       '@types/node': 18.11.9
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
+      '@types/react-syntax-highlighter': 15.5.5
       antd: 5.0.2_biqbaboplfbrettd7655fr4n2y
       antd-token-previewer: 1.1.0-13_biqbaboplfbrettd7655fr4n2y
       babel-plugin-import: 1.13.5
       concurrently: 7.6.0
       cross-env: 7.0.3
-      dumi: 2.0.7_3rxrzynzdyfhateqmnmifk7boi
+      dumi: 2.0.8_3rxrzynzdyfhateqmnmifk7boi
       eslint: 7.32.0
       eslint-ast-utils: 1.1.0
       eslint-config-custom: link:packages/eslint-config-custom
@@ -97,8 +102,11 @@ importers:
       prettier-plugin-organize-imports: 2.3.4_brpckf4sz23pco3jyty2eys3iq
       prettier-plugin-packagejson: 2.3.0_prettier@2.8.0
       prettier-plugin-two-style-order: 1.0.1_prettier@2.8.0
+      prismjs: 1.29.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-element-to-jsx-string: 15.0.0_biqbaboplfbrettd7655fr4n2y
+      react-simple-code-editor: 0.13.1_biqbaboplfbrettd7655fr4n2y
       stylelint-config-prettier: 8.0.2
       tailwind-merge: 1.8.0
       tsup: 6.5.0_typescript@4.9.3
@@ -8118,7 +8126,7 @@ packages:
       rc-drawer: 6.0.1
       rc-dropdown: 4.0.1
       rc-field-form: 1.27.3
-      rc-image: 5.12.0
+      rc-image: 5.12.1
       rc-input: 0.1.4
       rc-input-number: 7.3.11
       rc-mentions: 1.11.0
@@ -8131,17 +8139,17 @@ packages:
       rc-rate: 2.9.2
       rc-resize-observer: 1.2.0
       rc-segmented: 2.1.0
-      rc-select: 14.1.13
+      rc-select: 14.1.14
       rc-slider: 10.0.1
       rc-steps: 5.0.0
       rc-switch: 3.2.2
       rc-table: 7.26.0
       rc-tabs: 12.3.0
-      rc-textarea: 0.4.6
+      rc-textarea: 0.4.7
       rc-tooltip: 5.2.2
-      rc-tree: 5.7.0
-      rc-tree-select: 5.5.4
-      rc-trigger: 5.3.3
+      rc-tree: 5.7.1
+      rc-tree-select: 5.5.5
+      rc-trigger: 5.3.4
       rc-upload: 4.3.4
       rc-util: 5.24.6
       scroll-into-view-if-needed: 2.2.29
@@ -11076,8 +11084,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /dumi/2.0.7_3rxrzynzdyfhateqmnmifk7boi:
-    resolution: {integrity: sha512-0D1jm0XhJaJYX3K3SwglDEcfgNIWkiOxzu+pFxHrvJ0hxu+g0RGEkmmM5ZXKrO2Ekq4jA7s6Asu5x/GvPaanGw==}
+  /dumi/2.0.8_3rxrzynzdyfhateqmnmifk7boi:
+    resolution: {integrity: sha512-FcakueJMau/BDe2b4MChHzJBMvOqZsEq1E976Cq5EtQwDT8Z1DrOojPLCDyjXXHo7OtxSZiCHDT1oRokJ6BLYw==}
     hasBin: true
     peerDependencies:
       react: '>=16.8'
@@ -20733,19 +20741,6 @@ packages:
       babel-runtime: 6.26.0
     dev: true
 
-  /rc-image/5.12.0:
-    resolution: {integrity: sha512-ubZIPfT81jmb0hLf/sIKbgi7kJT2+26RxWPshppDElhXoJZ9Xb0y+QRBcYGgCAPy76RIuaKT2RL5x8Owvhrcjg==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.20.1
-      '@rc-component/portal': 1.0.3
-      classnames: 2.3.2
-      rc-dialog: 9.0.2
-      rc-util: 5.24.6
-    dev: true
-
   /rc-image/5.12.1:
     resolution: {integrity: sha512-FMldR/ODwQmlFlhjR4c6hsOHmnn4s9CxmW7PR/9XCYE1XHlGJ5OkSWOtJruoaLjVwt2tQYDRnLANf/mKZ9ReUg==}
     peerDependencies:
@@ -21477,22 +21472,6 @@ packages:
       react: 18.2.0
     dev: true
 
-  /rc-select/14.1.13:
-    resolution: {integrity: sha512-WMEsC3gTwA1dbzWOdVIXDmWyidYNLq68AwvvUlRROw790uGUly0/vmqDozXrIr0QvN/A3CEULx12o+WtLCAefg==}
-    engines: {node: '>=8.x'}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@babel/runtime': 7.20.1
-      classnames: 2.3.2
-      rc-motion: 2.6.2
-      rc-overflow: 1.2.8
-      rc-trigger: 5.3.4
-      rc-util: 5.24.6
-      rc-virtual-list: 3.4.11
-    dev: true
-
   /rc-select/14.1.14:
     resolution: {integrity: sha512-QARbPioNxyrwUzMaXep0Lx6dSyGSvtBqDOTiMwR9H0UZSvz50oYt9Vn7AZiF/8MR+SOwYtybbT6sIMcN+Xvcwg==}
     engines: {node: '>=8.x'}
@@ -21871,19 +21850,6 @@ packages:
       react: 18.2.0
     dev: true
 
-  /rc-textarea/0.4.6:
-    resolution: {integrity: sha512-HEKCu8nouXXayqYelQnhQm8fdH7v92pAQvfVCz+jhIPv2PHTyBxVrmoZJMn3B8cU+wdyuvRGkshngO3/TzBn4w==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.20.1
-      classnames: 2.3.2
-      rc-resize-observer: 1.2.0
-      rc-util: 5.24.6
-      shallowequal: 1.1.0
-    dev: true
-
   /rc-textarea/0.4.7:
     resolution: {integrity: sha512-IQPd1CDI3mnMlkFyzt2O4gQ2lxUsnBAeJEoZGJnkkXgORNqyM9qovdrCj9NzcRfpHgLdzaEbU3AmobNFGUznwQ==}
     peerDependencies:
@@ -21971,19 +21937,6 @@ packages:
       classnames: 2.3.2
       rc-trigger: 5.3.4_react@18.2.0
       react: 18.2.0
-    dev: true
-
-  /rc-tree-select/5.5.4:
-    resolution: {integrity: sha512-RdqOm3o+ybpdD3Jc+fYJ2hXlcODcMQIqSytjWzdTh7n2h5i7yIjSx4mprdbrF/buykU6kg1LURseWz9S2e6P2Q==}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@babel/runtime': 7.20.1
-      classnames: 2.3.2
-      rc-select: 14.1.14
-      rc-tree: 5.7.1
-      rc-util: 5.24.6
     dev: true
 
   /rc-tree-select/5.5.5:
@@ -22469,6 +22422,19 @@ packages:
       react-is: 18.1.0
     dev: true
 
+  /react-element-to-jsx-string/15.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-UDg4lXB6BzlobN60P8fHWVPX3Kyw8ORrTeBtClmIlGdkOOE+GYQSFvmEU5iLLpwp/6v42DINwNcwOhOLfQ//FQ==}
+    peerDependencies:
+      react: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
+      react-dom: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      '@base2/pretty-print-object': 1.0.1
+      is-plain-object: 5.0.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-is: 18.1.0
+    dev: true
+
   /react-error-boundary/3.1.4:
     resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
     engines: {node: '>=10', npm: '>=6'}
@@ -22858,6 +22824,16 @@ packages:
     peerDependencies:
       react: '*'
       react-dom: '*'
+    dev: true
+
+  /react-simple-code-editor/0.13.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-XYeVwRZwgyKtjNIYcAEgg2FaQcCZwhbarnkJIV20U2wkCU9q/CPFBo8nRXrK4GXUz3AvbqZFsZRrpUTkqqEYyQ==}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: true
 
   /react-sortable-hoc/2.0.0:

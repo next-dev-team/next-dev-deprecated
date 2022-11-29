@@ -3,6 +3,6 @@
     "jsx": "react"
   },
   "extends": "tsconfig/react-library.json",
-  "include": ["."],
+  "include": [".", "../../global.d.ts"],
   "exclude": ["dist", "build", "node_modules"]
 }

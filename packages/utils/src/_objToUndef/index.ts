@@ -1,6 +1,6 @@
 import type { Many } from 'lodash';
-import type { ObjectKeys } from './_types';
-import { _omit } from './__omit';
+import _omit from '../_omit';
+import type { ObjectKeys } from '../_types';
 
 /**
  *
@@ -20,3 +20,4 @@ export default function _objToUndef<T extends object, U extends keyof T>(
   );
   return obj;
 }
+

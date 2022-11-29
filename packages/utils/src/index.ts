@@ -57,7 +57,7 @@ export { default as _nanoid } from './_nanoid';
 export { _noop } from './_noop';
 export { default as _objGetOnlyValue } from './_objGetOnlyValue';
 export { default as _objToUndef } from './_objToUndef';
-export { _omit } from './_omit';
+export { default as _omit } from './_omit';
 export { _pickBy } from './_pickBy';
 export { default as _placeholder } from './_placeholder';
 export { default as _regexEmail } from './_regexEmail';

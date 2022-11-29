@@ -7,6 +7,6 @@
     "@@/*": ["./.dumi/tmp"]
   },
   "extends": "tsconfig/react-library.json",
-  "include": ["."],
+  "include": [".", ".dumi/theme/**"],
   "exclude": ["dist", "build", "node_modules"]
 }

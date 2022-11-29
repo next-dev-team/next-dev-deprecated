@@ -1,10 +1,12 @@
 import { defineConfig } from 'dumi';
+import { resolve } from 'path';
 
 export default defineConfig({
   locales: [
     { id: 'en-US', name: 'EN', suffix: '' },
     { id: 'kh-Km', name: 'ខ្មែរ', suffix: '-km' },
   ],
+
   resolve: {
     // auto generate docs
     atomDirs: [
@@ -41,4 +43,23 @@ export default defineConfig({
     footer: `Open-source MIT Licensed | Copyright © 2019-${new Date().getFullYear()}<br /> Powered by Next Dev`,
   },
   ssr: process.env.NODE_ENV === 'development' ? false : {},
+  chainWebpack(config, { webpack }) {
+    config.module.rule('ts-in-node_modules').include.clear();
+    //Introduce global public methods
+    config.plugin('$global').use(
+      // https://webpack.js.org/plugins/provide-plugin/
+      new webpack.ProvidePlugin({
+        DumiCode: [
+          resolve('.dumi/tmp/dumi/theme/builtins/SourceCode.ts'),
+          'default',
+        ],
+        DumiDocLayout: [
+          resolve('.dumi/tmp/dumi/theme/layouts/DocLayout.ts'),
+          'default',
+        ],
+      }),
+    );
+
+    return config;
+  },
 });
