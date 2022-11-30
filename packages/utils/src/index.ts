@@ -70,5 +70,4 @@ export { default as _renameObjKeys } from './_renameObjKeys';
 export * from './_request';
 export { default as _urlToList } from './_urlToList';
 export * from './__isArray';
-export * from './__isFunction';
 export * from './__omit';

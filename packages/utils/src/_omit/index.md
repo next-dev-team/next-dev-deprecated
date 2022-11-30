@@ -6,6 +6,7 @@ group:
   title: Object
   order: 1
 toc: content
+title: _omit
 ---
 
 ## Omit
@@ -16,11 +17,11 @@ use for `remove specific property from object`
 ```tsx | pure
 import { _omit } from '@next-dev/utils';
 
-  const obj = { "a":1,"b":2,"c":3 };
+const obj = { a: 1, b: 2, c: 3 };
 
-  const output = _omit(obj, 'a','b');
+_omit(obj, 'a', 'b');
 
-  ====> Output: { "c":3 }
+// ==> Output: { "c":3 }
 ```
 
 <code src='./demo.tsx'> </code>

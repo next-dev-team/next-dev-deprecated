@@ -1,18 +1,20 @@
 import { Button, Col, Row } from 'antd';
 import React, { useState } from 'react';
-import _omit from './index';
+import { _isNumber } from '../_isNumber';
+import _omitBy from './index';
 
-export default function OmitDemo() {
+export default function Demo() {
   const [show, setShow] = useState(false);
 
-  const obj = { a: 1, b: 2, c: 3 };
+  const object = { a: 1, b: '2', c: 3 };
 
-  // omit a and b
-  const output = _omit(obj, 'a', 'b');
+  const output = _omitBy(object, _isNumber);
 
-  show && console.log('output _omit', output);
+  // => { 'b': '2' }
 
-  const result = show ? `Output: { "c":3 }` : `Output: _ _ _ `;
+  show && console.log('output _omitBy', output);
+
+  const result = show ? `Output: { 'b': '2' }` : `Output: _ _ _ `;
 
   return (
     <Row gutter={[20, 20]}>
@@ -21,7 +23,7 @@ export default function OmitDemo() {
       </Col>
       <Col span={24}>
         <Button type="primary" onClick={() => setShow(true)}>
-          Omit
+          OmitBy
         </Button>
       </Col>
     </Row>
