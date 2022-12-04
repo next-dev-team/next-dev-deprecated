@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^4.8.0",
-    "@ant-design/pro-components": "^2.3.35",
+    "@ant-design/pro-components": "latest",
     "@next-dev/utils": "workspace:1.0.11-rc4",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
-    "ahooks": "^3.7.2",
+    "ahooks": "latest",
     "antd": "latest",
     "eslint": "^8.28.0",
     "eslint-config-custom": "workspace:0.0.0",

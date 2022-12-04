@@ -31,7 +31,7 @@
   "devDependencies": {
     "prettier": "^2.7.1",
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-components": "^2.3.33",
+    "@ant-design/pro-components": "latest",
     "@rematch/core": "^2.2.0",
     "@rematch/immer": "^2.1.3",
     "@rematch/loading": "^2.1.2",
@@ -49,7 +49,7 @@
     "@types/react-syntax-highlighter": "^15.5.5",
     "@umijs/preset-react": "^2.1.6",
     "@umijs/ssr-darkreader": "^4.9.45",
-    "ahooks": "^3.7.2",
+    "ahooks": "latest",
     "antd": "latest",
     "autoprefixer": "^10.4.13",
     "axios": "^1.1.3",

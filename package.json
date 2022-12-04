@@ -62,7 +62,7 @@
     "babel-plugin-import": "^1.13.5",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
-    "dumi": "^2.0.8",
+    "dumi": "latest",
     "eslint": "^7.32.0",
     "eslint-ast-utils": "^1.1.0",
     "eslint-config-custom": "workspace:0.0.0",
