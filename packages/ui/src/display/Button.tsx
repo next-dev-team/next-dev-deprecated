@@ -1,8 +1,12 @@
 // https://tailwind-elements.com/docs/standard/components/buttons/
-
-import { ButtonHTMLAttributes, CSSProperties, ReactNode, useMemo } from 'react';
+import { _omit } from '@next-dev/utils/src';
+import React, {
+  ButtonHTMLAttributes,
+  CSSProperties,
+  ReactNode,
+  useMemo,
+} from 'react';
 import { twMerge as tw } from 'tailwind-merge';
-import { _omit } from 'next-dev-utils/src';
 
 type IVariant = 'outline' | 'primary' | 'link';
 type IType =

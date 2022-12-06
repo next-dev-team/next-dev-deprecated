@@ -2,6 +2,8 @@ import { defineConfig } from 'dumi';
 import { resolve } from 'path';
 
 export default defineConfig({
+  plugins: [require.resolve('@umijs/plugins/dist/tailwindcss')],
+  tailwindcss: {},
   locales: [
     { id: 'en-US', name: 'EN', suffix: '' },
     { id: 'kh-Km', name: 'ខ្មែរ', suffix: '-km' },
