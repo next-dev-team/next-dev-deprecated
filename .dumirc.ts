@@ -9,6 +9,9 @@ export default defineConfig({
     { id: 'kh-Km', name: 'ខ្មែរ', suffix: '-km' },
   ],
 
+  alias: {
+    '@next-dev/utils/es': require.resolve('./packages/utils/src'),
+  },
   resolve: {
     // auto generate docs
     atomDirs: [

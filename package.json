@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "dev:dumi": "dumi dev",
+    "pre:dumi": "dumi preview",
     "build:dumi": "dumi build",
     "prepare": "dumi setup",
     "setup": "pnpm install",
@@ -45,6 +46,7 @@
     "example:web": "cd example/next && npm next"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@umijs/plugins": "^4.0.34",
     "@ant-design/icons": "^4.8.0",
     "@changesets/cli": "^2.25.2",

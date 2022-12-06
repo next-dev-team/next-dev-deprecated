@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint *.ts*",
-    "build": "tsup src --format cjs --minify --dts --external react",
+    "build": "tsup",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
@@ -25,9 +25,9 @@
     "ahooks": "latest",
     "antd": "latest",
     "eslint": "^8.28.0",
-    "eslint-config-custom": "workspace:0.0.0",
+    "eslint-config-custom": "workspace:*",
     "react": "^18.2.0",
-    "tsconfig": "workspace:0.0.0",
+    "tsconfig": "workspace:*",
     "typescript": "^4.9.3"
   }
 }

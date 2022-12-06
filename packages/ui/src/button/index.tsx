@@ -1,5 +1,5 @@
 // https://tailwind-elements.com/docs/standard/components/buttons/
-import { _omit } from '@next-dev/utils/src';
+import { _omit } from '@next-dev/utils/es';
 import React, {
   ButtonHTMLAttributes,
   CSSProperties,

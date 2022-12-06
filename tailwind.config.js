@@ -4,4 +4,5 @@ module.exports = {
     './packages/ui/**/*.tsx',
     './packages/antd-ui/**/*.tsx',
   ],
+  plugins: [require('@tailwindcss/line-clamp')]
 }
