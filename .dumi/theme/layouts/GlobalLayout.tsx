@@ -2,7 +2,6 @@ import { ConfigProvider, theme as antdTheme } from 'antd';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 import { useOutlet } from 'dumi';
 import React, { useLayoutEffect, type FC } from 'react';
-
 import ThemeSwitch from '../common/ThemeSwitch';
 
 const ANT_DESIGN_SITE_THEME = 'antd-site-theme';
@@ -56,6 +55,25 @@ const GlobalLayout: FC = () => {
     );
   };
 
+  // const googleTranslateElementInit = () => {
+  //   new window.google.translate.TranslateElement(
+  //     {
+  //       pageLanguage: 'en',
+  //       autoDisplay: false,
+  //     },
+  //     'google_translate_element',
+  //   );
+  // };
+  // useEffect(() => {
+  //   var addScript = document.createElement('script');
+  //   addScript.setAttribute(
+  //     'src',
+  //     '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+  //   );
+  //   document.body.appendChild(addScript);
+  //   window.googleTranslateElementInit = googleTranslateElementInit;
+  // }, []);
+
   useLayoutEffect(() => {
     const localTheme = localStorage.getItem(ANT_DESIGN_SITE_THEME);
     if (localTheme) {
@@ -82,6 +100,7 @@ const GlobalLayout: FC = () => {
       }}
     >
       {outlet}
+
       <ThemeSwitch
         value={theme.algorithm as []}
         onChange={(value) =>
