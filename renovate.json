@@ -1,0 +1,38 @@
+// https://raw.githubusercontent.com/devianllert/nextplate/main/renovate.json
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabled": true,
+  "schedule": [
+    "before 3am on Sunday"
+  ],
+  "extends": [
+    "config:base",
+    ":pinVersions",
+    ":separateMultipleMajorReleases",
+    ":combinePatchMinorReleases",
+    ":automergePatch",
+    ":automergeMinor",
+    ":pinSkipCi",
+    "group:allNonMajor"
+  ],
+  "assignees": [
+    "rimsila"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "automerge": true
+    }
+  ]
+}
