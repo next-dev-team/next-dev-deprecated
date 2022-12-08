@@ -1,9 +1,8 @@
-// https://raw.githubusercontent.com/devianllert/nextplate/main/renovate.json
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabled": true,
   "schedule": [
-    "before 3am on Sunday"
+    "before 3am"
   ],
   "extends": [
     "config:base",
