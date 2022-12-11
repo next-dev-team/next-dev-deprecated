@@ -1,7 +1,4 @@
-// const plugin = require('tailwindcss/plugin');
-
 module.exports = {
-  important: true,
   content: [
     './docs/**/*.tsx',
     './packages/ui/**/*.tsx',
@@ -9,6 +6,6 @@ module.exports = {
   ],
   plugins: [require('@tailwindcss/line-clamp')],
   corePlugins: {
-    preflight: false,
+    preflight: false, // conflicts with antd button need to custom preflight css in tailwind.css
   },
 };

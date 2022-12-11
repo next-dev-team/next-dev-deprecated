@@ -4,9 +4,18 @@
   },
   "baseUrl": "./",
   "paths": {
-    "@@/*": ["./.dumi/tmp"]
+    "@@/*": [
+      "./.dumi/tmp"
+    ]
   },
-  "extends": "tsconfig/react-library.json",
-  "include": [".", ".dumi/theme/**"],
-  "exclude": ["dist", "build", "node_modules"]
+  "extends": "@next-dev/configs/react-library.json",
+  "include": [
+    ".",
+    ".dumi/theme/**"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ]
 }

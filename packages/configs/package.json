@@ -1,5 +1,5 @@
 {
-  "name": "tsconfig",
+  "name": "@next-dev/configs",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",

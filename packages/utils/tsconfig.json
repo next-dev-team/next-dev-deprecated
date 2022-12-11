@@ -2,7 +2,14 @@
   "compilerOptions": {
     "jsx": "react"
   },
-  "extends": "tsconfig/react-library.json",
-  "include": [".", "../../global.d.ts"],
-  "exclude": ["dist", "build", "node_modules"]
+  "extends": "@next-dev/configs/react-library.json",
+  "include": [
+    ".",
+    "../../global.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ]
 }

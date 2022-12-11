@@ -31,7 +31,7 @@ export default defineConfig({
       { type: 'lint', dir: 'packages/eslint-config-custom' },
 
       //config
-      { type: 'config', dir: 'packages/tsconfig' },
+      { type: 'config', dir: 'packages/configs' },
     ],
   },
   extraBabelPresets: ['@emotion/babel-preset-css-prop'],
