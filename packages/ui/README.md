@@ -2,9 +2,7 @@
 nav:
   title: Tw UI
   order: 1
-group:
-  title: Tw Components
-  order: 1
+
 toc: content
 ---
 

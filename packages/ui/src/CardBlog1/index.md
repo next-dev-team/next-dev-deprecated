@@ -1,7 +1,7 @@
 ---
 nav:
   title: Tw UI
-  order: 1
+  order: 2
 group:
   title: Card Blog
   order: 1
