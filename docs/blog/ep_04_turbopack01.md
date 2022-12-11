@@ -19,7 +19,6 @@ import React from 'react';
 
 export default () => (
   <iframe
-    allowfullscreen
     src="https://turbo.build/blog/turbopack-benchmarks"
     style={{
       width: '100%',

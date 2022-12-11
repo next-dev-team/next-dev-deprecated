@@ -6,7 +6,7 @@ export default defineConfig({
   tailwindcss: {},
   locales: [
     { id: 'en-US', name: 'EN', suffix: '' },
-    { id: 'kh-Km', name: 'ខ្មែរ', suffix: '-km' },
+    // { id: 'kh-Km', name: 'ខ្មែរ', suffix: '-km' },
   ],
 
   alias: {
