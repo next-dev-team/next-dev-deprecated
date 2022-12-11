@@ -1,4 +1,4 @@
-import CardBlog1 from './CardBlog1';
-export type { ICardProps } from './CardBlog1';
+import CardBlog1 from './component';
+export type { ICardBlog1Props } from './component';
 
 export default CardBlog1;
