@@ -1,10 +1,10 @@
 {
   "assets": {
-    "umi.css": "/next-dev/umi.add86972.css",
-    "umi.js": "/next-dev/umi.744985a3.js",
+    "umi.css": "/next-dev/umi.b33836aa.css",
+    "umi.js": "/next-dev/umi.e9f956c3.js",
     "nm__.pnpm__dumi_2.0.13_56kbuj7rsgluts3feeorq4tgyu__node_modules__dumi__dist__client__pages__404.js": "/next-dev/nm__.pnpm__dumi_2.0.13_56kbuj7rsgluts3feeorq4tgyu__node_modules__dumi__dist__client__pages__404.fc086170.async.js",
     "dumi__theme__layouts__GlobalLayout.js": "/next-dev/dumi__theme__layouts__GlobalLayout.ef8b2497.async.js",
-    "dumi__tmp-production__dumi__theme__ContextWrapper.js": "/next-dev/dumi__tmp-production__dumi__theme__ContextWrapper.ffed97fc.async.js",
+    "dumi__tmp-production__dumi__theme__ContextWrapper.js": "/next-dev/dumi__tmp-production__dumi__theme__ContextWrapper.42df9f3b.async.js",
     "nm__.pnpm__dumi_2.0.13_56kbuj7rsgluts3feeorq4tgyu__node_modules__dumi__theme-default__layouts__DocLayout__index.js": "/next-dev/nm__.pnpm__dumi_2.0.13_56kbuj7rsgluts3feeorq4tgyu__node_modules__dumi__theme-default__layouts__DocLayout__index.25ec5573.async.js",
     "docs__blog__architecting-a-modern-monorepo-with-nx-and-turborepo.md.js": "/next-dev/docs__blog__architecting-a-modern-monorepo-with-nx-and-turborepo.md.9dacf8ee.async.js",
     "docs__blog__antd-v5-0-component-level-css-in-js.md.js": "/next-dev/docs__blog__antd-v5-0-component-level-css-in-js.md.55d3d3a0.async.js",
@@ -37,10 +37,10 @@
     "packages__ui__src__CardBlog2__index.md.js": "/next-dev/packages__ui__src__CardBlog2__index.md.6d21b807.async.js",
     "packages__ui__README.md.js": "/next-dev/packages__ui__README.md.519c1ba5.async.js",
     "packages__eslint-config-custom__README.md.js": "/next-dev/packages__eslint-config-custom__README.md.99812019.async.js",
-    "packages__tsconfig__README.md.js": "/next-dev/packages__tsconfig__README.md.91e13ba8.async.js",
+    "packages__configs__README.md.js": "/next-dev/packages__configs__README.md.21964eb1.async.js",
     "nm__.pnpm__dumi_2.0.13_56kbuj7rsgluts3feeorq4tgyu__node_modules__dumi__dist__client__pages__Demo__index.js": "/next-dev/nm__.pnpm__dumi_2.0.13_56kbuj7rsgluts3feeorq4tgyu__node_modules__dumi__dist__client__pages__Demo__index.9abd19e9.async.js",
     "demos.js": "/next-dev/demos.3ef4cb21.async.js",
-    "AuthLogin1__demos.js": "/next-dev/AuthLogin1__demos.5fe22b18.async.js",
+    "AuthLogin1__demos.js": "/next-dev/AuthLogin1__demos.1d660a04.async.js",
     "button__demos.js": "/next-dev/button__demos.c0dd917a.async.js"
   }
 }
