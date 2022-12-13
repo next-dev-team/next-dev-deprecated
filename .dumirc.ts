@@ -12,7 +12,10 @@ export default defineConfig({
   alias: {
     '@next-dev/utils/es': require.resolve('./packages/utils/src'),
   },
+  // apiParser: {},
   resolve: {
+    // Configure the entry file path, API parsing will start from here
+    // entryFile: './packages/utils/src/index.ts',
     // auto generate docs
     atomDirs: [
       // utils

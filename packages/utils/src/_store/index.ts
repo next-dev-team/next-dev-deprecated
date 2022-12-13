@@ -2,7 +2,7 @@ import store from 'store';
 
 const storeWithExp = {
   /**
-   * Set cache value
+   * @description attribute description
    */
   set: (key: string, val: any, exp?: number) => {
     store.set(key, {
