@@ -23,15 +23,13 @@
     "packages/*"
   ],
   "scripts": {
-    "build-tailwind": "npx tailwindcss -o  public/tailwind-prod.css --minify",
-    "tailwind:dev": "npx tailwindcss -o public/tailwind-prod.css --watch",
     "dev:dumi": "dumi dev",
     "pre:dumi": "dumi preview",
     "build:dumi": "dumi build",
     "prepare": "dumi setup",
     "setup": "pnpm install",
     "build": "turbo run build",
-    "dev": "concurrently \"pnpm tailwind:dev\" \"dumi dev\"",
+    "dev": "concurrently \"dumi dev\"",
     "doc:dev": "dumi dev",
     "doc:build": "pnpm clean &&  turbo run build --filter ./doc... && pnpm build:dumi",
     "doc:predeploy": "turbo run publish --filter ./boilerplate/doc...",
@@ -45,7 +43,9 @@
     "version-packages": "changeset version",
     "release:packages": "turbo run build --filter=packages^... && changeset publish",
     "example:native": "cd example/expo && expo start",
-    "example:web": "cd example/next && npm next"
+    "example:web": "cd example/next && npm next",
+    "build-tailwind": "npx tailwindcss -o  public/tailwind-prod.css --minify",
+    "tailwind:dev": "npx tailwindcss -o public/tailwind-prod.css --watch"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.8.0",
@@ -55,7 +55,7 @@
     "@next-dev/configs": "workspace:0.0.0",
     "@next-dev/utils": "workspace:1.0.11-rc4",
     "@tailwindcss/line-clamp": "^0.4.2",
-    "@types/node": "^18.11.14",
+    "@types/node": "^18.11.15",
     "@types/react": "18.0.25",
     "@types/react-dom": "^18.0.9",
     "@types/react-syntax-highlighter": "^15.5.5",

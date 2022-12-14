@@ -34,6 +34,7 @@
     "@types/lodash-es": "4.17.6"
   },
   "dependencies": {
+    "react-secure-storage": "^1.0.21",
     "lodash-es": "^4.17.21",
     "lorem-ipsum": "^2.0.8",
     "store": "^2.0.12",
