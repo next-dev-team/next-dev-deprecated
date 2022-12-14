@@ -13,6 +13,8 @@ toc: content
 Provide local storage related methods
 
 ```tsx | pure
+import storeWithExp from '@next-dev/utils/_store';
+
 const lsKey = 'lsKey';
 
 // get value from local storage
