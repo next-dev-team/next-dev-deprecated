@@ -50,7 +50,6 @@ export default defineConfig({
     logo: 'https://gw.alipayobjects.com/zos/bmw-prod/d3e3eb39-1cd7-4aa5-827c-877deced6b7e/lalxt4g3_w256_h256.png',
     footer: `Open-source MIT Licensed | Copyright © 2019-${new Date().getFullYear()}<br /> Powered by Next Dev`,
   },
-  ssr: process.env.NODE_ENV === 'development' ? false : {},
   chainWebpack(config, { webpack }) {
     config.module.rule('ts-in-node_modules').include.clear();
     //Introduce global public methods
