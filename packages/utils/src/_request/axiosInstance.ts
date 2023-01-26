@@ -1,5 +1,4 @@
 import { CreateAxiosDefaults } from 'axios';
-import { _isArray } from '../__isArray';
 import { _axios } from '../_axios';
 
 type IConfigAxios<T = any> = CreateAxiosDefaults<T> &
@@ -28,7 +27,7 @@ _axiosInstance.interceptors.request.use(
       //todo: add token and other header
       // 'x-api-key': getToken()?.refreshToken as string,
       // Authorization: `Bearer ${getToken()?.token}`,
-    };
+    } as any;
     // set new config
     Object.keys(_initConfigAxios).forEach((configKey) => {
       if (configKey) {
