@@ -1,10 +1,14 @@
 {
-  "name": "@next-dev/antd-ui",
-  "version": "0.0.1-beta.1",
+  "name": "next-dev-antd-ui",
+  "version": "0.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "lint": "eslint *.ts*",
     "build": "tsup",
