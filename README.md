@@ -1,4 +1,5 @@
-# Next Dev
+# This repo is discountinue, check this repo for new version https://github.com/next-dev-team/next-dev-v2
+# Next Dev 
 
 Next Dev(Next Generation Dev) is an open source team to sharing all related fullstack resources with the community
 
